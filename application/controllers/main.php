@@ -7,45 +7,64 @@ class main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('functions'));
+		$this->load->model('functions');
 		//Do your magic here
 	}
-	public function index()
+	public function index(){
+
+	}
+
+	public function api_profile()
 	{
-		$patient_id=NULL;
 		$patient_name = NULL;
 		$birth_date = NULL;
 		$gender = NULL;
 		$weight = NULL;
 		$height = NULL;
 		$profile_picture = NULL;
-		$bmi_status = NULL;
 		$username = NULL;
 		$password = NULL;
-		$date_registered = NULL;
 		$submitted = NULL;
+		$conpassword = NULL;
+
+		$bmi = "";
+		
 		extract($_POST);
 
-		$params["patient_id"] = $patient_id;
+		$token = $this->functions->guid();
+
+		$params["patient_id"] = $token;
 		$params["patient_name"] = $patient_name;
 		$params["birth_date"] = $birth_date;
 		$params["gender"] = $gender;
 		$params["weight"] = $weight;
 		$params["height"] = $height;
 		$params["profile_picture"] = $profile_picture;
-		$params["bmi_status"] = $bmi_status;
+		$params["bmi"] = "";
+		$params["bmi_status"] = "";
 		$params["username"] = $username;
 		$params["password"] = $password;
-		$params["date_registered"] = $date_registered;
+		$params["date_registered"] = "";
+		$params["token"] = $token;
 
 		if (isset($submitted)) {
-			var_dump($params);
-			$this->functions->profile($params);
-
+			if ($password = $conpassword) {
+				$conweight = $weight*0.45;
+				$conheight = $height*0.025; 
+				$exheight = $height^2;
+				$bmi = $conweight / $conheight;
+				$params["bmi"] = $bmi;
+				var_dump($params);
+				$this->functions->profile($params);
+			}
+			
 		}
-		$token = $this->functions->guid();
-		var_dump($token);
-		$this->load->view('index.php');		
+		$this->load->view('index.php', $params);	
+	}
+
+	public function getAllPatient(){
+		$result = $this->functions->getprofile();
+		echo json_encode($result);
 	}
 }
 
