@@ -20,7 +20,7 @@ $(document).ready(function (){
                             $.ajax({
                                 type: "ajax",
                                 method:"post",
-                                url: 'http://192.168.1.8/health/main/api_profile',
+                                url: 'http://localhost/health/main/api_profile',
                                 dataType: "html",
                                 data:{
                                     patient_name: patient_name,
@@ -40,12 +40,11 @@ $(document).ready(function (){
                                 },
                                 error: function(data){
                                     console.log('cant submit data');
-                                    console.log(submitted);
                                 }
                             });
                         }
                         else{
-                            console.log("password must have numbers and leght is greater than 6");
+                            console.log("password must have numbers and length is greater than 6");
                         }
                     }
                     else{
@@ -54,7 +53,7 @@ $(document).ready(function (){
                         
                 }
                 else{
-                    console.log("accept onlt words number and underscore");
+                    console.log("accept only words number and underscore");
                 }   
             }
             else{
@@ -69,7 +68,7 @@ $(document).ready(function (){
 function get_patients(){    
      $.ajax({
                     type: "ajax",
-                    url: 'http://192.168.1.8/health/main/api_getAllPatient',
+                    url: 'http://localhost/health/main/api_getAllPatient',
                     dataType: "json",
                     success: function(data){
                         console.log(data);
@@ -89,5 +88,6 @@ function get_patients(){
                     }   
                 });
  }
+
 });
 
