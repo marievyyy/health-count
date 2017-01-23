@@ -1,12 +1,11 @@
 $(document).ready(function (){
     $("#registerForm").submit(function(e){
         e.preventDefault();
-        var patient_name = $("input[name=patient_name]").val();
+        var patient_name = JSON.stringify($("input[name=patient_name]").val());
         var birth_date = $("input[name=birth_date]").val();
         var gender = $("input[name=gender]").val();
         var weight = $("input[name=weight]").val();
         var height = $("input[name=height]").val();
-        //var profile_picture = $("input[name=]").val();
         var username = $("input[name=username]").val();
         var password = $("input[name=password]").val();
         var conpassword = $("input[name=conpassword]").val();
@@ -17,9 +16,9 @@ $(document).ready(function (){
                  if(/[^_0-9aA-zZ]/i.test(username) != true){
                     if(password == conpassword){
                         if(/\d/.test(password) == true && password.length >= 6){
+                            console.log(patient_name, gender, weight, height,username,password,conpassword,submitted);
                             $.ajax({
-                                type: "ajax",
-                                method:"post",
+                                type:"POST",
                                 url: 'http://localhost/health/main/api_profile',
                                 dataType: "html",
                                 data:{
@@ -28,13 +27,14 @@ $(document).ready(function (){
                                     gender: gender,
                                     weight: weight,
                                     height: height,
-                                    //profile_picture: profile_picture,
+                                    formData: formData,
                                     username: username,
                                     password: password,
                                     submitted, submitted
                                 },
                                 success: function(data){
                                     console.log("success transfer");
+                                    console.log(data);
                                     get_patients();
 
                                 },
@@ -65,8 +65,8 @@ $(document).ready(function (){
         }
     });
 
-function get_patients(){    
-     $.ajax({
+    function get_patients(){    
+        $.ajax({
                     type: "ajax",
                     url: 'http://localhost/health/main/api_getAllPatient',
                     dataType: "json",
@@ -87,7 +87,11 @@ function get_patients(){
                         console.log('cant get data');
                     }   
                 });
- }
+    }
+
+    $("#attach-image").submit(function(e){
+
+    });
 
 });
 

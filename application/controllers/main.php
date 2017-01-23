@@ -29,6 +29,7 @@ class main extends CI_Controller {
 		$params["gender"] = $this->input->post('gender');
 		$params["weight"] = $this->input->post('weight');
 		$params["height"] = $this->input->post('height');
+		
 		$params["username"] = $this->input->post('username');
 		$params["password"] = password_hash(md5($this->input->post('password')),PASSWORD_BCRYPT, $options);
 		$params["date_registered"] = date('Y-m-d');
