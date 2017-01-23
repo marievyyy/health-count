@@ -14,56 +14,33 @@ class main extends CI_Controller {
 
 	}
 
-	public function api_profile()
-	{
-		$patient_name = NULL;
-		$birth_date = NULL;
-		$gender = NULL;
-		$weight = NULL;
-		$height = NULL;
-		$profile_picture = NULL;
-		$username = NULL;
-		$password = NULL;
-		$submitted = NULL;
-		$conpassword = NULL;
-
-		$bmi = "";
+	public function api_profile(){
 		
-		extract($_POST);
-
 		$token = $this->functions->guid();
 
 		$params["patient_id"] = $token;
-		$params["patient_name"] = $patient_name;
-		$params["birth_date"] = $birth_date;
-		$params["gender"] = $gender;
-		$params["weight"] = $weight;
-		$params["height"] = $height;
-		$params["profile_picture"] = $profile_picture;
-		$params["bmi"] = "";
-		$params["bmi_status"] = "";
-		$params["username"] = $username;
-		$params["password"] = $password;
-		$params["date_registered"] = "";
-		$params["token"] = $token;
+		$params["patient_name"] = $this->input->post('patient_name');
+		$params["birth_date"] = $this->input->post('birth_date');
+		$params["gender"] = $this->input->post('gender');
+		$params["weight"] = $this->input->post('weight');
+		$params["height"] = $this->input->post('height');
+		$params["username"] = $this->input->post('username');
+		$params["password"] = $this->input->post('password');
+		$params["date_registered"] = date('Y-m-d');
+		$params["submitted"] = $this->input->post('submitted');
 
-		if (isset($submitted)) {
-			if ($password = $conpassword) {
-				$conweight = $weight*0.45;
-				$conheight = $height*0.025; 
-				$exheight = $height^2;
-				$bmi = $conweight / $conheight;
-				$params["bmi"] = $bmi;
-				var_dump($params);
-				$this->functions->profile($params);
-			}
-			
+		$get_token = $this->functions->api_getToken();
+
+		if(array_search($token, $get_token) != true){
+			if($params["submitted"] == "submitted"){
+				$this->functions->register_profile($params);
+				echo json_encode($params);			}
 		}
-		$this->load->view('index.php', $params);	
+		$this->load->view('view_main');	
 	}
 
-	public function getAllPatient(){
-		$result = $this->functions->getprofile();
+	public function api_getAllPatient(){
+		$result = $this->functions->api_getProfile();
 		echo json_encode($result);
 	}
 }
