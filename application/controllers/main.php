@@ -11,10 +11,28 @@ class main extends CI_Controller {
 		//Do your magic here
 	}
 	public function index(){
+		$this->load->view('view_homepage');
+	}
 
+	public function login(){
+		$this->load->view('view_login');
+	}
+
+	public function registration(){
+		$this->load->view('view_registration');
+	}
+
+	public function food(){
+		$this->load->view('view_food');
+	}
+
+	public function water(){
+		$this->load->view('view_water');
 	}
 
 	public function api_profile(){
+
+		$this->load->view('api_register');	
 		
 		$options = [
     		'cost' => 11,
@@ -40,21 +58,41 @@ class main extends CI_Controller {
 		if(array_search($token, $get_token) != true){
 			if($params["submitted"] == "submitted"){
 				$this->functions->register_profile($params);
+				var_dump($params);
 				echo json_encode($params);			
 			}
 		}
-		$this->load->view('api_register');	
 	}
 
 	public function api_getAllPatient(){
 		$result = $this->functions->api_getProfile();
 		echo json_encode($result);
 	}
+	
 
-	public function api_logIn(){
+	public function api_getlogIn(){
 
 		$this->load->view('api_login');
+
+		$options = [
+    		'cost' => 11,
+ 			'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+		];
+
+		$params["username"] = $this->input->post('log_username');
+		$params["password"] = password_hash(md5($this->input->post('log_password')),PASSWORD_BCRYPT, $options);
+		$params["submitted"] = $this->input->post('submitted');
+
+
+
+		if ($params["submitted"] == "submitted") {
+			//$result = $this->functions->api_setlogIn($params["username"], $params["password"]);
+			var_dump($params);
+			//echo json_encode($result);
+		}
+
 	}
+
 
 	public function api_food(){
 

@@ -1,7 +1,7 @@
 $(document).ready(function (){
     $("#registerForm").submit(function(e){
         e.preventDefault();
-        var patient_name = JSON.stringify($("input[name=patient_name]").val());
+        var patient_name = $("input[name=patient_name]").val();
         var birth_date = $("input[name=birth_date]").val();
         var gender = $("input[name=gender]").val();
         var weight = $("input[name=weight]").val();
@@ -27,7 +27,6 @@ $(document).ready(function (){
                                     gender: gender,
                                     weight: weight,
                                     height: height,
-                                    formData: formData,
                                     username: username,
                                     password: password,
                                     submitted, submitted
@@ -93,5 +92,27 @@ $(document).ready(function (){
 
     });
 
-});
+    $("#loginForm").submit(function(e){
+        e.preventDefault();
+        var log_username = $("input[name=log_username]").val();
+        var log_password = $("input[name=log_password]").val();
+        var submitted = "submitted";
 
+        $.ajax({
+                    type: "POST",
+                    url: 'http://localhost/health/main/api_getlogIn',
+                    dataType: "html",
+                    data:{
+                        log_username: log_username,
+                        log_password: log_password,
+                        submitted: submitted
+                    },
+                    success: function(data){
+                        console.log('success');
+                    },
+                    error: function(){
+                        console.log('cant get data');
+                    }   
+                });
+    });
+});
