@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+@font-face {
+    font-family: 'bernadette';
+    src: url(../fonts/bernadette.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    height: 100%;
+    outline: 0;
+    overflow-x: hidden;
+}
+
+/* ---------------- Background images */
+.main-banner {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: initial;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  position: absolute;
+  vertical-align: middle;
+  display: table;
+}
+
+.main-banner {
+  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner4.png);
+  animation: xfade 18s 10s infinite;
+}
+.main-banner.two {
+  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner2.png);
+  animation: xfade 18s 6s infinite;
+}
+.main-banner.three {
+  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner3.png);
+  animation: xfade 18s 0s infinite;
+}
+.main-banner.four {
+  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner1.png);
+  animation: xfade 18s 0s infinite;
+}
+
+@keyframes xfade{
+ 0%{
+    opacity: 1;
+ }
+ 20% {
+    opacity:0;
+ }
+ 40%{
+    opacity: 1;
+ }
+ 60% {
+    opacity:0;
+ }
+ 80% {
+     opacity: 1;
+ }
+ 100% {
+     opacity: 1;
+ }
+}
+
+/* ------------------ End of background-image */
+
+
+/* ----------------------------------- Log In */
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  height: 450px;
+  width: 450px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 50px 0px;
+  margin: 0 auto;
+  border-top: 5px solid #a6ce38;
+}
+
+.login-container .logo {
+  text-align: center;
+  font-family: 'bernadette';
+  font-size: 45px;
+}
+
+.login-container h1 {
+  text-align: center;
+  font-size: 26px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Oswald';
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.login-block {
+  width: 320px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.login-block input {
+  width: 100%;
+  height: 42px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-family: sans-serif;
+  padding: 0 20px 0 50px;
+  outline: none;
+}
+
+.login-block input:active,
+.login-block input:focus {
+  border: 1px solid #a6ce38;
+}
+
+.login-block button {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  box-sizing: border-box;
+  border: 2px solid #545454;
+  color: #545454;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-family: 'Oswald';
+  outline: none;
+  cursor: pointer;
+}
+
+.login-block button:hover {
+  background: #a6ce38;
+  border: 2px solid #a6ce38;
+  color: #fff;
+}
+
+

@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+@font-face {
+    font-family: 'bernadette';
+    src: url(../fonts/bernadette.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    height: 100%;
+    outline: 0;
+    overflow-x: hidden;
+}
+
+/* ------------------ MAIN PAGE */
+
+.main-page {
+    background: url("../img/home_background.jpg") no-repeat center center fixed;
+    -webkit-backgorund-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+}
+
+.main-page h1 {
+    font-size: 150px;
+    color: #a6ce38;
+    font-family: "bernadette";
+    text-align: center;
+    margin-top: 11%;
+}
+
+.main-page h6 {
+    font-size: 30px;
+    font-weight: 300;
+    color: #000;
+    font-family: "Oswald";
+    text-align: center;
+}
+
+.button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  top: 6%;
+  padding: 10px;
+  border: 2px solid #545454;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: .3s;
+  transition: .3s;
+  color: #545454;
+  font-family: 'Oswald', sans-serif;
+  max-width: 230px;
+  min-height: 40px;
+  margin: 0 auto;
+}
+
+.button:after {
+  position: absolute;
+  -webkit-transition: .3s;
+  transition: .3s;
+  content: '';
+  width: 0;
+  left: 50%;
+  bottom: 0;
+  height: 3px;
+  background: #545454;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+.button:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+.button-signIn {
+    top: 8%;
+}
+
+.button a {
+  text-decoration: none;
+  color: #545454;
+  padding: 18px 62px;
+}
+
+/* ----------- END OF MAIN PAGE */
+
+
+/* ---------------------- MENU */
+
+.menu {
+    position: fixed;
+    left: -200px;
+    width: 260px;
+    height: 100%;
+    top: 0;
+    z-index: 10;
+    text-align: right;
+}
+
+.menu.menu-open {
+    left: 0px;
+}
+
+.menu-wrap {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    background: #a6ce38;
+    width: 200px;
+    height: 100%;
+}
+
+.menu h1.logo a {
+    padding-right: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-top: 20px;
+    text-decoration: none;
+    margin: 40px 0;
+}
+
+.menu h1.logo:hover {
+    color: #fff;
+    text-decoration: none;        
+}
+
+.menu a.smoothScroll {
+    padding-right: 20px;
+    color: #000;
+    display: block;
+    font-family: 'Oswald';
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 60px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.menu a.smoothScroll:hover {
+    color: #ffffff;
+    text-decoration: none;
+    border-right: 4px solid white;
+    background-color: #a2c14c; 
+}
+
+.menu a.smoothScroll:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.menu a.smoothScroll > i {
+    float: right;
+    display: inline-block;
+    vertical-align: middle; 
+    text-align: right;
+    width: 25px;
+    font-size: 14px;
+    line-height: 40px;
+    margin: 25px 2px;
+}
+
+.menu-close {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    color: #808080;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    top: 20px;
+    left: 5px;
+    -webkit-transition: all .1s ease-in-out;
+       -moz-transition: all .1s ease-in-out;
+        -ms-transition: all .1s ease-in-out;
+         -o-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+}
+
+.menu-close:hover {
+    color: #ffffff;
+    -webkit-transition: all .1s ease-in-out;
+       -moz-transition: all .1s ease-in-out;
+        -ms-transition: all .1s ease-in-out;
+         -o-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+}
+
+/* Push the body after clicking the menu button */
+.body-push {
+    overflow-x: hidden;
+    position: relative;
+    right: 0;
+}
+
+.body-push-toright {
+    right: 200px;
+}
+
+.body-push-toleft {
+    right: -200px;
+}
+
+.menu,
+.body-push {
+    -webkit-transition: all .3s ease;
+       -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+}
+
+#menuToggle {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    z-index: 11;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.25);
+    -webkit-transition: all .1s ease-in-out;
+       -moz-transition: all .1s ease-in-out;
+        -ms-transition: all .1s ease-in-out;
+         -o-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+}
+
+#menuToggle:hover {
+    color: #ffffff;
+    background: rgba(0,0,0,0.2);
+    -webkit-transition: all .1s ease-in-out;
+       -moz-transition: all .1s ease-in-out;
+        -ms-transition: all .1s ease-in-out;
+         -o-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+}
+
+/* ---------------------- END OF MENU */
