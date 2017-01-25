@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <!-- Custom style -->
-        <link rel="stylesheet" href="../application/views/css/homepage.css">
-        <link rel="stylesheet" href="../application/views/css/water.css">
-        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/water-menu.css">
+        <link rel="stylesheet" href="css/water.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
         <script src="js/jquery.min.js"></script>
 
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-md-4 glass" align="center">
                     <h3 class="title">Number of Glasses</h3>
-                    <img src="img/lemonade.png">
+                    <img src="img/glass2.png">
 
                     <div class="center">
                         <div class="input-group">
@@ -98,12 +98,12 @@
         </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js"</script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../application/views/js/bootstrap.min.js"></script>
-    <script src="../application/views/js/smoothscroll.js"></script>
-    <script src="../application/views/js/main.js"></script>
-    <script src="../application/views/js/water.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/water.js"></script>
 
 
     </body>

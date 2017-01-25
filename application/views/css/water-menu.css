@@ -45,13 +45,6 @@ body {
     text-align: center;
 }
 
-.main-page h6.footer {
-  margin-top: 11%;
-  font-size: 12px;
-}
-
-
-
 .button {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -125,7 +118,7 @@ body {
     position: absolute;
     top: 0;
     right: 60px;
-    background: #a6ce38;
+    background: #39a3db;
     width: 200px;
     height: 100%;
 }
@@ -166,7 +159,7 @@ body {
     color: #ffffff;
     text-decoration: none;
     border-right: 4px solid white;
-    background-color: #a2c14c; 
+    background-color: #39a3db; 
 }
 
 .menu a.smoothScroll:active {

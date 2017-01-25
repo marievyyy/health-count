@@ -13,14 +13,14 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <!-- Custom style -->
-        <link rel="stylesheet" href="../application/views/css/registration.css">
-        <link rel="stylesheet" href="../application/views/css/homepage.css">
-        <link rel="stylesheet" href="../application/views/css/responsive.css">
-        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/registration.css">
+        <link rel="stylesheet" href="css/homepage.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
-        <script src="../application/views/js/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
 
 
     </head>
@@ -82,14 +82,18 @@
                         <!-- fieldsets -->
                         <fieldset>
                             <h2 class="fs-title">Registration</h2>
+                            <!-- <h6 class="error">Input a valid name!</h6> -->
                             <input type="text" name="username" placeholder="Name" />
+                            <!-- <h6 class="error">Input atleast 5 characters!</h6> -->
                             <input type="password" name="pass" placeholder="Password" />
+                            <!-- <h6 class="error">Input atleast 5 characters!</h6> -->
                             <input type="password" name="cpass" placeholder="Confirm Password" />
                             <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6>Birthday</h6>
+                            <!-- <h6 class="error">Input your birthday!</h6> -->
                             <input type="date" name="birthday" placeholder="Birthday" />
                             <h6>Gender</h6>
                             <select id="gender" name="gender" value="">
@@ -101,7 +105,9 @@
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Body Details</h2>
+                            <!-- <h6 class="error">Input your height!</h6> -->
                             <input type="text" name="height" placeholder="Height in Feet" />
+                            <!-- <h6 class="error">Input your weight!</h6> -->
                             <input type="text" name="weight" placeholder="Weight in Lbs" />
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="submit" name="submit" class="submit action-button" value="Submit" />
@@ -113,11 +119,10 @@
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
-    <script src="../application/views/js/bootstrap.min.js"></script>
-    <script src="../application/views/js/main.js"></script>
-    <script src="../application/views/js/registration.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/registration.js"></script>
 
 
     </body>

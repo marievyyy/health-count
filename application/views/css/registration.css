@@ -227,3 +227,8 @@ body {
   background: #a6ce38;
   color: white;
 }
+
+.registration-container #msform h6.error {
+  color: #d45656;
+  font-size: 10px;
+}

@@ -13,12 +13,12 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <!-- Custom style -->
-        <link rel="stylesheet" href="../application/views/css/homepage.css">
-        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/homepage.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
-        <script src="../application/views/js/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
 
 
     </head>
@@ -49,12 +49,15 @@
 
             <div class="button button-register"><a href="registration.html">Register Now</a></div>
             <div class="button button-signIn"><a href="login.html">Sign In</a></div>
+                
+            <h6 class="footer">All Rights Slightly Reserved | © rvnar 2016</h6>
         </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../application/views/js/bootstrap.min.js"></script>
-    <script src="../application/views/js/smoothscroll.js"></script>
-    <script src="../application/views/js/main.js"></script>
+    <script src="js/jquery.min.js"</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/main.js"></script>
 
 
     </body>

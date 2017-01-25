@@ -13,13 +13,13 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <!-- Custom style -->
-        <link rel="stylesheet" href="../application/views/css/login.css">
-        <link rel="stylesheet" href="../application/views/css/homepage.css">
-        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/homepage.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
 
-        <script src="../application/views/js/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
 
 
     </head>
@@ -85,9 +85,9 @@
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../application/views/js/bootstrap.min.js"></script>
-    <script src="../application/views/js/main.js"></script>
+    <script src="js/jquery.min.js"</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
 
     </body>

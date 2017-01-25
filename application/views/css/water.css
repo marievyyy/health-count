@@ -32,24 +32,25 @@ body {
 .water-page h1 {
   font-family: 'bernadette';
   font-size: 80px;
-  color: #a6ce38;
+  color: #007fb2;
   text-align: center;
   margin-top: 5%;
 }
 
 .water-page h6 {
   font-family: 'Oswald';
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
-  color: #000;
+  color: #545454;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .water-page h3 {
   font-family: 'Oswald';
   font-size: 20px;
-  font-weight: 300;
-  color: #000;
+  font-weight: 400;
+  color: #4a545d;
   text-align: center;
   text-transform: uppercase;
 }
@@ -66,8 +67,13 @@ body {
   width: 80px;
   height: 80px;
   outline: 0;
-  border: 0;
+  border: 3px solid #d7d7d7;
   margin-top: 10px;
+}
+
+.button-list button:hover,
+.button-list button:focus {
+  border: 3px solid #007fb2;
 }
 
 .button-list .one {
@@ -115,7 +121,7 @@ body {
 
 .water-page .center button:hover,
 .water-page .center button:focus {
-  background-color: #a6ce38;
+  background-color: #01a2e3;
   outline: 0;
 }
 
@@ -129,7 +135,7 @@ body {
   font-family: 'Oswald';
   font-size: 190px;
   font-weight: 300;
-  color: #39a3db;
+  color: #007fb2;
   margin-top: 5%;
 }
 
@@ -137,6 +143,6 @@ body {
   font-family: 'Oswald';
   font-size: 50px;
   font-weight: 300;
-  color: #39a3db;
+  color: #007fb2;
   margin-bottom: 15%;
 }
