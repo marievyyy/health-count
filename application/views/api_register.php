@@ -12,7 +12,7 @@
 	<br><br>
 	<label>Birth Date: </label><input type="date" name="birth_date" placeholder="BirthDate" required>
 	<br><br>
-	<label>Gender: </label><input type="char" name="gender" placeholder="Gender" required>
+	<label>Gender: </label><input type="radio" name="gender" value="male">Male &nbsp <input type="radio" name="gender" value="female">Female
 	<br><br>
 	<label>Weight (POUNDS): </label><input type="text" name="weight" placeholder="00.00" required>
 	<br><br>
@@ -38,7 +38,6 @@
     <script src="../application/views/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/app.js"></script>
 </body>
 </html>

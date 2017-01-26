@@ -7,7 +7,7 @@ class main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('functions');
+		$this->load->model('account');
 		//Do your magic here
 	}
 	public function index(){
@@ -18,7 +18,7 @@ class main extends CI_Controller {
 		$this->load->view('view_login');
 	}
 
-	public function registration(){
+	public function register(){
 		$this->load->view('view_registration');
 	}
 
@@ -30,69 +30,13 @@ class main extends CI_Controller {
 		$this->load->view('view_water');
 	}
 
-	public function api_profile(){
+	public function api_register(){
 
-		$this->load->view('api_register');	
-		
-		$options = [
-    		'cost' => 11,
- 			'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-		];
+		$this->load->view('api_register');
+				$data = $this->account->register_profile();
+				echo json_encode($data);
 
-		$token = $this->functions->guid();
-
-		$params["patient_id"] = $token;
-		$params["patient_name"] = $this->input->post('patient_name');
-		$params["birth_date"] = $this->input->post('birth_date');
-		$params["gender"] = $this->input->post('gender');
-		$params["weight"] = $this->input->post('weight');
-		$params["height"] = $this->input->post('height');
-		
-		$params["username"] = $this->input->post('username');
-		$params["password"] = password_hash(md5($this->input->post('password')),PASSWORD_BCRYPT, $options);
-		$params["date_registered"] = date('Y-m-d');
-		$params["submitted"] = $this->input->post('submitted');
-
-		$get_token = $this->functions->api_getToken();
-
-		if(array_search($token, $get_token) != true){
-			if($params["submitted"] == "submitted"){
-				$this->functions->register_profile($params);
-				var_dump($params);
-				echo json_encode($params);			
-			}
-		}
-	}
-
-	public function api_getAllPatient(){
-		$result = $this->functions->api_getProfile();
-		echo json_encode($result);
-	}
-	
-
-	public function api_getlogIn(){
-
-		$this->load->view('api_login');
-
-		$options = [
-    		'cost' => 11,
- 			'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-		];
-
-		$params["username"] = $this->input->post('log_username');
-		$params["password"] = password_hash(md5($this->input->post('log_password')),PASSWORD_BCRYPT, $options);
-		$params["submitted"] = $this->input->post('submitted');
-
-
-
-		if ($params["submitted"] == "submitted") {
-			//$result = $this->functions->api_setlogIn($params["username"], $params["password"]);
-			var_dump($params);
-			//echo json_encode($result);
-		}
-
-	}
-
+		}	
 
 	public function api_food(){
 
