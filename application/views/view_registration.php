@@ -78,18 +78,18 @@
                         <!-- fieldsets -->
                         <fieldset>
                             <h2 class="fs-title">Registration</h2>
-                            <!-- <h6 class="error">Input a valid name!</h6> -->
+                            <h6 class="error">Input a valid name!</h6>
                             <input type="text" name="username" placeholder="Name" />
-                            <!-- <h6 class="error">Input atleast 5 characters!</h6> -->
+                            <h6 class="error">Input atleast 5 characters!</h6>
                             <input type="password" name="pass" placeholder="Password" />
-                            <!-- <h6 class="error">Input atleast 5 characters!</h6> -->
+                            <h6 class="error">Input atleast 5 characters!</h6>
                             <input type="password" name="cpass" placeholder="Confirm Password" />
                             <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6>Birthday</h6>
-                            <!-- <h6 class="error">Input your birthday!</h6> -->
+                            <h6 class="error">Input your birthday!</h6>
                             <input type="date" name="birthday" placeholder="Birthday" />
                             <h6>Gender</h6>
                             <select id="gender" name="gender" value="">
@@ -101,9 +101,9 @@
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Body Details</h2>
-                            <!-- <h6 class="error">Input your height!</h6> -->
+                            <h6 class="error">Input your height!</h6>
                             <input type="text" name="height" placeholder="Height in Feet" />
-                            <!-- <h6 class="error">Input your weight!</h6> -->
+                            <h6 class="error">Input your weight!</h6>
                             <input type="text" name="weight" placeholder="Weight in Lbs" />
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="submit" name="submit" class="submit action-button" value="Submit" />
