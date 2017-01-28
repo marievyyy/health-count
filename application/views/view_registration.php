@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../application/views/css/registration.css">
         <link rel="stylesheet" href="../application/views/css/homepage.css">
         <link rel="stylesheet" href="../application/views/css/responsive.css">
-        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <!--<link rel="stylesheet" href="../application/views/css/font-awesome.min.css">-->
 
     </head>
 
@@ -121,7 +121,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/registration.js"></script>
-
+    <script src="../application/views/js/health.js"></script>
 
     </body>
 </html>

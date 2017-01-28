@@ -97,7 +97,7 @@ $db['default'] = array(
 
 $db['pdo'] = array(
 	'dsn'	=> 'mysql:dbname=health_db;host=localhost;charset=utf8;',
-	'hostname' => '192.168.43.230',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'health_db',
