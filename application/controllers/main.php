@@ -7,7 +7,6 @@ class main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('account');
 		//Do your magic here
 	}
 	public function index(){
@@ -31,35 +30,61 @@ class main extends CI_Controller {
 	}
 
 	public function data_register(){
-		//$register['patient_id'] = $this->guid();
-		//$register['patient_name'] = $this->input->post('patient_name');
+		
+		$register = array();
+		$register['patient_name'] = 'ryan gabriel';
+		$register['profile_picture'] = '';
+		$register['bmi'] = '';
+		$register['bmi_status'] = '';
 		$register['birth_date'] = $this->input->post('birthday');
 		$register['gender'] = $this->input->post('gender');
 		$register['weight'] = $this->input->post('weight');
 		$register['height'] = $this->input->post('height');
-		//$register['profile_picture'] = $params["profile_picture"];
-		//$register['bmi'] => $params["bmi"];
-		//$register['bmi_status'] = $params["bmi_status"];
 		$register['username'] = $this->input->post('username');
 		$register['password'] = $this->input->post('pass');
-		$register['date_registered'] = date('m-d-Y');
-		$register['submit'] = $this->input->post('submit');
-		if(isset($register['submit'])){
-			var_dump($register);
+		$register['date_registered'] = date('Y-m-d');
+		$register['message'] = 'No return value';
+		$register['submittedVal'] = 'return value';
+		trim($register["patient_name"]);
+
+		$this->load->model('functions');
+
+		if (preg_match("/  /i", $register["patient_name"])) {
+			echo json_encode($register["submittedVal"]);
 		}
+		else{
+			echo json_encode($register["message"]);
+		}
+		//$this->functions->register_profile($register);
 	}
 
-	public function api_register(){
+	public function checkuserName(){
+		$params = $this->input->post('username');
+		$result1 = "No spacing";
+		$result2 = "minimum of 6 maximum of 24 alphabet or numeric or both";
+		$result3 = "Not a valid username";
 
-		$this->load->view('api_register');
-				$data = $this->account->register_profile();
-				echo json_encode($data);
+		$this->load->model('functions');
+		$params = trim($params);
+		$userLength = strlen($params);
 
-		}	
-
-	public function api_food(){
-
-		$this->load->view('api_food');
+		if (preg_match("/ /i", $params)) {
+			echo json_encode($result1);
+		}
+		else{
+			if ($userLength >= 6 && $userLength <= 24) {
+				if (preg_match("/\w/", $params)) {
+					$result = $this->functions->getUsername($params);
+					echo json_encode($result);
+				}
+				else{
+					echo json_encode($result3);
+				}	
+			}
+			else{
+				echo json_encode($result2);
+			}
+		}
 	}
 }
 
