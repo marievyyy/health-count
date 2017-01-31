@@ -80,14 +80,9 @@
                         <fieldset>
                             <h2 class="fs-title">Registration</h2>
                             <h6 class="error" id="errorUser"></h6>
-<<<<<<< HEAD
-                            <input type="text" name="username" id="inputUser" placeholder="Name" />
-                            <h6 class="error" id="errorPass"></h6>
-=======
                             <input type="text" name="username" id="inputUser" placeholder="Username" />
-                            <h6 class="error">Input atleast 5 characters!</h6>
->>>>>>> 7f4018cf7bdd2fb0ae459501b173c4317c35d22b
-                            <input type="password" name="pass" id="pass"placeholder="Password" />
+                            <h6 class="error" id="errorPass"></h6>
+                            <input type="password" name="pass" id="pass" placeholder="Password" />
                             <h6 class="error" id="errorconPass"></h6>
                             <input type="password" name="cpass" id="cpass" placeholder="Confirm Password" />
                             <input type="button" name="next" class="next action-button" id="next1" value="Next" />
@@ -135,8 +130,8 @@
 
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
-    <script src="../application/views/js/health.js"></script>
     <script src="../application/views/js/registration.js"></script>
+    <script src="../application/views/js/health.js"></script>
 
     </body>
 </html>

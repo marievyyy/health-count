@@ -1,4 +1,13 @@
 $(document).ready(function (){
+	
+	var username = $('input[name=username]').val();
+	var password = $('input[name=pass]').val();
+	var conpass = $('input[name=cpass]').val();
+	if (username == "" && password == "" && conpass == "") {
+		console.log("required");
+		$('.error').html("required field");
+		$('#next1').attr("disabled", true);
+	}
 
 	$("#inputUser").keyup(function(){
 		var username = $('input[name=username]').val();
