@@ -2,8 +2,6 @@ $(document).ready(function (){
 
 	$("#inputUser").keyup(function(){
 		var username = $('input[name=username]').val();
-		var password = $('input[name=pass]').val();
-		var conpass = $('input[name=cpass]').val();
 
 		$.ajax({
 			type:"POST",
@@ -54,20 +52,55 @@ $(document).ready(function (){
 	});
 
 	$("#pass").keyup(function(){
-		if(password >= 6 && password <= 255){
+		var password = $('input[name=pass]').val();
+
+		console.log(password);
+		if(password.length >= 6 && password.length <= 255){
 			
-			if ('/\W\d/' == true){
-				
-				if (password == conpass){
+			if (password.match(/\d/) != null || password.match(/\W/) != null){
+				$('#errorPass').html("");
 
-				}else{
-					console.log();
-				}
 			}else{
-
+				console.log("must contain numbers or special chars");
+				$('#errorPass').html("must contain numbers or special chars");
+				$('#next1').attr("disabled", true);
 			}
 		}else{
+			console.log("password length minimum of 6 maximum of 255");
+			$('#errorPass').html("password length minimum of 6 maximum of 255");
+			$('#next1').attr("disabled", true);
+		}
+	});
 
+	$("#cpass").keyup(function(){
+		var password = $('input[name=pass]').val();
+		var conpass = $('input[name=cpass]').val();
+
+		console.log(password);
+		console.log(conpass);
+		if(password.length >= 6 && password.length <= 255){
+			
+			if (password.match(/\d/) != null || password.match(/\W/) != null){
+				$('#errorPass').html("");
+
+				if (password == conpass){
+					$('#errorconPass').html("");
+					console.log("accepted");
+					$('#next1').attr("disabled", false);
+				}else{
+					console.log("Password doesnt Match");
+					$('#errorconPass').html("Password doesnt Match");
+					$('#next1').attr("disabled", true);
+				}
+			}else{
+				console.log("must contain numbers or special chars");
+				$('#errorconPass').html("Invalid Input");
+				$('#next1').attr("disabled", true);
+			}
+		}else{
+			console.log("password length minimum of 6 maximum of 255");
+			$('#errorconPass').html("Invalid Input");
+			$('#next1').attr("disabled", true);
 		}
 	});
 
