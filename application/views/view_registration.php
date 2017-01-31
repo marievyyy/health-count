@@ -73,18 +73,33 @@
                         <ul id="progressbar">
                             <li class="active">Account Setup</li>
                             <li>Personal Profiles</li>
+                            <li>Personal Profiles</li>
                             <li>Body Details</li>
                         </ul>
                         <!-- fieldsets -->
                         <fieldset>
                             <h2 class="fs-title">Registration</h2>
                             <h6 class="error" id="errorUser"></h6>
+<<<<<<< HEAD
                             <input type="text" name="username" id="inputUser" placeholder="Name" />
                             <h6 class="error" id="errorPass"></h6>
+=======
+                            <input type="text" name="username" id="inputUser" placeholder="Username" />
+                            <h6 class="error">Input atleast 5 characters!</h6>
+>>>>>>> 7f4018cf7bdd2fb0ae459501b173c4317c35d22b
                             <input type="password" name="pass" id="pass"placeholder="Password" />
                             <h6 class="error" id="errorconPass"></h6>
                             <input type="password" name="cpass" id="cpass" placeholder="Confirm Password" />
                             <input type="button" name="next" class="next action-button" id="next1" value="Next" />
+                        </fieldset>
+                        <fieldset>
+                            <h2 class="fs-title">Personal Info</h2>
+                            <h6 class="error" id="errorName"></h6>
+                            <input type="text" name="name" id="inputName" placeholder="Name" />
+                            <h6 class="error" id="errorAge"></h6>
+                            <input type="text" name="name" id="inputAge" placeholder="Age" />
+                            <input type="button" name="previous" class="previous action-button" value="Previous" />
+                            <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
