@@ -78,7 +78,7 @@
                         <!-- fieldsets -->
                         <fieldset>
                             <h2 class="fs-title">Registration</h2>
-                            <h6 class="error2">Input a valid name!</h6>
+                            <h6 class="error" id="errorUser"></h6>
                             <input type="text" name="username" id="inputUser" placeholder="Name" />
                             <h6 class="error">Input atleast 5 characters!</h6>
                             <input type="password" name="pass" id="pass"placeholder="Password" />

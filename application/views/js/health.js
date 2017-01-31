@@ -15,31 +15,31 @@ $(document).ready(function (){
 				
 				if (data == "No spacing") {
 					console.log("No spacing");
-					$('.error2').html("No spacing");
+					$('#errorUser').html("No spacing");
 					$('#next1').attr("disabled", true);
 				}else{
 
 					if (data == "minimum of 6 maximum of 24 alphabet or numeric or both") {
 						console.log("minimum of 6 maximum of 24 alphabet or numeric or both");
-						$('.error2').html("minimum of 6 maximum of 24 alphabet or numeric or both");
+						$('#errorUser').html("minimum of 6 maximum of 24 alphabet or numeric or both");
 						$('#next1').attr("disabled", true);
 					}else{
 
 						if(data == "Not a valid username"){
 							console.log("Accept word, numeric and underscore only");
-							$('.error2').html("Accept word, numeric and underscore only");
+							$('#errorUser').html("Accept word, numeric and underscore only");
 							$('#next1').attr("disabled", true);
 						}else{
 
 							if (data == "already exist") {
 								console.log(data);
 							 	console.log("Username already exist");
-							 	$('.error2').html("Username already exist");
+							 	$('#errorUser').html("Username already exist");
 								$('#next1').attr("disabled", true);
 
 							}else{
 								console.log(data);
-								$('.error2').html("");
+								$('#errorUser').html("");
 								console.log("accepted");
 							 	$('#next1').attr("disabled", false);
 							}
