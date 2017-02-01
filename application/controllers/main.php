@@ -29,6 +29,14 @@ class main extends CI_Controller {
 		$this->load->view('view_water');
 	}
 
+	public function coffee(){
+		$this->load->view('view_coffee');
+	}
+
+	public function sleep(){
+		$this->load->view('view_sleep');
+	}
+
 	public function data_register(){
 		
 		$register = array();

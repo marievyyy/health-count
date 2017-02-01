@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../application/views/css/registration.css">
         <link rel="stylesheet" href="../application/views/css/homepage.css">
         <link rel="stylesheet" href="../application/views/css/responsive.css">
-        <!--<link rel="stylesheet" href="../application/views/css/font-awesome.min.css">-->
+        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
 
     </head>
 

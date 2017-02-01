@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+@font-face {
+  font-family: 'bernadette';
+  src: url(../fonts/bernadette.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+  outline: 0;
+  overflow-x: hidden;
+}
+
+/* ---------------- Background images */
+
+body {
+  background-color: #fff;
+  height: 100%;
+}
+
+.coffee-page h1 {
+  font-family: 'bernadette';
+  font-size: 80px;
+  color: #9E7E44;
+  text-align: center;
+  margin-top: 3.5%;
+}
+
+#msform {
+  width: 1250px;
+  margin: 0px auto;
+  text-align: center;
+  position: relative;
+}
+
+#msform fieldset {
+  border: 0 none;
+  padding: 20px 70px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  
+  /* stacking fieldsets above each other */
+  position: relative;
+}
+
+/* Hide all except first fieldset */
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+#msform h2 {
+  color: #545454;
+  text-align: center;
+  font-family: 'Oswald';
+  font-size: 25px;
+  font-weight: 300;
+  color: #321313;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+#msform .row {
+  margin-bottom: 18px;
+}
+
+#msform .row img  {
+  max-height: 95px;
+  margin-top: 10px;
+}
+
+#msform button.img {
+  width: 130px;
+  height: 140px;
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+#msform button.img:hover,
+#msform button.img:focus {
+  background-color: #E9D498;
+}
+
+#msform h6 {
+  font-family: 'Oswald';
+  font-size: 18px;
+  font-weight: 300;
+  color: #7D5E3F;
+}
+
+/* Serving Cup */
+#msform img.cup {
+  margin-bottom: 40px;
+  max-height: 220px;
+}
+
+/* Serving Cup Button*/
+#msform .center {
+  width: 150px;
+  margin: 1px auto;
+  margin-bottom: 20px;
+}
+
+#msform .center button {
+  border-radius: 0px;
+  background-color: #c5c5c5;
+}
+
+#msform .center button:hover,
+#msform .center button:focus {
+  background-color: #9E7E44;
+  outline: 0;
+}
+
+#msform .center input {
+  font-family: 'Oswald';
+  font-weight: 300;
+  text-align: center;
+}
+
+
+/* INTAKE RESULTS  */
+#msform h3 {
+  font-family: 'Oswald';
+  font-size: 35px;
+  font-weight: 400;
+  color: #7D5E3F;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+#msform .action-button {
+  width: 142px;
+  background: transparent;
+  box-sizing: border-box;
+  border: 2px solid #321313;
+  color: #321313;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-family: 'Oswald';
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+  background: #321313;
+  border: 2px solid #321313;
+  color: #fff;
+}

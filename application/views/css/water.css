@@ -21,11 +21,7 @@ body {
 /* ---------------- Background images */
 
 body {
-  background: url("../img/water2.png") no-repeat center center fixed;
-  -webkit-backgorund-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #fff;
   height: 100%;
 }
 
