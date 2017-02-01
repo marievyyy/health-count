@@ -52,24 +52,36 @@ class main extends CI_Controller {
 		$register['password'] = $this->input->post('pass');
 		$register['date_registered'] = date('Y-m-d');
 		$register['message'] = 'No return value';
+		$register['message2'] = 'patient name';
 		$register['submittedVal'] = 'return value';
 		trim($register["patient_name"]);
 
 		$this->load->model('functions');
 
-		if (preg_match("/  /i", $register["patient_name"])) {
-			echo json_encode($register["submittedVal"]);
+		if (preg_match("/  /i", $register["patient_name"]) == false) {
+			
+
+			if(is_numeric($register['weight']) == true && is_numeric($register['height']) == true){
+				echo json_encode($register["submittedVal"]);
+				// if (is_int($register['age'])) {
+					
+				// 	//$this->functions->register_profile($register);
+				// }else{
+
+				// }
+			}else{
+				echo json_encode($register["message"]);
+			}
 		}
 		else{
-			echo json_encode($register["message"]);
+			echo json_encode($register["message2"]);
 		}
-		//$this->functions->register_profile($register);
 	}
 
 	public function checkuserName(){
 		$params = $this->input->post('username');
 		$result1 = "No spacing";
-		$result2 = "minimum of 6 maximum of 24 alphabet or numeric or both";
+		$result2 = "length invalid";
 		$result3 = "Not a valid username";
 
 		$this->load->model('functions');

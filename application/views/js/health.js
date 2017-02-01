@@ -3,15 +3,29 @@ $(document).ready(function (){
 	var username = $('input[name=username]').val();
 	var password = $('input[name=pass]').val();
 	var conpass = $('input[name=cpass]').val();
+	var fullname = $('input[name=fullname]').val();
+	var age = $('input[name=age]').val();
+	var birthday = $('input[name=birthday]').val();
+
 	if (username == "" && password == "" && conpass == "") {
 		console.log("required");
 		$('.error').html("required field");
 		$('#next1').attr("disabled", true);
 	}
+	if (fullname == "" && age == "") {
+		console.log("required");
+		$('.error').html("required field");
+		$('#next2').attr("disabled", true);
+	}
+	if (birthday == "") {
+		console.log("required");
+		$('.error').html("required field");
+		$('#next3').attr("disabled", true);
+	}
 
 	$("#inputUser").keyup(function(){
 		var username = $('input[name=username]').val();
-
+	
 		$.ajax({
 			type:"POST",
 			url: "http://localhost/health/main/checkuserName",
@@ -26,7 +40,7 @@ $(document).ready(function (){
 					$('#next1').attr("disabled", true);
 				}else{
 
-					if (data == "minimum of 6 maximum of 24 alphabet or numeric or both") {
+					if (data == "length invalid") {
 						console.log("minimum of 6 maximum of 24 alphabet or numeric or both");
 						$('#errorUser').html("minimum of 6 maximum of 24 alphabet or numeric or both");
 						$('#next1').attr("disabled", true);
@@ -63,7 +77,6 @@ $(document).ready(function (){
 	$("#pass").keyup(function(){
 		var password = $('input[name=pass]').val();
 
-		console.log(password);
 		if(password.length >= 6 && password.length <= 255){
 			
 			if (password.match(/\d/) != null || password.match(/\W/) != null){
@@ -85,8 +98,6 @@ $(document).ready(function (){
 		var password = $('input[name=pass]').val();
 		var conpass = $('input[name=cpass]').val();
 
-		console.log(password);
-		console.log(conpass);
 		if(password.length >= 6 && password.length <= 255){
 			
 			if (password.match(/\d/) != null || password.match(/\W/) != null){
@@ -113,6 +124,77 @@ $(document).ready(function (){
 		}
 	});
 
+	$("#inputName").keyup(function(){
+		var fullname = $('input[name=fullname]').val();
+		fullname = fullname.trim();
+		fullname = fullname.replace(/\s\s+/g, ' ');
+
+		console.log(fullname);
+		if (fullname.length >= 8 && fullname.length <= 255) {
+			if (fullname.match(/\d/) == null && /[!@#$%^&&*(),'./;\"]/.test(fullname) == false) {
+				$('#errorName').html("");
+				console.log("accepted");
+				$('#next2').attr("disabled", false);
+			}else{
+				console.log("contain numbers and non-word char");
+				$('#errorName').html("Name like this dont exist");
+				$('#next2').attr("disabled", true);
+			}
+		}else{
+			console.log("name length minimum of 8 maximum of 255");
+			$('#errorName').html("name length minimum of 8 maximum of 255");
+			$('#next2').attr("disabled", true);
+		}
+	});
+
+
+	$("#inputAge").keyup(function(){
+		var age = $('input[name=age]').val();
+		age = age.trim();
+
+		if (age >= 6 && age <= 89) {
+				age = parseInt(age);
+				$('#errorAge').html("");
+				console.log("accepted");
+				$('#next2').attr("disabled", false);
+		}else{
+			console.log("your age is not a human age");
+			$('#errorAge').html("age value not applicable");
+			$('#next2').attr("disabled", true);
+		}
+	});
+	
+	$('input[type="date"]').change(function(){
+	 	var age = $('input[name=age]').val();
+	    var date = new Date(this.value);
+		day = date.getDate();
+		month = date.getMonth() + 1;
+		year = date.getFullYear();
+	  
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+	  	yyyyToday = yyyy - 6;
+	  if (year < yyyyToday) {
+	  	
+		ageToday = yyyy - year;
+		console.log(ageToday);
+		console.log(age);
+		if(age == ageToday){
+			$('#errorBirthday').html("");
+			$('#next3').attr("disabled", false);
+		}else{
+			console.log("age and birthday not same");
+			$('#errorBirthday').html("Age not same as birthday");
+			$('#next3').attr("disabled", true);		}
+	  }else{
+	  	console.log("your age is not a human age");
+		$('#errorBirthday').html("infant or time traveler");
+		$('#next3').attr("disabled", true);
+	  }
+    });
+
 
 	$("#msform").submit(function(e){
 		e.preventDefault();
@@ -120,18 +202,17 @@ $(document).ready(function (){
 		var row = '';
 		
 
+
 		$.ajax({
 			type:"POST",
 			url: "http://localhost/health/main/data_register",
 			data: dataform.serialize(),
 			dataType: "json",
 			success: function(data){
-				$.each(data, function(row, data){
-					console.log(data);
-				});
+				console.log(data);
 			},
 			error: function(data){
-				console.log('no return value');
+				console.log('error data');
 			}
 		});
 	});

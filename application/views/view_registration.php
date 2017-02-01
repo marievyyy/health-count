@@ -90,24 +90,24 @@
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6 class="error" id="errorName"></h6>
-                            <input type="text" name="name" id="inputName" placeholder="Name" />
+                            <input type="text" name="fullname" id="inputName" placeholder="Name" />
                             <h6 class="error" id="errorAge"></h6>
-                            <input type="text" name="name" id="inputAge" placeholder="Age" />
+                            <input type="text" name="age" id="inputAge" placeholder="Age" />
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next" />
+                            <input type="button" name="next" class="next action-button" id="next2" value="Next" />
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6>Birthday</h6>
-                            <h6 class="error">Input your birthday!</h6>
-                            <input type="date" name="birthday" placeholder="Birthday" />
+                            <h6 class="error" id="errorBirthday">Input your birthday!</h6>
+                            <input type="date" name="birthday" id="inputBirthday" placeholder="Birthday" />
                             <h6>Gender</h6>
                             <select id="gender" name="gender" value="">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option> 
                             </select>
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next" />
+                            <input type="button" name="next" class="next action-button" id="next3" value="Next" />
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Body Details</h2>
