@@ -71,24 +71,6 @@ body {
   margin-bottom: 18px;
 }
 
-#msform .row img  {
-  max-height: 95px;
-  margin-top: 10px;
-}
-
-#msform button.img {
-  width: 130px;
-  height: 140px;
-  outline: 0;
-  border: 0;
-  background-color: transparent;
-}
-
-#msform button.img:hover,
-#msform button.img:focus {
-  background-color: #E9D498;
-}
-
 #msform h6 {
   font-family: 'Oswald';
   font-size: 18px;
@@ -96,10 +78,59 @@ body {
   color: #7D5E3F;
 }
 
-/* Serving Cup */
-#msform img.cup {
-  margin-bottom: 40px;
-  max-height: 220px;
+input[type=radio] {
+  display: none;
+}
+
+label {
+  display: block;
+  width: 105px;
+  height: 105px;
+  outline: 0;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked+label {
+  background-color: #E9D498;
+  border-radius: 5px 20px 5px;
+} 
+
+label.espresso { 
+  background: url(../img/espresso.png); 
+  background-size: contain;
+}
+label.cappuccino { 
+  background: url(../img/cappuccino.png); 
+  background-size: contain;
+}
+label.americano { 
+  background: url(../img/americano.png);
+  background-size: contain;
+}
+label.cafelatte { 
+  background: url(../img/latte.png); 
+  background-size: contain;
+}
+label.mocha { 
+  background: url(../img/mocha.png);
+  background-size: contain;
+}
+label.caflait { 
+  background: url(../img/caflait.png);
+  background-size: contain;
+}
+label.caramel { 
+  background: url(../img/caramel.png);
+  background-size: contain;
+}
+label.frappe { 
+  background: url(../img/frappe.png); 
+  background-size: contain;
+}
+label.instantcoffee { 
+  background: url(../img/instantcoffee.png); 
+  background-size: contain;
 }
 
 /* Serving Cup Button*/

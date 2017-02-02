@@ -55,61 +55,52 @@
 
                             <div class="row">
                                 <div class="col-md-2 col-md-offset-1">
-                                    <button class="img">
-                                       <img src="../application/views/img/expresso.png">
-                                        <h6>Espresso</h6> 
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="espresso" value="espresso">
+                                    <label for="espresso" class="espresso"></label>
+                                    <h6>Espresso</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                        <img src="../application/views/img/cappuccino.png">
-                                        <h6>Cappuccino</h6>
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="cappuccino" value="cappuccino">
+                                    <label for="cappuccino" class="cappuccino"></label>
+                                    <h6>Cappuccino</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                        <img src="../application/views/img/americano.png">
-                                        <h6>Americano</h6>
-                                    </button> 
+                                    <input type="radio" name="coffee_cup" id="americano" value="americano">
+                                    <label for="americano" class="americano"></label>
+                                    <h6>Americano</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                        <img src="../application/views/img/latte.png">
-                                        <h6>Caffe Latte</h6>
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="cafelatte" value="cafelatte">
+                                    <label for="cafelatte" class="cafelatte"></label>
+                                    <h6>Caffe Latte</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                       <img src="../application/views/img/mocha.png">
-                                        <h6>Mocha Cappuccino</h6> 
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="mocha" value="mocha">
+                                    <label for="mocha" class="mocha"></label>
+                                    <h6>Mocha Cappuccino</h6>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-2 col-md-offset-1">
-                                    <button class="img">
-                                        <img src="../application/views/img/caf au lait.png">
-                                        <h6>Caf Au Lait</h6>
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="caflait" value="caflait">
+                                    <label for="caflait" class="caflait"></label>
+                                    <h6>Caf Au Lait</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                        <img src="../application/views/img/caramel.png">
-                                        <h6>Caramel Macchiato</h6>
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="caramel" value="caramel">
+                                    <label for="caramel" class="caramel"></label>
+                                    <h6>Caramel Macchiato</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                        <img src="../application/views/img/frappe.png">
-                                        <h6>Frappe</h6>
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="frappe" value="frappe">
+                                    <label for="frappe" class="frappe"></label>
+                                    <h6>Frappe</h6>
                                 </div>
                                 <div class="col-md-2">
-                                    <button class="img">
-                                        <img src="../application/views/img/instant coffee.png">
-                                        <h6>Instant Coffee</h6>
-                                    </button>
+                                    <input type="radio" name="coffee_cup" id="instantcoffee" value="instantcoffee">
+                                    <label for="instantcoffee" class="instantcoffee"></label>
+                                    <h6>Instant Coffee</h6>
                                 </div>
                             </div>
 

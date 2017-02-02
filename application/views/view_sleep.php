@@ -49,6 +49,7 @@
     <script src="../application/views/js/jquery.min.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
+    <script src='../application/views/js/moment.min.js'></script>
     <script src="../application/views/js/main.js"></script>
 
 
