@@ -16,14 +16,11 @@ body {
   height: 100%;
   outline: 0;
   overflow-x: hidden;
+  background-color: #fff;
 }
 
 /* ---------------- Background images */
 
-body {
-  background-color: #fff;
-  height: 100%;
-}
 
 .water-page h1 {
   font-family: 'bernadette';
@@ -51,15 +48,20 @@ body {
   text-transform: uppercase;
 }
 
-.row {
+.row #urine-list {
   margin-top: 3%;
 }
 
-.button-list {
+.row #color-list {
   margin: 10% auto;
 }
 
-.button-list button {
+input[type=radio] {
+  display: none;
+}
+
+label {
+  display: block;
   width: 80px;
   height: 80px;
   outline: 0;
@@ -67,38 +69,15 @@ body {
   margin-top: 10px;
 }
 
-.button-list button:hover,
-.button-list button:focus {
-  border: 3px solid #007fb2;
-}
+input[type="radio"]:checked+label{ border: 3px solid #007fb2; } 
 
-.button-list .one {
-  background-color: #fffde9;
-}
-
-.button-list .two {
-  background-color: #fefac6;
-}
-
-.button-list .three {
-  background-color: #fdea8c;
-}
-
-.button-list .four {
-  background-color: #fddb6c;
-}
-
-.button-list .five {
-  background-color: #fcc839;
-}
-
-.button-list .six {
-  background-color: #f5b836;
-}
-
-.button-list .seven {
-  background-color: #dea52b;
-}
+label.urine-one { background: #fffde9; }
+label.urine-two { background: #fefac6; }
+label.urine-three { background: #fdea8c; }
+label.urine-four { background: #fddb6c; }
+label.urine-five { background: #fcc839; }
+label.urine-six { background: #f5b836; }
+label.urine-seven { background: #dea52b; }
 
 .water-page .glass img {
   margin-top: 8%;

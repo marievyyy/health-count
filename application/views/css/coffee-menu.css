@@ -25,7 +25,7 @@
     position: absolute;
     top: 0;
     right: 60px;
-    background: #9E7E44;
+    background: #b39374;
     width: 200px;
     height: 100%;
 }
@@ -61,14 +61,14 @@
 }
 
 .menu a.smoothScroll:hover {
-    color: #ffffff;
+    color: #bfbaba;
     text-decoration: none;
     border-left: 4px solid white;
-    background-color: #5F2F14; 
+    background-color: #392a2c; 
 }
 
 .menu a.smoothScroll:active {
-    color: #ffffff;
+    color: #bfbaba;
     text-decoration: none;
 }
 

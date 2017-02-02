@@ -47,25 +47,30 @@
             <h1>Water</h1>
             <h6>How much water you should drink?</h6>
 
-            <div class="row">
+            <div class="row" id="urine-list">
                 <div class="col-md-4 urine" align="center">
                     <h3 class="title">Color of Urine</h3>
-                    <div class="button-list">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button class="one"></button>
-                                <button class="four"></button>
-                                <button class="seven"></button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="two"></button>
-                                <button class="five"></button>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="three"></button>
-                                <button class="six"></button>
-                            </div>
+                    <div class="row" id="color-list">
+                        <div class="col-md-4">
+                            <input type="radio" name="urine_color" id="urine-one" value="urine-one">
+                             <label for="urine-one" class="urine-one"></label>
+                             <input type="radio" name="urine_color" id="urine-four" value="urine-four">
+                             <label for="urine-four" class="urine-four"></label>
+                             <input type="radio" name="urine_color" id="urine-seven" value="urine-seven">
+                             <label for="urine-seven" class="urine-seven"></label>
                         </div>
+                        <div class="col-md-4">
+                            <input type="radio" name="urine_color" id="urine-two" value="urine-two">
+                            <label for="urine-two" class="urine-two"></label>
+                             <input type="radio" name="urine_color" id="urine-five" value="urine-five">
+                             <label for="urine-five" class="urine-five"></label>
+                        </div>
+                        <div class="col-md-4">
+                             <input type="radio" name="urine_color" id="urine-three" value="urine-three">
+                             <label for="urine-three" class="urine-three"></label>
+                             <input type="radio" name="urine_color" id="urine-six" value="urine-six">
+                             <label for="urine-six" class="urine-six"></label>
+                        </div>    
                     </div>
                 </div>
                 <div class="col-md-4 glass" align="center">
