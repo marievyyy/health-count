@@ -40,42 +40,116 @@ class main extends CI_Controller {
 	public function data_register(){
 		
 		$register = array();
-		$register['patient_name'] = 'ryan gabriel';
+		$register['patient_name'] = $this->input->post('fullname');;
 		$register['profile_picture'] = '';
 		$register['bmi'] = '';
 		$register['bmi_status'] = '';
+		$register['age'] = $this->input->post('age');;
 		$register['birth_date'] = $this->input->post('birthday');
 		$register['gender'] = $this->input->post('gender');
 		$register['weight'] = $this->input->post('weight');
 		$register['height'] = $this->input->post('height');
 		$register['username'] = $this->input->post('username');
 		$register['password'] = $this->input->post('pass');
+		$register['conpassword'] = $this->input->post('cpass');
 		$register['date_registered'] = date('Y-m-d');
-		$register['message'] = 'No return value';
-		$register['message2'] = 'patient name';
-		$register['submittedVal'] = 'return value';
+
+		$errorResultName = "Error Name";
+		$errorResultUsername = "Error Username";
+		$errorResultPass = "Error Password";
+		$errorResultAge = "Error Age";
+		$errorResultBirth = "Error Birthday";
+		$errorResultWeight = "Invalid weight input";
+		$errorResultHeight = "Invalid height input";
+		$pass = "passed";
+
 		trim($register["patient_name"]);
+		trim($register["username"]);
+
+		$register['patient_name'] = preg_replace("/!\s+!/", ' ', $register['patient_name']);
+		$register["age"] = intval($register["age"]);
+		list($byear, $bday, $bmonth) = explode("-", $register["birth_date"]);
+		list($yyyy, $mm, $dd) = explode("/", date("Y/m/d"));
+		$yyyyToday = $yyyy -6;
+		$ageToday;
+
+		$usernameLength = strlen($register['username']);
+		$passwordLength = strlen($register["password"]);
+		$nameLength = strlen($register['patient_name']);
 
 		$this->load->model('functions');
+		
+		
+		if(preg_match("/\W/", $register["username"]) == false && $usernameLength >= 6 && $usernameLength <= 255){
 
-		if (preg_match("/  /i", $register["patient_name"]) == false) {
-			
+			if (preg_match("/[\d\W]/", $register["password"]) == true && $register["password"] == $register["conpassword"] && $passwordLength >= 6 && $passwordLength <= 255) {
+				
+				if (preg_match("/[^a-zA-Z ]/", $register["patient_name"]) == false && $nameLength >= 8 && $nameLength <= 255) {
+						
+						if(is_int($register["age"]) == true && $register["age"] >= 6 && $register["age"] <= 89){
+							
+							if ($bmonth < $mm && $bday > $dd) {
+								$ageToday = $yyyy - $byear;
+							}else{
+								$ageToday = $yyyy - $byear - 1;
+							}
+							if ($byear < $yyyyToday && $register["age"] == $ageToday) {
 
-			if(is_numeric($register['weight']) == true && is_numeric($register['height']) == true){
-				echo json_encode($register["submittedVal"]);
-				// if (is_int($register['age'])) {
-					
-				// 	//$this->functions->register_profile($register);
-				// }else{
+								if(empty($register['height']) != true && is_numeric($register['height']) == true && $register['height'] >= 126.9 && $register['height'] <= 193.0){
 
-				// }
+									if (empty($register['weight']) != true && is_numeric($register['weight']) == true && $register['weight'] >= 20 && $register['weight'] <= 1000) {
+										echo json_encode($pass);
+
+										$weightbmi = $register["weight"];
+										$heightbmi = $register["height"] / 100;
+										$heightbmisq = $heightbmi * $heightbmi;
+
+										$register["bmi"] = $weightbmi / $heightbmisq;
+										$register["bmi"] = number_format((float)$register["bmi"], 2,'.','');
+
+										if ($register["height"] >= 126.79 && $register["weight"] >= 24.94 && $register["bmi"] <= 18.5) {
+											$register["bmi_status"] = "Underweight";
+										}
+										else if ($register["height"] >= 126.79 && $register["weight"] >= 24.94 && $register["bmi"] >= 18.5 && $register["bmi"] <= 24.9) {
+											$register["bmi_status"] = "Normal";
+										}
+										else if ($register["height"] >= 126.79 && $register["weight"] >= 24.94 && $register["bmi"] >= 25.0 && $register["bmi"] <= 29.9) {
+											$register["bmi_status"] = "Overweight";
+										}
+										else if ($register["height"] >= 126.79 && $register["weight"] >= 24.94 && $register["bmi"] >= 30.0) {
+											$register["bmi_status"] = "Obese";
+										}else{
+											$register["bmi_status"] = "Unknown Data";
+										}
+
+										$register["password"] = password_hash($register["password"], PASSWORD_BCRYPT);
+
+										$this->functions->register_profile($register);
+
+									}else{
+										echo json_encode($errorResultWeight);
+									}
+								}else{
+									echo json_encode($errorResultHeight);
+								}
+							}else{
+
+							}
+							
+						}else{
+							echo json_encode($errorResultAge);
+						}
+					}
+					else{
+						echo json_encode($errorResultName);
+					}
 			}else{
-				echo json_encode($register["message"]);
+				echo json_encode($errorResultPass);
 			}
+		}else{
+			echo json_encode($errorResultUsername);
 		}
-		else{
-			echo json_encode($register["message2"]);
-		}
+		
 	}
 
 	public function checkuserName(){
@@ -93,7 +167,7 @@ class main extends CI_Controller {
 		}
 		else{
 			if ($userLength >= 6 && $userLength <= 24) {
-				if (preg_match("/\w/", $params)) {
+				if (preg_match("/\W/", $params) == false) {
 					$result = $this->functions->getUsername($params);
 					echo json_encode($result);
 				}

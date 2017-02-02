@@ -170,17 +170,26 @@ $(document).ready(function (){
 		day = date.getDate();
 		month = date.getMonth() + 1;
 		year = date.getFullYear();
-	  
+	  	
 		var today = new Date();
 		var dd = today.getDate();
 		var mm = today.getMonth()+1; //January is 0!
 		var yyyy = today.getFullYear();
+
+		var ageToday;
+
 	  	yyyyToday = yyyy - 6;
 	  if (year < yyyyToday) {
 	  	
-		ageToday = yyyy - year;
+		if (month < mm && day > dd) {
+			ageToday = yyyy - year;
+		}else{
+			ageToday = yyyy - year - 1;
+		}
+
 		console.log(ageToday);
 		console.log(age);
+
 		if(age == ageToday){
 			$('#errorBirthday').html("");
 			$('#next3').attr("disabled", false);
@@ -210,9 +219,38 @@ $(document).ready(function (){
 			dataType: "json",
 			success: function(data){
 				console.log(data);
+
+				if (data == "Error Username") {
+					console.log("Error Username");
+					$('#errorHeight').html("Go back to Username");
+				}
+				else if (data == 'Error Password') {
+					console.log("Error Password");
+					$('#errorHeight').html("Go back to Password");
+				}
+				else if (data == 'Error Age') {
+					console.log("Error Age");
+					$('#errorHeight').html("Go back to Age");
+				}
+				else if (data == 'Error Birthday') {
+					console.log("Error Birthday");
+					$('#errorHeight').html("Go back to Birthday");
+				}
+				else if (data == "Invalid height input") {
+					console.log("Invalid height input");
+					$('#errorHeight').html("Invalid height input");
+				}
+				else if (data == "Invalid weight input") {
+					console.log("Invalid weight input");
+					$('#errorWeight').html("Invalid weight input");
+				}else{
+					console.log("Submitted");
+					$('#errorBirthday').html("");
+					
+				}
 			},
 			error: function(data){
-				console.log('error data');
+				console.log(data);
 			}
 		});
 	});
