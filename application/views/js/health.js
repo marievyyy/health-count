@@ -245,8 +245,9 @@ $(document).ready(function (){
 					$('#errorWeight').html("Invalid weight input");
 				}else{
 					console.log("Submitted");
-					$('#errorBirthday').html("");
-					
+					$('#errorHeight').html("");
+					$('#errorWeight').html("");
+					window.location = "http://localhost/health/main/login";
 				}
 			},
 			error: function(data){
