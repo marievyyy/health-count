@@ -111,17 +111,17 @@
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Body Details</h2>
-<<<<<<< HEAD
+
                             <h6 class="error" id="errorHeight"></h6>
                             <input type="text" name="height" placeholder="Height in Feet" />
                             <h6 class="error" id="errorWeight"></h6>
                             <input type="text" name="weight" placeholder="Weight in Lbs" />
-=======
+
                             <h6 class="error">Input your height!</h6>
                             <input type="text" name="height" placeholder="Height in cm" />
                             <h6 class="error">Input your weight!</h6>
                             <input type="text" name="weight" placeholder="Weight in Kgs" />
->>>>>>> f5a97d47fbbfec2a838698c903668993e19adc7e
+
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="submit" name="submit" class="submit action-button" value="Submit" />
                         </fieldset>
