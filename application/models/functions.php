@@ -52,7 +52,8 @@ class functions extends CI_Model {
 		$this->db->where('username', $username);
 		$query = $this->db->get('patient_info');
 		if ($query->num_rows() >= 1){
-        	return = $query->result();
+        	$data = $query->result_array();
+        	return $data[0]["password"];
     	}
     	else{
         	return 'not yet exist';

@@ -184,15 +184,22 @@ class main extends CI_Controller {
 	public function getUser(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+		$out = "Valid";
+		$out2 = "Not";
 
 		$this->load->model('functions');
-		$params = trim($params);
+		$username = trim($username);
 		$result = "valid username";
 
 		$resultUsername = $this->functions->getUserLog($username,$password);
 
-		echo $resultUsername;
-		password_verify($password, $resultUsername["password"]);
+
+		$result = password_verify($password, $resultUsername);
+		if ($result == true) {
+			echo json_encode($out);
+		}else{
+			echo json_encode($out2);		
+		}
 	}
 
 	public function waterAPI(){
