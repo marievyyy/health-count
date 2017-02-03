@@ -192,7 +192,7 @@ class main extends CI_Controller {
 		$resultUsername = $this->functions->getUserLog($username,$password);
 
 		echo $resultUsername;
-
+		password_verify($password, $resultUsername["password"]);
 	}
 
 	public function waterAPI(){
