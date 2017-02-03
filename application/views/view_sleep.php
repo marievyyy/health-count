@@ -41,7 +41,14 @@
 
         <div class="container sleep-page">
             <h1>Sleep</h1>
-            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="clock">
+                        <div class="hour"></div>
+                        <div class="minute"></div>
+                  </div> 
+                </div>
+            </div>
 
         </div>
 
@@ -51,6 +58,7 @@
     <script src="../application/views/js/smoothscroll.js"></script>
     <script src='../application/views/js/moment.min.js'></script>
     <script src="../application/views/js/main.js"></script>
+    <script src="../application/views/js/sleep.js"></script>
 
 
     </body>
