@@ -71,12 +71,14 @@
             <div>
                 <div class="login-container">
                     <div class="logo">Health Count</div>
-                    <div class="login-block">
-                      <h1>Login</h1>
-                      <input type="text" value="" placeholder="Username" id="username" />
-                      <input type="password" value="" placeholder="Password" id="password" />
-                      <input type="submit" name="submit" class="submit" value="Submit" />
-                    </div>
+                    <form id="loginform" method="post">
+                        <div class="login-block">
+                          <h1>Login</h1>
+                          <input type="text" value="" placeholder="Username" id="username" />
+                          <input type="password" value="" placeholder="Password" id="password" />
+                          <input type="submit" name="submit" class="submit" value="Submit" />
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- End of Log In -->
