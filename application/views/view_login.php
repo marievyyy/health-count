@@ -73,7 +73,7 @@
                     <div class="logo">Health Count</div>
                     <div class="login-block">
                       <h1>Login</h1>
-                      <input type="text" value="" placeholder="Username" id="username" />
+                      <input type="text" value="" placeholder="Username" name="username" id="username" />
                       <input type="password" value="" placeholder="Password" id="password" />
                       <button>Submit</button>
                     </div>
@@ -87,7 +87,7 @@
     <script src="../application/views/js/jquery.min.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
-
+    <script src="../application/views/js/validate-login.js"></script>
 
     </body>
 </html>

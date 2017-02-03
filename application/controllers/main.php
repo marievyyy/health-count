@@ -180,6 +180,16 @@ class main extends CI_Controller {
 			}
 		}
 	}
+
+	public function getUsername(){
+		$params = $this->input->post('username');
+
+		$this->load->model('functions');
+		$params = trim($params);
+		$result = "valid username";
+		echo json_encode($result);
+
+	}
 }
 
 /* End of file main.php */
