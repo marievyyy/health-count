@@ -180,6 +180,24 @@ class main extends CI_Controller {
 			}
 		}
 	}
+
+	public function getUser(){
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+
+		$this->load->model('functions');
+		$params = trim($params);
+		$result = "valid username";
+
+		$resultUsername = $this->functions->getUserLog($username,$password);
+
+		echo $resultUsername;
+
+	}
+
+	public function waterAPI(){
+		
+	}
 }
 
 /* End of file main.php */

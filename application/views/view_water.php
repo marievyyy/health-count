@@ -104,7 +104,6 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="../application/views/js/jquery.min.js"</script>
-    <script src="../application/views/js/jquery.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>

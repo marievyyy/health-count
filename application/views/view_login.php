@@ -71,6 +71,7 @@
             <div>
                 <div class="login-container">
                     <div class="logo">Health Count</div>
+<<<<<<< HEAD
                     <form id="formlogin" method="post">
                         <div class="login-block">
                           <h1>Login</h1>
@@ -79,6 +80,14 @@
                           <input type="submit" name="submit" class="submit" value="Submit" />
                         </div>
                     </form>
+=======
+                    <div class="login-block">
+                      <h1>Login</h1>
+                      <input type="text" value="" placeholder="Username" name="username" id="username" />
+                      <input type="password" value="" placeholder="Password" id="password" />
+                      <input type="submit" name="submit" class="submit" value="Submit" />
+                    </div>
+>>>>>>> 350a46abf800f0e040f76c50a303d0dc065d496d
                 </div>
             </div>
             <!-- End of Log In -->
@@ -89,7 +98,7 @@
     <script src="../application/views/js/jquery.min.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
-
+    <script src="../application/views/js/validate-login.js"></script>
 
     </body>
 </html>

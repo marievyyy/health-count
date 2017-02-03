@@ -132,7 +132,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/registration.js"></script>
-    <script src="../application/views/js/health.js"></script>
+    <script src="../application/views/js/validate-registration.js"></script>
 
     </body>
 </html>
