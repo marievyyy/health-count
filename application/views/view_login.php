@@ -71,7 +71,7 @@
             <div>
                 <div class="login-container">
                     <div class="logo">Health Count</div>
-                    <form id="loginform" method="post">
+                    <form id="formlogin" method="post">
                         <div class="login-block">
                           <h1>Login</h1>
                           <input type="text" value="" placeholder="Username" id="username" />
