@@ -47,6 +47,17 @@ class functions extends CI_Model {
         	return 'not yet exist';
     	}
 	}
+
+	public function getUserLog($username, $password){
+		$this->db->where('username', $username);
+		$query = $this->db->get('patient_info');
+		if ($query->num_rows() >= 1){
+        	return = $query->result();
+    	}
+    	else{
+        	return 'not yet exist';
+    	}
+	}
 }
 
 /* End of file functions.php */
