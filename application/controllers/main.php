@@ -9,10 +9,10 @@ class main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
 	}
 	//Start of addding/loading HTML Page to view in website
 	public function index(){
+		session_start();
 		$this->load->view('view_homepage');
 	}
 
@@ -25,22 +25,27 @@ class main extends CI_Controller {
 	}
 
 	public function food(){
+		session_start();
 		$this->load->view('view_food');
 	}
 
 	public function water(){
+		session_start();
 		$this->load->view('view_water');
 	}
 
 	public function coffee(){
+		session_start();
 		$this->load->view('view_coffee');
 	}
 
 	public function activity(){
+		session_start();
 		$this->load->view('view_activity');
 	}
 
 	public function sleep(){
+		session_start();
 		$this->load->view('view_sleep');
 	}
 
@@ -49,11 +54,31 @@ class main extends CI_Controller {
 	}
 
 	public function home(){
-		$this->load->view('view_loginhome');
+		session_start();
+		echo $_SESSION["patient_id"];
+		$this->load->model('functions');
+		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+
+
+		if ($result == 'existing account') {
+			$this->load->view('view_loginhome');
+		}else{
+			header("Location: http://localhost/health/main/register");
+		}
 	}
 
 	public function profile(){
-		$this->load->view('view_profile');
+		session_start();
+		echo $_SESSION["patient_id"];
+		$this->load->model('functions');
+		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+
+
+		if ($result == 'existing account') {
+			$this->load->view('view_profile');
+		}else{
+			header("Location: http://localhost/health/main/register");
+		}
 	}
 	//End of Adding/loading HTML Pages
 
@@ -225,12 +250,13 @@ class main extends CI_Controller {
 
 		$resultUsername = $this->functions->getUserLog($username,$password);
 
-
-		$result = password_verify($password, $resultUsername);
-		if ($result == true) {
+		if (is_array($resultUsername) == true) {
+			$result = password_verify($password, $resultUsername["password"]);
+			session_start();
+			$_SESSION["patient_id"] = $resultUsername["patient_id"];
 			echo json_encode($out);
 		}else{
-			echo json_encode($out2);		
+			echo json_encode($out2);
 		}
 	}
 

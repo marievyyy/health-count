@@ -77,13 +77,13 @@
                     <div class="center">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" id="water-minus">
                                     <span class="glyphicon glyphicon-minus"></span>
                                 </button>
                             </span>
-                            <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                            <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10" id="glassVal">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" id="water-add">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </span>
@@ -105,7 +105,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/water.js"></script>
-
+    <script src="../application/views/js/water-api.js"></script>
 
     </body>
 </html>
