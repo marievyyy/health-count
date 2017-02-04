@@ -17,8 +17,7 @@
         <link rel="stylesheet" href="../application/views/css/coffee-menu.css">
         <link rel="stylesheet" href="../application/views/css/coffee.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
-
-        <script src="js/jquery.min.js"></script>
+        
     </head>
 
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -145,7 +144,7 @@
             <!-- End of Registration -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src='../application/views/js/jquery.js'></script>
+    <script src="../application/views/js/jquery.min.js"</script>
     <script src='../application/views/js/jquery.easing.1.3.min.js'></script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>

@@ -17,9 +17,6 @@
         <link rel="stylesheet" href="../application/views/css/homepage.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
 
-        <script src="js/jquery.min.js"></script>
-
-
     </head>
 
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -57,7 +54,6 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
     <script src="../application/views/js/main.js"></script>
-
 
     </body>
 </html>

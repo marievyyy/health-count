@@ -126,7 +126,7 @@
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src='../application/views/js/jquery.js'></script>
+    <script src='../application/views/js/jquery.min.js'></script>
     <script src='../application/views/js/jquery.easing.1.3.min.js'></script>
 
     <script src="../application/views/js/bootstrap.min.js"></script>

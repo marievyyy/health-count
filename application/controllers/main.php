@@ -1,4 +1,6 @@
 <?php
+
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
@@ -9,6 +11,7 @@ class main extends CI_Controller {
 		parent::__construct();
 		//Do your magic here
 	}
+	//Start of addding/loading HTML Page to view in website
 	public function index(){
 		$this->load->view('view_homepage');
 	}
@@ -33,12 +36,32 @@ class main extends CI_Controller {
 		$this->load->view('view_coffee');
 	}
 
+	public function activity(){
+		$this->load->view('view_activity');
+	}
+
 	public function sleep(){
 		$this->load->view('view_sleep');
 	}
 
+	public function about(){
+		$this->load->view('view_about');
+	}
+
+	public function home(){
+		$this->load->view('view_loginhome');
+	}
+
+	public function profile(){
+		$this->load->view('view_profile');
+	}
+	//End of Adding/loading HTML Pages
+
+
+	//Registration Configuration
 	public function data_register(){
 		
+		//Data Retrieve from AJAX
 		$register = array();
 		$register['patient_name'] = $this->input->post('fullname');;
 		$register['profile_picture'] = '';
@@ -53,7 +76,9 @@ class main extends CI_Controller {
 		$register['password'] = $this->input->post('pass');
 		$register['conpassword'] = $this->input->post('cpass');
 		$register['date_registered'] = date('Y-m-d');
+		//End of Retrieving
 
+		//Error Result when parameters are invalid, doesn't save in database
 		$errorResultName = "Error Name";
 		$errorResultUsername = "Error Username";
 		$errorResultPass = "Error Password";
@@ -61,42 +86,49 @@ class main extends CI_Controller {
 		$errorResultBirth = "Error Birthday";
 		$errorResultWeight = "Invalid weight input";
 		$errorResultHeight = "Invalid height input";
+		//Note of valid parameter
 		$pass = "passed";
 
+		//remove spaces from first to last string for name and username
 		trim($register["patient_name"]);
 		trim($register["username"]);
 
+		//change double space for name
 		$register['patient_name'] = preg_replace("/!\s+!/", ' ', $register['patient_name']);
+		//age convert to integer
 		$register["age"] = intval($register["age"]);
+		//extract birthday into array
 		list($byear, $bday, $bmonth) = explode("-", $register["birth_date"]);
 		list($yyyy, $mm, $dd) = explode("/", date("Y/m/d"));
-		$yyyyToday = $yyyy -6;
+		//parameter validation value
+		$yyyyToday = $yyyy - 6;
 		$ageToday;
 
+		//get total character inputed
 		$usernameLength = strlen($register['username']);
 		$passwordLength = strlen($register["password"]);
 		$nameLength = strlen($register['patient_name']);
 
 		$this->load->model('functions');
 		
-		
+		//username validation
 		if(preg_match("/\W/", $register["username"]) == false && $usernameLength >= 6 && $usernameLength <= 255){
-
+			//password validation
 			if (preg_match("/[\d\W]/", $register["password"]) == true && $register["password"] == $register["conpassword"] && $passwordLength >= 6 && $passwordLength <= 255) {
-				
+				//name validation
 				if (preg_match("/[^a-zA-Z ]/", $register["patient_name"]) == false && $nameLength >= 8 && $nameLength <= 255) {
-						
+						//age validation
 						if(is_int($register["age"]) == true && $register["age"] >= 6 && $register["age"] <= 89){
-							
+							//birthdate validation
 							if ($bmonth < $mm && $bday > $dd) {
 								$ageToday = $yyyy - $byear;
 							}else{
 								$ageToday = $yyyy - $byear - 1;
 							}
 							if ($byear < $yyyyToday && $register["age"] == $ageToday) {
-
+								//height validation
 								if(empty($register['height']) != true && is_numeric($register['height']) == true && $register['height'] >= 126.9 && $register['height'] <= 193.0){
-
+									//weight validation
 									if (empty($register['weight']) != true && is_numeric($register['weight']) == true && $register['weight'] >= 20 && $register['weight'] <= 1000) {
 										echo json_encode($pass);
 
@@ -121,7 +153,7 @@ class main extends CI_Controller {
 										}else{
 											$register["bmi_status"] = "Unknown Data";
 										}
-
+										//password encryption
 										$register["password"] = password_hash($register["password"], PASSWORD_BCRYPT);
 
 										$this->functions->register_profile($register);
@@ -133,7 +165,7 @@ class main extends CI_Controller {
 									echo json_encode($errorResultHeight);
 								}
 							}else{
-
+								echo json_encode($errorResultBirth);
 							}
 							
 						}else{
@@ -148,10 +180,10 @@ class main extends CI_Controller {
 			}
 		}else{
 			echo json_encode($errorResultUsername);
-		}
-		
+		}	
 	}
 
+	//check if Username exist
 	public function checkuserName(){
 		$params = $this->input->post('username');
 		$result1 = "No spacing";

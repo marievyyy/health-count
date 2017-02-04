@@ -18,9 +18,6 @@
         <link rel="stylesheet" href="../application/views/css/water.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
 
-        <script src="js/jquery.min.js"></script>
-
-
     </head>
 
     <body>

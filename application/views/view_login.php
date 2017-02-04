@@ -12,7 +12,7 @@
 
         <link rel="shortcut icon" href="../application/views/img/favicon.ico">
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="../application/view/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
         <!-- Custom style -->
         <link rel="stylesheet" href="../application/views/css/login.css">
         <link rel="stylesheet" href="../application/views/css/homepage.css">
@@ -88,7 +88,6 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="../application/views/js/jquery.min.js"</script>
-    <script src="../application/views/js/jquery.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/validate-login.js"></script>
