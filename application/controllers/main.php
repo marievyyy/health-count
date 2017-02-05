@@ -27,6 +27,16 @@ class main extends CI_Controller {
 		}
 	}
 
+	public function logout(){
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
+			session_unset();
+			session_destroy();
+			header("Location: http://localhost/health/main/");	
+		}else{
+			$this->load->view('view_login');
+		}
+	}
+
 	public function login(){
 		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
