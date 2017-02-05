@@ -325,44 +325,124 @@ class main extends CI_Controller {
 
 	//water controller
 	public function waterAPI(){
+		
+		$resultWaterAPI = $this->functions->getWaterAPI($_SESSION["patient_id"]);
+		$resultAct = $this->functions->getActDurationToday($_SESSION["patient_id"]);
+
+		if (is_array($resultWaterAPI) == true) {
+			$resultWater = array(
+					'water_amount' => $resultWaterAPI["water_amount"],
+					'gained_water' => $resultWaterAPI["gained_water"],
+					'urine' => $resultWaterAPI["urine"]
+				);
+			echo json_encode($resultWater);
+		}else{
+			if (is_array($resultAct) == true) {
+
+				$sum = strtotime('00:00:00');
+				$sum2=0;
+				foreach ($result as $i) {
+					foreach ($i as $key => $item) {
+						$sum1=strtotime($item)-$sum;
+						$sum2 = $sum2+$sum1;
+					}
+				}	
+				$sum3=$sum+$sum2;
+				$str_time = date("H:i:s",$sum3);
+				//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
+				sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+				$time_min = $hours * 60 + $minutes;
+
+				$amountWater = $_SESSION["weight"] * 0.5;
+				$totalValue = $amountWater  + (($time_min/30) * 12);
+
+				$totalLiters = round($totalValue * 0.0295735, 2);
+
+				$params = array(
+						'patient_id' => $_SESSION["patient_id"], 
+						'actDuration_total' => $time_min,
+						'weather' => '',
+						'urine' => '',
+						'gained_water' => '',
+						'water_amount' => $totalLiters
+					);
+				$this->functions->insertWaterAPI($params);
+				echo json_encode($totalLiters);
+				
+			}else{
+
+				$amountWater = $_SESSION["weight"] * 0.5;
+				$totalLiters = round($amountWater * 0.0295735, 2);
+
+				$params = array(
+						'patient_id' => $_SESSION["patient_id"], 
+						'actDuration_total' => '',
+						'weather' => '',
+						'urine' => '',
+						'gained_water' => '',
+						'water_amount' => $totalLiters
+					);
+				$this->functions->insertWaterAPI($params);
+				echo json_encode($totalLiters);
+			}
+		}
+	}
+
+	public function updateWaterIntake(){
 		$glassVal = $this->input->post('glassVal');
 		$urineColor = $this->input->post('urineColor');
 
-		$result = $this->functions->getActDurationToday($_SESSION["patient_id"]);
-		if (is_array($result) == true) {
+		$resultWaterAPI = $this->functions->getWaterAPI($_SESSION["patient_id"]);
+		$resultAct = $this->functions->getActDurationToday($_SESSION["patient_id"]);
 
-			$sum = strtotime('00:00:00');
-			$sum2=0;
-			foreach ($result as $i) {
-				foreach ($i as $key => $item) {
-					$sum1=strtotime($item)-$sum;
-					$sum2 = $sum2+$sum1;
-				}
-			}	
-			$sum3=$sum+$sum2;
-			$str_time = date("H:i:s",$sum3);
-			//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
-			sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-			$time_seconds = $hours * 60 + $minutes;
+			if (is_array($resultAct) == true) {
 
-			$amountWater = $_SESSION["weight"] * 0.5;
-			$totalValue = $amountWater  + (($time_seconds/30) * 12);
+				$sum = strtotime('00:00:00');
+				$sum2=0;
+				foreach ($result as $i) {
+					foreach ($i as $key => $item) {
+						$sum1=strtotime($item)-$sum;
+						$sum2 = $sum2+$sum1;
+					}
+				}	
+				$sum3=$sum+$sum2;
+				$str_time = date("H:i:s",$sum3);
+				//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
+				sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+				$time_min = $hours * 60 + $minutes;
 
-			$totalLiters = round($totalValue * 0.0295735, 2);
-			
-			$amountMinus = $glassVal * 0.0295735;
-			$amountVal = round($totalLiters - $amountMinus, 2);
-			echo json_encode($amountVal);
-		
-		}else{
+				$newDuration = $time_min - $resultWaterAPI["actDuration_total"];
+				$totalValue = ($newDuration/30) * 12;
+				$totalLitersAdded = round($totalValue * 0.0295735, 2);
 
-			$amountWater = $_SESSION["weight"] * 0.5;
-			$totalLiters = round($amountWater * 0.0295735, 2);
-			
-			$amountMinus = $glassVal * 0.0295735;
-			$amountVal = round($totalLiters - $amountMinus, 2);
-			echo json_encode($amountVal);
-		}
+				$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
+
+				$amountMinus = $glassVal * 0.0295735;
+				$amountVal = round($amountWater - $amountMinus, 2);
+				$resultWater = array(
+						'patient_id' => $_SESSION['patient_id'],
+						'water_amount' => $amountVal,
+						'gained_water' => $glassVal,
+						'actDuration_total' => $newDuration,
+						'urine' => $urineColor 
+					);
+				$this->functions->updateWaterAPI($resultWater);
+				echo json_encode($resultWater);
+				
+			}else{
+
+				$amountMinus = $glassVal * 0.0295735;
+				$amountVal = round($resultWaterAPI["water_amount"] - $amountMinus, 2);
+				$resultWater = array(
+						'patient_id' => $_SESSION['patient_id'],
+						'actDuration_total' => '',
+						'water_amount' => $amountVal,
+						'gained_water' => $glassVal,
+						'urine' => $urineColor 
+					);
+				$this->functions->updateWaterAPI($resultWater);
+				echo json_encode($resultWater);
+			}
 	}
 }
 

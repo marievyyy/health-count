@@ -95,7 +95,7 @@
                 <div class="col-md-4" align="center">
                     <h3 class="title">Ideal Hydration Amount</h3>
                     <h4 id="waterVal">0.00</h4>
-                    <h5>Liters</h5>
+                    <h5 id="">Liters</h5>
                     <p>Hydration Level: </p>
                     <!-- <p id="high"><span>High Water Intake</span></p> -->
                     <!-- <p id="medium"><span>Medium Water Intake</span></p> -->
