@@ -229,6 +229,9 @@ body {
 }
 
 .registration-container #msform h6.error {
-  color: #d45656;
-  font-size: 10px;
+  font-family: 'Oswald';
+  color: #303E27;
+  font-size: 10.3px;
+  text-transform: uppercase;
+  text-align: center;
 }
