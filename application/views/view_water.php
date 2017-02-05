@@ -30,6 +30,7 @@
                 <a href="/health/main/food" class="smoothScroll">Food</a>
                 <a href="/health/main/water" class="smoothScroll">Water</a>
                 <a href="/health/main/coffee" class="smoothScroll">Coffee</a>
+                <a href="/health/main/activity" class="smoothScroll">Activities</a>
                 <a href="/health/main/sleep" class="smoothScroll">Sleep</a>
                 <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
                 <a href="/health/main/about" class="smoothScroll">About-Us</a>
