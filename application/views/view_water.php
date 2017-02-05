@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-md-4" align="center">
                     <h3 class="title">Ideal Hydration Amount</h3>
-                    <h4>1.20</h4>
+                    <h4 id="waterVal">0.00</h4>
                     <h5>Liters</h5>
                 </div>
             </div>

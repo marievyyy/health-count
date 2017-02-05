@@ -114,9 +114,9 @@
                             <h2 class="fs-title">Body Details</h2>
 
                             <h6 class="error" id="errorHeight"></h6>
-                            <input type="text" name="height" placeholder="Height in cm" />
+                            <input type="text" name="height" placeholder="Height in cm" id="height"/>
                             <h6 class="error" id="errorWeight"></h6>
-                            <input type="text" name="weight" placeholder="Weight in Kgs" />
+                            <input type="text" name="weight" placeholder="Weight in Kgs" id="weight" />
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="submit" name="submit" class="submit action-button" value="Submit" />
                         </fieldset>

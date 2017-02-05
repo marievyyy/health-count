@@ -14,15 +14,47 @@ class main extends CI_Controller {
 	}
 	//Start of addding/loading HTML Page to view in website
 	public function index(){
-		$this->load->view('view_homepage');
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
+			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+
+			if ($result == 'existing account') {
+				header("Location: http://localhost/health/main/home");
+			}else{
+				echo "Unknown Error";
+			}	
+		}else{
+			$this->load->view('view_homepage');
+		}
 	}
 
 	public function login(){
-		$this->load->view('view_login');
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
+			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+
+			if ($result == 'existing account') {
+				header("Location: http://localhost/health/main/home");
+			}else{
+				echo "Unknown Error";
+
+			}	
+		}else{
+			$this->load->view('view_login');
+		}
 	}
 
 	public function register(){
-		$this->load->view('view_registration');
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
+			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+
+			if ($result == 'existing account') {
+				header("Location: http://localhost/health/main/home");
+			}else{
+				echo "Unknown Error";
+
+			}	
+		}else{
+			$this->load->view('view_registration');
+		}
 	}
 
 	public function food(){
@@ -30,12 +62,17 @@ class main extends CI_Controller {
 	}
 
 	public function water(){
-		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 
-		if ($result == 'existing account') {
-			$this->load->view('view_water');
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
+
+			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+			if ($result == 'existing account') {
+				$this->load->view('view_water');
+			}else{
+				echo "Unknown Error";
+			}	
 		}else{
-			header("Location: http://localhost/health/main/register");
+			header("Location: http://localhost/health/main/home");
 		}
 	}
 
@@ -56,23 +93,31 @@ class main extends CI_Controller {
 	}
 
 	public function home(){
-		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 
-		if ($result == 'existing account') {
-			$this->load->view('view_loginhome');
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
+
+			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+			if ($result == 'existing account') {
+				$this->load->view('view_loginhome');
+			}else{
+				echo "Unknown Error";
+			}	
 		}else{
-			header("Location: http://localhost/health/main/register");
+			header("Location: http://localhost/health/main/");
 		}
 	}
 
 	public function profile(){
-		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
 
-
-		if ($result == 'existing account') {
-			$this->load->view('view_profile');
+			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+			if ($result == 'existing account') {
+				$this->load->view('view_profile');
+			}else{
+				echo "Unknown Error";
+			}	
 		}else{
-			header("Location: http://localhost/health/main/register");
+			header("Location: http://localhost/health/main/");
 		}
 	}
 	//End of Adding/loading HTML Pages
@@ -249,10 +294,16 @@ class main extends CI_Controller {
 		if (is_array($resultUsername) == true) {
 			$result = password_verify($password, $resultUsername["password"]);
 			if ($result == true) {
+				$_SESSION['patient_id'] = array();
+				$_SESSION['weight'] = array();
+				$_SESSION['height'] = array();
+				$_SESSION['bmi'] = array();
+				$_SESSION['age'] = array();
 				$_SESSION["patient_id"] = $resultUsername["patient_id"];
 				$_SESSION["weight"] = $resultUsername["weight"];
 				$_SESSION["height"] = $resultUsername["height"];
 				$_SESSION["bmi"] = $resultUsername["bmi"];
+				$_SESSION["age"] = $resultUsername["age"];
 				echo json_encode($out);
 			}else{
 				echo json_encode($out2);
@@ -264,7 +315,44 @@ class main extends CI_Controller {
 
 	//water controller
 	public function waterAPI(){
-		echo json_encode($_SESSION["weight"]);
+		$glassVal = $this->input->post('glassVal');
+		$urineColor = $this->input->post('urineColor');
+
+		$result = $this->functions->getActDurationToday($_SESSION["patient_id"]);
+		if (is_array($result) == true) {
+
+			$sum = strtotime('00:00:00');
+			$sum2=0;
+			foreach ($result as $i) {
+				foreach ($i as $key => $item) {
+					$sum1=strtotime($item)-$sum;
+					$sum2 = $sum2+$sum1;
+				}
+			}	
+			$sum3=$sum+$sum2;
+			$str_time = date("H:i:s",$sum3);
+			//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
+			sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+			$time_seconds = $hours * 60 + $minutes;
+
+			$amountWater = $_SESSION["weight"] * 0.5;
+			$totalValue = $amountWater  + (($time_seconds/30) * 12);
+
+			$totalLiters = round($totalValue * 0.0295735, 2);
+			
+			$amountMinus = $glassVal * 0.0295735;
+			$amountVal = round($totalLiters - $amountMinus, 2);
+			echo json_encode($amountVal);
+		
+		}else{
+
+			$amountWater = $_SESSION["weight"] * 0.5;
+			$totalLiters = round($amountWater * 0.0295735, 2);
+			
+			$amountMinus = $glassVal * 0.0295735;
+			$amountVal = round($totalLiters - $amountMinus, 2);
+			echo json_encode($amountVal);
+		}
 	}
 }
 
