@@ -124,6 +124,21 @@ $(document).ready(function (){
 		}
 	});
 
+	$("#cpass").keyup(function(){
+		var password = $('input[name=pass]').val();
+		var conpass = $('input[name=cpass]').val();
+
+				if (password == conpass){
+					$('#errorconPass').text("");
+					console.log("accepted");
+					$('#next1').attr("disabled", false);
+				}else{
+					console.log("Password doesnt Match");
+					$('#errorconPass').text("Password doesnt Match");
+					$('#next1').attr("disabled", true);
+				}
+	});
+
 	$("#inputName").change(function(){
 		var fullname = $('input[name=fullname]').val();
 		fullname = fullname.trim();
@@ -204,13 +219,25 @@ $(document).ready(function (){
 	  }
     });
 
+	$("#height").keyup(function(){
+		var height = $('input[name=height]').val();
+		if (height != "") {
+			$('.error').text("");
+		}
+	});
+
+	$("#weight").keyup(function(){
+		var weight = $('input[name=weight]').val();
+		if (weight != "") {
+			$('.error').text("");
+		}
+	});
+
 
 	$("#msform").submit(function(e){
 		e.preventDefault();
 		var dataform = $(this);
-		var row = '';
-		
-
+		var row = '';		
 
 		$.ajax({
 			type:"POST",

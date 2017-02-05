@@ -23,6 +23,7 @@ class functions extends CI_Model {
 				'patient_id' => $this->guid(),
 				'patient_name' => $params['patient_name'],
 				'birth_date' => $params['birth_date'],
+				'age' => $params['age'],
 				'gender' => $params['gender'],
 				'weight' => $params['weight'],
 				'height' => $params['height'],
@@ -68,6 +69,21 @@ class functions extends CI_Model {
     	}
     	else{
         	return 'not existing';
+    	}
+	}
+
+	public function getActDurationToday($patient_id){
+		$this->db->select('act_duration');
+		$this->db->where('date_recorded', date('Y-m-d'));
+		$this->db->where('patient_id', $patient_id);
+		$this->db->order_by("time_recorded", "desc");
+		$query = $this->db->get('activity');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+    	}
+    	else{
+        	return 'no excercises';
     	}
 	}
 }
