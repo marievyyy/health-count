@@ -3,7 +3,18 @@ $(document).ready(function(){
 	
 	$('#water-add').click(function(){
 		var glassVal = $("#glassVal").val();
+		var urineColor = $("input[name=urine_color]").val();
 		console.log(glassVal);
+		console.log(urineColor);
+		
+		$.ajax({
+			type:"GET",
+			url: "http://localhost/health/main/waterAPI",
+			dataType: "json",
+			success: function(data){
+				console.log(data);
+			}
+		});
 	});
 
 	$('#water-minus').click(function(){

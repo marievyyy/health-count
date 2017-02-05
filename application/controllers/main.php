@@ -248,8 +248,15 @@ class main extends CI_Controller {
 
 		if (is_array($resultUsername) == true) {
 			$result = password_verify($password, $resultUsername["password"]);
-			$_SESSION["patient_id"] = $resultUsername["patient_id"];
-			echo json_encode($out);
+			if ($result == true) {
+				$_SESSION["patient_id"] = $resultUsername["patient_id"];
+				$_SESSION["weight"] = $resultUsername["weight"];
+				$_SESSION["height"] = $resultUsername["height"];
+				$_SESSION["bmi"] = $resultUsername["bmi"];
+				echo json_encode($out);
+			}else{
+				echo json_encode($out2);
+			}
 		}else{
 			echo json_encode($out2);
 		}
@@ -257,7 +264,7 @@ class main extends CI_Controller {
 
 	//water controller
 	public function waterAPI(){
-		
+		echo json_encode($_SESSION["weight"]);
 	}
 }
 
