@@ -16,6 +16,21 @@ body {
   overflow-x: hidden;
 }
 
+/* ----------------------------- Menu */
+
+.menu-wrap a.logout {
+  font-family: 'Oswald';
+  font-size: 16px;
+  color: #303E27;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+}
+
 /* ---------------- Background images */
 .main-banner {
   background-position: center center;
