@@ -36,6 +36,7 @@
                 <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
                 <a href="/health/main/about" class="smoothScroll">About-Us</a>
                 <a href="/health/main/profile" class="smoothScroll">Profile</a>
+                <a href="" class="logout">Log Out</a>
             </div>
             
             <!-- Menu button -->
@@ -129,7 +130,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src='../application/views/js/jquery.min.js'></script>
     <script src='../application/views/js/jquery.easing.1.3.min.js'></script>
-
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/registration.js"></script>

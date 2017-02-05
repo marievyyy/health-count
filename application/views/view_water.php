@@ -35,6 +35,7 @@
                 <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
                 <a href="/health/main/about" class="smoothScroll">About-Us</a>
                 <a href="/health/main/profile" class="smoothScroll">Profile</a>
+                <a href="" class="logout">Log Out</a>
             </div>
             
             <!-- Menu button -->
@@ -82,7 +83,7 @@
                                     <span class="glyphicon glyphicon-minus"></span>
                                 </button>
                             </span>
-                            <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10" id="glassVal">
+                            <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="20" id="glassVal">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" id="water-add">
                                     <span class="glyphicon glyphicon-plus"></span>
@@ -95,6 +96,11 @@
                     <h3 class="title">Ideal Hydration Amount</h3>
                     <h4 id="waterVal">0.00</h4>
                     <h5>Liters</h5>
+                    <p>Hydration Level: </p>
+                    <!-- <p id="high"><span>High Water Intake</span></p> -->
+                    <!-- <p id="medium"><span>Medium Water Intake</span></p> -->
+                    <!-- <p id="normal"><span>Normal Water Intake</span></p> -->
+                    <p id="low"><span>Low Water Intake</span></p>
                 </div>
             </div>
 

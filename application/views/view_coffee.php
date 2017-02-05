@@ -35,6 +35,7 @@
                 <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
                 <a href="/health/main/about" class="smoothScroll">About-Us</a>
                 <a href="/health/main/profile" class="smoothScroll">Profile</a>
+                <a href="" class="logout">Log Out</a>
             </div>
             
             <!-- Menu button -->
@@ -47,7 +48,7 @@
 
         <!-- Registration -->
                 <!-- multistep form -->
-                <div class="registration-container">
+                <div class="coffee-container">
                     <form id="msform" method="post">
                         <!-- fieldsets -->
                         <fieldset>
