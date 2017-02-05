@@ -12,7 +12,6 @@ $(document).ready(function(){
 			success: function(data){
 				if (data == "Valid") {
 					console.log("Valid input");
-					$('#error').html("Valid input");
 					window.location = "http://localhost/health/main/home";
 				}else{
 					console.log("Invalid input");
@@ -24,4 +23,8 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	window.onhashchange = function() {
+		
+	}
 });

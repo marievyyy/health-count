@@ -61,6 +61,7 @@ class functions extends CI_Model {
 	}
 
 	public function getPatient_id($patient_id){
+		try{
     	$this->db->where('patient_id', $patient_id);
 		$query = $this->db->get('patient_info');
     	if ($query->num_rows() >= 1){
@@ -68,6 +69,9 @@ class functions extends CI_Model {
     	}
     	else{
         	return 'not existing';
+    	}
+    	}catch(PDOException $e){
+    		return $e = 'not existing';
     	}
 	}
 }

@@ -9,10 +9,11 @@ class main extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		session_start();
+		$this->load->model('functions');
 	}
 	//Start of addding/loading HTML Page to view in website
 	public function index(){
-		session_start();
 		$this->load->view('view_homepage');
 	}
 
@@ -25,27 +26,28 @@ class main extends CI_Controller {
 	}
 
 	public function food(){
-		session_start();
 		$this->load->view('view_food');
 	}
 
 	public function water(){
-		session_start();
-		$this->load->view('view_water');
+		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
+
+		if ($result == 'existing account') {
+			$this->load->view('view_water');
+		}else{
+			header("Location: http://localhost/health/main/register");
+		}
 	}
 
 	public function coffee(){
-		session_start();
 		$this->load->view('view_coffee');
 	}
 
 	public function activity(){
-		session_start();
 		$this->load->view('view_activity');
 	}
 
 	public function sleep(){
-		session_start();
 		$this->load->view('view_sleep');
 	}
 
@@ -54,11 +56,7 @@ class main extends CI_Controller {
 	}
 
 	public function home(){
-		session_start();
-		echo $_SESSION["patient_id"];
-		$this->load->model('functions');
 		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
-
 
 		if ($result == 'existing account') {
 			$this->load->view('view_loginhome');
@@ -68,9 +66,6 @@ class main extends CI_Controller {
 	}
 
 	public function profile(){
-		session_start();
-		echo $_SESSION["patient_id"];
-		$this->load->model('functions');
 		$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 
 
@@ -238,6 +233,7 @@ class main extends CI_Controller {
 		}
 	}
 
+	//login controller and security
 	public function getUser(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
@@ -252,7 +248,6 @@ class main extends CI_Controller {
 
 		if (is_array($resultUsername) == true) {
 			$result = password_verify($password, $resultUsername["password"]);
-			session_start();
 			$_SESSION["patient_id"] = $resultUsername["patient_id"];
 			echo json_encode($out);
 		}else{
@@ -260,6 +255,7 @@ class main extends CI_Controller {
 		}
 	}
 
+	//water controller
 	public function waterAPI(){
 		
 	}
