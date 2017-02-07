@@ -83,7 +83,7 @@
                                     <span class="glyphicon glyphicon-minus"></span>
                                 </button>
                             </span>
-                            <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="20" id="glassVal">
+                            <input type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="100" id="glassVal">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" id="water-add">
                                     <span class="glyphicon glyphicon-plus"></span>
@@ -94,13 +94,13 @@
                 </div>
                 <div class="col-md-4" align="center">
                     <h3 class="title">Ideal Hydration Amount</h3>
-                    <h4 id="waterVal">0.00</h4>
-                    <h5 id="">Liters</h5>
-                    <p>Hydration Level: </p>
+                    <h4 id="waterVal" class="newColor">0.00</h4>
+                    <h5 id="normal" class="newColor">Liters</h5>
+                    <p class="newColor">Hydration Level: </p>
                     <!-- <p id="high"><span>High Water Intake</span></p> -->
                     <!-- <p id="medium"><span>Medium Water Intake</span></p> -->
                     <!-- <p id="normal"><span>Normal Water Intake</span></p> -->
-                    <p id="low"><span>Low Water Intake</span></p>
+                    <p class="newColor"><span id="dehydrate">Can't Determine</span></p>
                 </div>
             </div>
 

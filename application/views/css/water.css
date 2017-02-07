@@ -135,18 +135,18 @@ label.urine-seven { background: #dea52b; }
   text-transform: uppercase;
 }
 
-.water-page p#high {
+.water-page .high {
   color: #B31313;
 }
 
-.water-page p#medium {
+.water-page .medium {
   color: #EE7738;
 }
 
-.water-page p#normal {
+.water-page .normal {
   color: #90D26D;
 }
 
-.water-page p#low {
+.water-page .low {
   color: #104455;
 }

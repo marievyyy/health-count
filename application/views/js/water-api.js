@@ -10,33 +10,53 @@ $(document).ready(function(){
 				if (typeof data["water_amount"] !=='undefined' && typeof data["gained_water"] !=='undefined') {
 					$("#waterVal").text(data["water_amount"]);
 					$("#glassVal").val(data["gained_water"]);
-					if(data["urine"] == "very high"){
-						$('#low').attr("id","very_high");
-					}
-					else if(data["urine"] == "high"){
-						$('#low').attr("id","high");
-					}
-					else if(data["urine"] == "medium"){
-						$('#low').attr("id","medium");
-					}
-					else if(data["urine"] == "low"){
-						$('#low').attr("id","low");
-					}
-					else if(data["urine"] == "normal"){
-						$('#low').attr("id","normal");
-					}else{
-						$('#low').attr("id","high");
-					}
 				}else{
 					$("#waterVal").text(data);
 				}
+
+				if (data["water_amount"] <= 0) {
+					$('#water-add').attr("disabled", true);
+				}
+
+				urineCondition(data["urine"]);
+
 			}
 		});
 
 
+	function urineCondition(dataUrine){
+		if(dataUrine == "urine-one"){
+			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").addClass("high");
+			$('#dehydrate').text('Too Much Water!!!');
+		}
+		else if(dataUrine == "urine-two"){
+			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").addClass("high");
+			$("#dehydrate").text("Lower A Bit Your Intake!");
+		}
+		else if(dataUrine == "urine-three"){
+			$('.newColor').removeClass("low").removeClass("medium").removeClass("high").addClass("normal");
+			$("#dehydrate").text("Normal Dehydration");
+		}
+		else if(dataUrine == "urine-four"){
+			$('.newColor').removeClass("low").removeClass("medium").removeClass("high").addClass("normal");
+			$("#dehydrate").text("Normal Dehydration");
+		}
+		else if(dataUrine == "urine-five"){
+			$('.newColor').removeClass("high").removeClass("normal").removeClass("low").removeClass("high").addClass("medium");
+			$("#dehydrate").text("Slightly Dehydrated");
+		}else if (dataUrine == "urine-six" || dataUrine == "urine-seven"){
+			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").addClass("high");
+			$("#dehydrate").text("Highly!! Dehydrated");
+		}else{
+			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").removeClass("high");
+			$("#dehydrate").text("Dehydration Unknown");
+		}
+	}
+
 	$('#water-add').click(function(){
 		var glassVal = $("#glassVal").val();
 		var urineColor = $("input[name=urine_color]:checked").val();
+		var configPos = "positive";
 		console.log(glassVal);
 		console.log(urineColor);
 		
@@ -47,10 +67,22 @@ $(document).ready(function(){
 			data: {
 				glassVal: glassVal,
 				urineColor: urineColor,
+				configPos: configPos
 			},
 			success: function(data){
 				console.log(data);
-				$("#waterVal").text(data["water_amount"]);
+				$('#water-minus').attr("disabled", false);
+
+				if (data["water_amount"] > 0) {
+					$("#waterVal").text(data["water_amount"]);
+					$("#glassVal").val(data["gained_water"]);
+				}else{
+					$("#waterVal").text("0.00");
+					$('#water-add').attr("disabled", true);
+					$("#glassVal").val(data["gained_water"]);
+				}
+
+				urineCondition(data["urine"]);
 
 			}
 		});
@@ -59,6 +91,7 @@ $(document).ready(function(){
 	$('#water-minus').click(function(){
 		var glassVal = $("#glassVal").val();
 		var urineColor = $("input[name=urine_color]:checked").val();
+		var configPos = "negative";
 
 		$.ajax({
 			type:"POST",
@@ -67,10 +100,22 @@ $(document).ready(function(){
 			data: {
 				glassVal: glassVal,
 				urineColor: urineColor,
+				configPos: configPos
 			},
 			success: function(data){
 				console.log(data);
+				var originalVal = $("#glassVal").val();
 				$("#waterVal").text(data["water_amount"]);
+				console.log(originalVal);
+
+				$('#water-add').attr("disabled", false);
+
+				if (data["gained_water"] <= originalVal) {
+					$('#water-minus').attr("disabled", true);
+				}
+				
+				urineCondition(data["urine"]);
+
 			}
 		});
 	});

@@ -376,7 +376,7 @@ class main extends CI_Controller {
 
 				$params = array(
 						'patient_id' => $_SESSION["patient_id"], 
-						'actDuration_total' => '',
+						'actDuration_total' => '00:00:00',
 						'weather' => '',
 						'urine' => '',
 						'gained_water' => '',
@@ -391,9 +391,30 @@ class main extends CI_Controller {
 	public function updateWaterIntake(){
 		$glassVal = $this->input->post('glassVal');
 		$urineColor = $this->input->post('urineColor');
+		$configPos = $this->input->post('configPos');
 
 		$resultWaterAPI = $this->functions->getWaterAPI($_SESSION["patient_id"]);
 		$resultAct = $this->functions->getActDurationToday($_SESSION["patient_id"]);
+
+		function calculateWaterVal($glassVal, $amountWater, $actDuration_new, $urineColor, $configPos){
+					$amountVal = '';
+					if ($configPos == 'positive') {
+						$amountVal = round($amountWater - 0.0295735, 2);
+					}
+					if ($configPos == 'negative') {
+						$amountVal = round($amountWater + 0.0295735, 2);
+					}
+
+					$resultWater = array(
+							'patient_id' => $_SESSION['patient_id'],
+							'water_amount' => $amountVal,
+							'gained_water' => $glassVal,
+							'actDuration_total' => $actDuration_new,
+							'urine' => $urineColor 
+						);
+					return $resultWater;
+				}
+
 
 			if (is_array($resultAct) == true) {
 
@@ -412,36 +433,36 @@ class main extends CI_Controller {
 				$time_min = $hours * 60 + $minutes;
 
 				$newDuration = $time_min - $resultWaterAPI["actDuration_total"];
+				$actDuration_new = $time_min;
+				
 				$totalValue = ($newDuration/30) * 12;
 				$totalLitersAdded = round($totalValue * 0.0295735, 2);
 
 				$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
-
-				$amountMinus = $glassVal * 0.0295735;
-				$amountVal = round($amountWater - $amountMinus, 2);
-				$resultWater = array(
-						'patient_id' => $_SESSION['patient_id'],
-						'water_amount' => $amountVal,
-						'gained_water' => $glassVal,
-						'actDuration_total' => $newDuration,
-						'urine' => $urineColor 
-					);
-				$this->functions->updateWaterAPI($resultWater);
-				echo json_encode($resultWater);
 				
-			}else{
+				$resultCal = calculateWaterVal($glassVal, $amountWater, $actDuration_new, $urineColor, $configPos);
+				
+				if ($resultCal["water_amount"] > -0.01) {
+					$this->functions->updateWaterAPI($resultCal);
+					echo json_encode($resultCal);
+				
+				}else{
+					echo json_encode($resultCal);
+				}			
 
-				$amountMinus = $glassVal * 0.0295735;
-				$amountVal = round($resultWaterAPI["water_amount"] - $amountMinus, 2);
-				$resultWater = array(
-						'patient_id' => $_SESSION['patient_id'],
-						'actDuration_total' => '',
-						'water_amount' => $amountVal,
-						'gained_water' => $glassVal,
-						'urine' => $urineColor 
-					);
-				$this->functions->updateWaterAPI($resultWater);
-				echo json_encode($resultWater);
+			}else{
+				$amountWater = $resultWaterAPI["water_amount"];
+				$actDuration_new = '00:00:00';
+
+				$resultCal = calculateWaterVal($glassVal, $amountWater, $actDuration_new, $urineColor, $configPos);
+				
+				if ($resultCal["water_amount"] > -0.01) {
+					$this->functions->updateWaterAPI($resultCal);
+					echo json_encode($resultCal);
+				
+				}else{
+					echo json_encode($resultCal);
+				}	
 			}
 	}
 }

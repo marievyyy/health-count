@@ -91,7 +91,7 @@ class functions extends CI_Model {
 		$this->db->where('date_recorded', date('Y-m-d'));
 		$this->db->where('patient_id', $patient_id);
 		$this->db->order_by("time_recorded", "desc");
-		$query = $this->db->get('water_intake');
+		$query = $this->db->get('water');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
         	return $data[0];
@@ -113,7 +113,7 @@ class functions extends CI_Model {
 			'date_recorded' => date("Y-m-d")
 		);
 
-		$this->db->insert('water_intake', $fields);
+		$this->db->insert('water', $fields);
 	}
 
 	public function updateWaterAPI($params){
@@ -126,10 +126,12 @@ class functions extends CI_Model {
 			'urine' => $params['urine'],
 			'gained_water' => $params['gained_water'],
 			'water_amount' => $params['water_amount'],
-			'time_recorded' => date("H:i:s")
+			'time_recorded' => date("H:i:s"),
+			'date_recorded' => date("Y-m-d")
 		);
 
-    	$this->db->update('water_intake', $fields);
+    	$this->db->update('water', $fields
+    		);
 	}
 }
 
