@@ -69,7 +69,7 @@
             <!-- Registration -->
                 <!-- multistep form -->
                 <div class="registration-container">
-                    <form id="msform" method="post">
+                    <form id="msform" method="post" action="/health/main/water">
                         <!-- progressbar -->
                         <ul id="progressbar">
                             <li class="active">Account Setup</li>
@@ -81,9 +81,9 @@
                         <fieldset>
                             <h2 class="fs-title">Registration</h2>
                             <h6 class="error" id="errorUser"></h6>
-                            <input type="text" name="username" id="inputUser" placeholder="Username" />
+                            <input type="text" name="username" id="inputUser" placeholder="Username" autocomplete="" value="" />
                             <h6 class="error" id="errorPass"></h6>
-                            <input type="password" name="pass" id="pass" placeholder="Password" />
+                            <input type="password" name="pass" id="pass" placeholder="Password" value="" />
                             <h6 class="error" id="errorconPass"></h6>
                             <input type="password" name="cpass" id="cpass" placeholder="Confirm Password" />
                             <input type="button" name="next" class="next action-button" id="next1" value="Next" />

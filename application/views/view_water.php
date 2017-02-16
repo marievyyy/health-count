@@ -46,6 +46,7 @@
             <h1>Water</h1>
             <h6>How much water you should drink?</h6>
 
+            <form id="msform" method="post">
             <div class="row" id="urine-list">
                 <div class="col-md-4 urine" align="center">
                     <h3 class="title">Color of Urine</h3>
@@ -101,9 +102,10 @@
                     <!-- <p id="medium"><span>Medium Water Intake</span></p> -->
                     <!-- <p id="normal"><span>Normal Water Intake</span></p> -->
                     <p class="newColor"><span id="dehydrate">Can't Determine</span></p>
+                    <input type="submit" id="submitted" name="submitted" value="Submit">
                 </div>
             </div>
-
+            </form>
         </div>
 
     <!-- Bootstrap core JavaScript -->

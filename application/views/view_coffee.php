@@ -105,6 +105,7 @@
                                 </div>
                             </div>
 
+                            <p class="" id="errorType"></p>
                             <input type="button" name="next" class="next action-button" id="next1" value="Next" />
                         </fieldset>
                         <fieldset>
@@ -121,7 +122,7 @@
                                             <span class="glyphicon glyphicon-minus"></span>
                                         </button>
                                     </span>
-                                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10" id="coffeeCupVal">
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -131,7 +132,7 @@
                             </div>
                             
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Results" />
+                            <input type="submit" name="next" class="next action-button" value="Results" />
                         </fieldset>
                         <fieldset>
                             <h2 class="fs-title">Results</h2>
@@ -139,7 +140,6 @@
                                 <h3>High Amount of Caffeine!</h3>
                                 <img class="cup" src="../application/views/img/mocha.png">
                             </div>
-                            <input type="button" name="previous" class="previous action-button" value="Previous" />
                         </fieldset>
                     </form>
                 </div> 
@@ -152,7 +152,7 @@
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/registration.js"></script>
     <script src="../application/views/js/water.js"></script>
-
+    <script src="../application/views/js/coffee-api.js"></script>
 
     </body>
 </html>
