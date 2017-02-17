@@ -66,19 +66,19 @@
             <div class="container home-page" align="center">
                 <div class="row first">
                     <div class="col-md-4">
-                        <div class="box food">
+                        <div id="container-highchart1" class="box food">
                             <h2>Food</h2>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="box water">
+                        <div id="container-highchart2" class="box water">
                             <h2>Water</h2>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="box coffee">
+                        <div id="container-highchart3" class="box coffee">
                             <h2>Coffee</h2>
                         </div>
                     </div>
@@ -86,19 +86,19 @@
 
                 <div class="row second">
                     <div class="col-md-4">
-                        <div class="box activities">
+                        <div id="container-highchart4" class="box activities">
                             <h2>Activities</h2>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="box sleep">
+                        <div id="container-highchart5" class="box sleep">
                             <h2>Sleep</h2>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div class="box meditation">
+                        <div id="container-highchart6" class="box meditation">
                             <h2>Meditation</h2>
                         </div>
                     </div>
@@ -112,6 +112,10 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../application/views/js/jquery.min.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
+    <script src="../application/views/js/highcharts.js"></script>
+    <script src="../application/views/js/exporting.js"></script>
+    <script src="../application/views/js/highcharts-more.js"></script>
+    <script src="../application/views/js/highchart-home.js"></script>
     <script src="../application/views/js/main.js"></script>
 
 
