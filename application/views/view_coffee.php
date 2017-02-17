@@ -137,7 +137,9 @@
                         <fieldset>
                             <h2 class="fs-title">Results</h2>
                             <div>
-                                <h3>High Amount of Caffeine!</h3>
+                                <h3 id="caffeineStatus">High Amount of Caffeine!</h3>
+                                <p>Today's Caffeine:<span id="caffeineTotal"></span>mg.</p>
+                                <p>Drink Added:<span id="caffeineAdded"></span>mg.</p>
                                 <img class="cup" src="../application/views/img/mocha.png">
                             </div>
                         </fieldset>

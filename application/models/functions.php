@@ -121,17 +121,69 @@ class functions extends CI_Model {
 		$this->db->where('date_recorded', date('Y-m-d'));
 
 		$fields = array(
-			'patient_id' => $params['patient_id'],
 			'actDuration_total' => $params['actDuration_total'],
 			'urine' => $params['urine'],
 			'gained_water' => $params['gained_water'],
 			'water_amount' => $params['water_amount'],
-			'time_recorded' => date("H:i:s"),
-			'date_recorded' => date("Y-m-d")
+			'time_recorded' => date("H:i:s")
 		);
 
     	$this->db->update('water', $fields
     		);
+	}
+
+	public function getCoffeeStatus($patient_id){
+		$this->db->where('patient_id', $patient_id);
+		$this->db->where('date_recorded', date('Y-m-d'));
+		$query = $this->db->get('caffeine_status');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data[0];
+
+    	}
+    	else{
+        	return 'no caffeine record';
+    	}
+	}
+
+	public function insertCoffeeStatus($coffeeStatus){
+		$fields = array(
+			'caffeine_id' => $this->guid(),
+			'patient_id' => $coffeeStatus['patient_id'],
+			'status' => $coffeeStatus['status'],
+			'total_servings' => $coffeeStatus['total_servings'],
+			'total_gained' => $coffeeStatus['total_gained'],
+			'date_recorded' => date("Y-m-d")
+		);
+
+		$this->db->insert('caffeine_status', $fields);
+	}
+
+	public function insertCoffee($coffeeIntake){
+		$fields = array(
+			'caffeine_id' => $coffeeIntake['caffeine_id'],
+			'caffeine_type' => $coffeeIntake['coffeeType'],
+			'servings' => $coffeeIntake['coffeeCupVal'],
+			'gained_caffeine' => $coffeeIntake['totalcaffeine'],
+			'time_recorded' => date("H:i:s"),
+			'date_recorded' => date("Y-m-d")
+		);
+
+		$this->db->insert('caffeine_intake', $fields);
+	}
+
+	public function updateCoffeeStatus($coffeeStatusUpdate){
+		$this->db->where('patient_id', $coffeeStatusUpdate['patient_id']);
+		$this->db->where('caffeine_id', $coffeeStatusUpdate['caffeine_id']);
+		$this->db->where('date_recorded', date('Y-m-d'));
+
+		$fields = array(
+			'status' => $coffeeStatusUpdate['status'],
+			'total_servings' => $coffeeStatusUpdate['total_servings'],
+			'total_gained' => $coffeeStatusUpdate['total_gained']
+		);
+
+		$this->db->update('caffeine_status', $fields);
 	}
 }
 

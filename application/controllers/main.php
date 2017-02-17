@@ -532,19 +532,118 @@ class main extends CI_Controller {
 		}
 	}
 
-	public function savecoffeeAPI(){
-
-	}
-
 	public function getcoffeeAPI(){
 		$coffeeType = $this->input->post('coffeeType');
 		$coffeeCupVal = $this->input->post('coffeeCupVal');
 
-		echo $coffeeType;
-		echo $coffeeCupVal;
+		//no cafe au lait
+		$caffeineContent;
+		$sumCaffeine;
+		$sumServings;
+
+		if ($coffeeType == 'espresso') {
+			$caffeineContent = 77; //1.5 fl.oz. only the rest 8 fl.oz.
+		}
+		if ($coffeeType == 'cappuccino') {
+			$caffeineContent = 102.7;
+		}
+		if ($coffeeType == 'americano') {
+			$caffeineContent = 102.7;
+		}
+		if ($coffeeType == 'cafelatte') {
+			$caffeineContent = 71;
+		}
+		if ($coffeeType == 'mocha') {
+			$caffeineContent = 83.5;
+		}
+		if ($coffeeType == 'caramel') {//google search
+			$caffeineContent = 75;
+		}
+		if ($coffeeType == 'frappe') {
+			$caffeineContent = 75.8;
+		}
+		if ($coffeeType == 'instantcoffee') {
+			$caffeineContent = 57;
+		}
+
+		$totalcaffeine = round($caffeineContent * $coffeeCupVal, 2);
+
+		$resultCoffeeCaffeine = $this->functions->getCoffeeStatus($_SESSION["patient_id"]);
+
+		//when there is record sum the servings and caffeine to get the total intake 
+		if ($resultCoffeeCaffeine != 'no caffeine record') {
+
+			$sumServings = $resultCoffeeCaffeine["total_servings"];
+			$sumCaffeine = $resultCoffeeCaffeine["total_gained"];
+
+			$totalServings = $sumServings + $coffeeCupVal;
+			$gainedCaffeine = round($sumCaffeine + $totalcaffeine, 2);
+
+		}else{
+			//when no record insert default data
+			$coffeeStatus = array(
+				'patient_id' => $_SESSION["patient_id"],
+				'status' => "Normal",
+				'total_gained' => 0,
+				'total_servings' => 0 
+			);
+
+			$this->functions->insertCoffeeStatus($coffeeStatus);
+
+			$totalServings = $coffeeCupVal;
+			$gainedCaffeine = $totalcaffeine;
+		}
+		
+		$resultCoffeeCaffeine = $this->functions->getCoffeeStatus($_SESSION["patient_id"]);
+
+		//data to be insert in caffeine_intake table
+		$coffeeIntake = array(
+				'caffeine_id' => $resultCoffeeCaffeine["caffeine_id"],
+				'coffeeType' => $coffeeType,
+				'coffeeCupVal' => $coffeeCupVal,
+				'totalcaffeine' => $totalcaffeine
+			);
+
+		$this->functions->insertCoffee($coffeeIntake);
+
+		//too higher to drink coffee
+		if ($gainedCaffeine > 400 && $_SESSION["age"] >= 19) {
+				$statusCaffeine = "High Caffeine!!!";
+			}
+		else if ($gainedCaffeine > 100 && $_SESSION["age"] < 19 && $_SESSION["age"] > 10) {
+				$statusCaffeine = "High Caffeine!!!";
+		}
+		else if ($gainedCaffeine > 10 && $_SESSION["age"] <= 10) {
+				$statusCaffeine = "High Caffeine!!!";
+		}
+		//normal iantake of caffeine
+		else if ($gainedCaffeine <= 400 && $_SESSION["age"] >= 19 || $gainedCaffeine <= 100 && $_SESSION["age"] < 19 && $_SESSION["age"] > 10) {
+				$statusCaffeine = "Normal";
+		}
+		else{
+				$statusCaffeine = "Undefined Status";
+		}
+
+		//update data for todays record
+		$coffeeStatusUpdate = array(
+				'caffeine_id' => $resultCoffeeCaffeine["caffeine_id"],
+				'patient_id' => $_SESSION["patient_id"],
+				'status' => $statusCaffeine,
+				'total_gained' => $gainedCaffeine,
+				'total_servings' => $totalServings
+			);
+
+		$this->functions->updateCoffeeStatus($coffeeStatusUpdate);
+
+		$resultData = array(
+				'total_gained' => $gainedCaffeine,
+				'totalcaffeine' => $totalcaffeine,
+				'statusCaffeine' => $statusCaffeine
+			);
+
+		echo json_encode($resultData);
 	}
 
 }
-
 /* End of file main.php */
 /* Location: ./application/controllers/main.php */

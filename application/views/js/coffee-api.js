@@ -35,7 +35,10 @@ $(document).ready(function(){
 			data: {coffeeType: coffeeType, coffeeCupVal: coffeeCupVal},
 			dataType: "json",
 			success: function(data){
-
+				console.log(data);
+				$('#caffeineStatus').text(data["statusCaffeine"]);
+				$('#caffeineTotal').text(data["total_gained"]);
+				$('#caffeineAdded').text(data["totalcaffeine"]);
 			}
 		});
 		console.log(coffeeType);
