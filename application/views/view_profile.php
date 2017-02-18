@@ -34,7 +34,7 @@
                 <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
                 <a href="/health/main/about" class="smoothScroll">About-Us</a>
                 <a href="/health/main/profile" class="smoothScroll">Profile</a>
-                <a href="" class="logout">Log Out</a>
+                <a href="/health/main/logout" class="logout">Log Out</a>
             </div>
             
             <!-- Menu button -->
@@ -43,7 +43,7 @@
 
         <div class="container-fluid profile-page" align="center">
             <div class="col-sm-3" id="left">
-                <h3>Ivy Marie G. Porras</h3>
+                <h3 id="pname" ></h3>
                 <button class="personal"><a href="#">Personal Information</a></button><br>
                 <button><a href="">Health Status</a></button>
             </div>
@@ -53,30 +53,31 @@
                     <div class="row">
                         <div class="col-md-6" id="box">
                             <h4>Age</h4>
-                            <h5>21<span>yrs</span></h5>
+                            <h5 id="age"> <span>yrs</span></h5>
                         </div>
                         <div class="col-md-6" id="box">
                             <h4>Gender</h4>
+                            <h5><p id="gender"></p></h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6" id="box">
                             <h4>Weight</h4>
-                            <h5>50<span>kgs</span></h5>
+                            <h5 id="weight"> <span>kgs</span></h5>
                         </div>
                         <div class="col-md-6" id="box">
                             <h4>Height</h4>
-                            <h5>152<span>cm</span></h5>
+                            <h5 id="height"> <span>cm</span></h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6" id="box">
                             <h4>BMI</h4>
-                            <h5>18<span> normal</span></h5>
+                            <h5 id="bmi"><span id="bmi_status"> </span></h5>
                         </div>
                         <div class="col-md-6" id="box">
                             <h4>Birthdate</h4>
-                            <h6>Sept 15, 1995</h6>
+                            <h6 id="birthdate"></h6>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
     <script src="../application/views/js/jquery.min.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
-
+    <script src="../application/views/js/profile-api.js"></script>
 
     </body>
 </html>

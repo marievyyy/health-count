@@ -27,25 +27,25 @@ $(document).ready(function(){
 
 	function urineCondition(dataUrine){
 		if(dataUrine == "urine-one"){
-			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").addClass("high");
+			$('.newColor').removeClass("normal medium low").addClass("high");
 			$('#dehydrate').text('Too Much Water!!!');
 		}
 		else if(dataUrine == "urine-two"){
-			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").addClass("high");
+			$('.newColor').removeClass("normal medium low").addClass("high");
 			$("#dehydrate").text("Lower A Bit Your Intake!");
 		}
 		else if(dataUrine == "urine-three" || dataUrine == "urine-four"){
-			$('.newColor').removeClass("low").removeClass("medium").removeClass("high").addClass("normal");
+			$('.newColor').removeClass("low medium high").addClass("normal");
 			$("#dehydrate").text("Normal Dehydration");
 		}
 		else if(dataUrine == "urine-five"){
-			$('.newColor').removeClass("high").removeClass("normal").removeClass("low").removeClass("high").addClass("medium");
+			$('.newColor').removeClass("high normal low").addClass("medium");
 			$("#dehydrate").text("Slightly Dehydrated");
 		}else if (dataUrine == "urine-six" || dataUrine == "urine-seven"){
-			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").addClass("high");
+			$('.newColor').removeClass("normal medium low").addClass("high");
 			$("#dehydrate").text("Highly!! Dehydrated");
 		}else{
-			$('.newColor').removeClass("normal").removeClass("medium").removeClass("low").removeClass("high");
+			$('.newColor').removeClass("normal medium low high");
 			$("#dehydrate").text("Dehydration Not Set");
 		}
 	}

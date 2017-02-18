@@ -279,3 +279,20 @@ body {
 }
 
 /* ---------------------- END OF MENU */
+
+
+.high {
+  color: #B31313;
+}
+
+.medium {
+  color: #EE7738;
+}
+
+.normal {
+  color: #90D26D;
+}
+
+.low {
+  color: #104455;
+}

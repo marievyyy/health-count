@@ -305,12 +305,8 @@ class main extends CI_Controller {
 		if (is_array($resultUsername) == true) {
 			$result = password_verify($password, $resultUsername["password"]);
 			if ($result == true) {
-				$_SESSION['patient_id'] = array();
-				$_SESSION['weight'] = array();
-				$_SESSION['height'] = array();
-				$_SESSION['bmi'] = array();
-				$_SESSION['age'] = array();
 				$_SESSION["patient_id"] = $resultUsername["patient_id"];
+				$_SESSION["username"] = $resultUsername["username"];
 				$_SESSION["weight"] = $resultUsername["weight"];
 				$_SESSION["height"] = $resultUsername["height"];
 				$_SESSION["bmi"] = $resultUsername["bmi"];
@@ -642,6 +638,11 @@ class main extends CI_Controller {
 			);
 
 		echo json_encode($resultData);
+	}
+
+	public function profileAPI(){
+		$resultProfile = $this->functions->getUserLog($_SESSION["username"]);
+		echo json_encode($resultProfile);
 	}
 
 }

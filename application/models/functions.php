@@ -49,7 +49,7 @@ class functions extends CI_Model {
     	}
 	}
 
-	public function getUserLog($username, $password){
+	public function getUserLog($username){
 		$this->db->where('username', $username);
 		$query = $this->db->get('patient_info');
 		if ($query->num_rows() >= 1){
