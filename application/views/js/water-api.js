@@ -50,6 +50,14 @@ $(document).ready(function(){
 		}
 	}
 
+	$('.urine-six').click(function(){	
+		$('#water-add').attr("disabled", false);
+	});
+
+	$('.urine-seven').click(function(){	
+		$('#water-add').attr("disabled", false);
+	});
+
 	$('#msform').submit(function(){
 		var glassVal = $("#glassVal").val();
 		var urineColor = $("input[name=urine_color]:checked").val();
