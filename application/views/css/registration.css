@@ -238,3 +238,12 @@ body {
 
 /* EDIT PROFILE */
 
+.back a {
+  text-decoration: none;
+  margin-top: 30px;
+  color: #fff;
+  font-family: 'Oswald';
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
