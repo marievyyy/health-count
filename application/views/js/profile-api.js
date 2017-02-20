@@ -26,7 +26,7 @@ $(document).ready(function(){
 				}
 				else if(data["gender"] == "F"){
 					gender = "Female";
-					$("#gender").removeClass("low normal").addClass("high");
+					$("#gender").removeClass("low normal").addClass("female");
 				}else{
 					$("#gender").removeClass("high low").addClass("normal");
 				}
@@ -35,7 +35,7 @@ $(document).ready(function(){
 					$("#bmi_status").removeClass("low medium normal").addClass("high");
 				}
 				else if(data["bmi_status"] == "Normal"){
-					$("#bmi_status").removeClass("high medium low").addClass("normal");
+					$("#bmi_status").removeClass("high medium low").addClass("normalbmi");
 				}
 				else if(data["bmi_status"] == "Overweight"){
 					$("#bmi_status").removeClass("high normal low").addClass("medium");

@@ -98,8 +98,8 @@ class main extends CI_Controller {
 		$this->load->view('view_sleep');
 	}
 
-	public function about(){
-		$this->load->view('view_about');
+	public function editprofile(){
+		$this->load->view('view_editprofile');
 	}
 
 	public function home(){
