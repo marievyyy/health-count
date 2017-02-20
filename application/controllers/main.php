@@ -645,6 +645,23 @@ class main extends CI_Controller {
 		echo json_encode($resultProfile);
 	}
 
+	public function foodAdd($fname, $carbs, $fats, $protein, $calories, $description, $category_name){
+		
+		$foodDetails = array(
+				"food_name" => $fname,
+				"carbs" => $carbs,
+				"fats" => $fats,
+				"protein" => $protein,
+				"calories" => $calories,
+				"description" => $description,
+				"category_name" => $category_name
+			);
+
+		$result = $this->functions->insertFoodDetails($foodDetails);
+
+		echo "\n Success \n";
+		var_dump($result);
+	}
 }
 /* End of file main.php */
 /* Location: ./application/controllers/main.php */

@@ -185,6 +185,26 @@ class functions extends CI_Model {
 
 		$this->db->update('caffeine_status', $fields);
 	}
+
+	public function insertFoodDetails($foodDetails){
+		$fields = array(
+			'food_id' => $this->guid(),
+			'food_name' => $foodDetails['food_name'],
+			'tally_submit' => 0,
+			'carbs' => $foodDetails['carbs'],
+			'fats' => $foodDetails['fats'],
+			'protein' => $foodDetails['protein'],
+			'calories' => $foodDetails['calories'],
+			'description' => $foodDetails['description'],
+			'category_name' => $foodDetails['category_name'],
+			'date_added' => date("Y-m-d")
+		);
+
+		$this->db->insert('food', $fields);
+		return $fields;
+	}
+
+
 }
 
 /* End of file functions.php */
