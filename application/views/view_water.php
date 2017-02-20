@@ -102,6 +102,9 @@
                     <!-- <p id="medium"><span>Medium Water Intake</span></p> -->
                     <!-- <p id="normal"><span>Normal Water Intake</span></p> -->
                     <p class="newColor"><span id="dehydrate">Can't Determine</span></p>
+                    
+                </div>
+                <div class="col-md-12" align="center">
                     <input type="submit" id="submitted" name="submitted" value="Submit">
                 </div>
             </div>

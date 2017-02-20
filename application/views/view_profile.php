@@ -45,7 +45,7 @@
             <div class="col-sm-3" id="left">
                 <h3 id="pname" ></h3>
                 <button class="personal"><a href="#">Personal Information</a></button><br>
-                <button><a href="">Health Status</a></button>
+                <button><a href="/health/main/editprofile">Edit Profile</a></button>
             </div>
 
             <div class="col-sm-9" id="right" align="center">

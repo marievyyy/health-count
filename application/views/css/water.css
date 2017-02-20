@@ -150,3 +150,25 @@ label.urine-seven { background: #dea52b; }
 .water-page .low {
   color: #104455;
 }
+
+.water-page input#submitted {
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 150px;
+  margin-top: -5%;
+  color: #007fb2;
+  font-family: 'Oswald';
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 2px solid #007fb2;
+  background-color: transparent;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.water-page input#submitted:hover {
+  background-color: #007fb2;
+  color: #fff;
+}

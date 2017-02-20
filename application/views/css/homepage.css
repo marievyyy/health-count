@@ -296,3 +296,30 @@ body {
 .low {
   color: #104455;
 }
+
+/* BMI COLOR */
+.normalbmi {
+  color: #BAD8B6;
+}
+
+.under {
+  color: #5E9387;
+}
+
+.over {
+  color: #61B390;
+}
+
+.obese {
+  color: #01352C;
+}
+
+/* GENDER COLOR */
+
+.female {
+  color: #CF455C;
+}
+
+.male {
+  color: #34495E;
+}

@@ -92,6 +92,7 @@ button:hover:after {
 .profile-page .personal {
   margin-top: 10%;
   margin-bottom: 5%;
+  background-color: #FFE869;
 }
 
 .profile-page #left a {
@@ -149,5 +150,7 @@ button:hover:after {
 }
 
 .profile-page h5 span {
-  font-size: 60px;
+  font-size: 40px;
+  margin-left: 10px;
 }
+
