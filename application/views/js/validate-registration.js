@@ -80,12 +80,12 @@ $(document).ready(function (){
 
 		if(password.length >= 6 && password.length <= 255){
 			
-			if (password.match(/\d/) != null || password.match(/\W/) != null || password != ""){
+			if (password.match(/\d/) != null && password.match(/\W/) != null && password != ""){
 				$('#errorPass').text("Success");
 
 			}else{
-				console.log("must contain numbers or special chars");
-				$('#errorPass').text("must contain numbers or special chars");
+				console.log("must contain or is a number or special chars");
+				$('#errorPass').text("must contain or is a number or special chars");
 			}
 		}else{
 			console.log("password length minimum of 6 maximum of 255");
