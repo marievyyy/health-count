@@ -82,10 +82,10 @@ body {
   border: 5px solid #10316B;
   border-radius: 100%;
   display: block;
-  height: 250px;
-  width: 250px;
+  height: 270px;
+  width: 270px;
   position: relative;
-  margin-top: 10%;
+  margin-top: 14%;
 }
 .clock .hour {
   background: #10316B;
@@ -117,3 +117,47 @@ body {
   margin: -105px -2px 0;
   padding: 105px 2px 0;
 }
+
+.sleep-page h3 {
+  font-family: 'Oswald';
+  font-size: 30px;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-top: 13%;
+}
+
+.sleep-page input[type="text"] {
+  width: 290px;
+  line-height: 50px;
+  font-family: 'Oswald';
+  font-weight: 400;
+  text-transform: uppercase;
+  padding-left: 10px;
+  border: 3px solid #FABC41;
+}
+
+.sleep-page input[type="text"]:hover,
+.sleep-page input[type="text"]:focus {
+  outline: none;
+  border: 3px solid #233142;
+}
+
+
+.sleep-page h4.burnCal {
+  font-family: 'Oswald';
+  font-size: 210px;
+  font-weight: 300;
+  color: #007fb2;
+  margin-top: 10%;
+  margin-left: 8%;
+}
+
+.sleep-page h4.desc {
+  font-family: 'Oswald';
+  font-size: 35px;
+  font-weight: 300;
+  color: #007fb2;
+  margin-left: 10%;
+}
+

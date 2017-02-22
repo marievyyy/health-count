@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
         <!-- Custom style -->
         <link rel="stylesheet" href="../application/views/css/activity-menu.css">
-        <link rel="stylesheet" href="../application/views/css/activity.css">
+        <link rel="stylesheet" href="../application/views/css/activity-work.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
     </head>
 
@@ -43,16 +43,21 @@
 
         <div class="container act-page" align="center">
             <h1>Activities</h1>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <a href="">
                     <img src="../application/views/img/weightlifting.png">
                 </a>
             </div>
-            <div class="col-md-6" align="center">
-              
+            <div class="col-md-4" align="center">
+                <form id="activityRun" method="post">
+                    <h3 class="duration">Duration</h3>
+                    <input class="work" type="text" name="distance" id="distance" placeholder="Exercise duration in seconds">
+                </form>
             </div>
-
-                
+            <div class="col-md-4" align="center">
+                <h4 class="burnCal">16.0</h4>
+                <h4 class="desc">Total Burn Calories</h4>
+            </div>
         </div>
 
     <!-- Bootstrap core JavaScript -->

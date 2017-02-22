@@ -247,3 +247,16 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
+.menu-wrap a.logout {
+  font-family: 'Oswald';
+  font-size: 16px;
+  color: #303E27;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+}
