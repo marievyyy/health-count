@@ -50,9 +50,9 @@
             </div>
             <div class="col-md-4" align="center">
                 <form id="activityRun" method="post">
-                    <h3 class="start">Repititions</h3>
+                    <h3 class="start">Repititions:</h3>
                     <input class="work" type="text" name="distance" id="distance" placeholder="">
-                    <h3 class="last">Sets</h3>
+                    <h3 class="last">Sets:</h3>
                     <input class="work" type="text" name="distance" id="distance" placeholder="">
                 </form>
             </div>

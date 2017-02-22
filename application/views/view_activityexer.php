@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-4" align="center">
                 <form id="activityRun" method="post">
-                    <h3 class="duration">Duration</h3>
+                    <h3 class="duration">Duration:</h3>
                     <input class="work" type="text" name="distance" id="distance" placeholder="Exercise duration in seconds">
                 </form>
             </div>

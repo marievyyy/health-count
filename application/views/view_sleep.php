@@ -53,9 +53,9 @@
 
                 <div class="col-md-4">
                     <form id="activityRun" method="post">
-                        <h3 class="start">Start of Sleep Time</h3>
+                        <h3 class="start">Start of Sleep Time:</h3>
                         <input class="work" type="text" name="distance" id="distance" placeholder="">
-                        <h3 class="last">End of Sleep Time</h3>
+                        <h3 class="last">End of Sleep Time:</h3>
                         <input class="work" type="text" name="distance" id="distance" placeholder="">
                     </form>
                 </div>

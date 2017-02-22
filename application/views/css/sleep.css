@@ -134,13 +134,13 @@ body {
   font-weight: 400;
   text-transform: uppercase;
   padding-left: 10px;
-  border: 3px solid #FABC41;
+  border: 3px solid #34495E;
 }
 
 .sleep-page input[type="text"]:hover,
 .sleep-page input[type="text"]:focus {
   outline: none;
-  border: 3px solid #233142;
+  border: 3px solid #BDC3C7;
 }
 
 
@@ -148,7 +148,7 @@ body {
   font-family: 'Oswald';
   font-size: 210px;
   font-weight: 300;
-  color: #007fb2;
+  color: #282F44;
   margin-top: 10%;
   margin-left: 8%;
 }
@@ -157,7 +157,7 @@ body {
   font-family: 'Oswald';
   font-size: 35px;
   font-weight: 300;
-  color: #007fb2;
+  color: #3C3C3C;
   margin-left: 10%;
 }
 
