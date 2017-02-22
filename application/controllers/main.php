@@ -102,6 +102,10 @@ class main extends CI_Controller {
 		$this->load->view('view_editprofile');
 	}
 
+	public function uploadview(){
+		$this->load->view('uploadimage');
+	}
+
 	public function home(){
 
 		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
@@ -641,8 +645,14 @@ class main extends CI_Controller {
 	}
 
 	public function profileAPI(){
-		$resultProfile = $this->functions->getUserLog($_SESSION["username"]);
+		$resultProfile = $this->functions->getUserLog($_SESSION["patient_id"]);
 		echo json_encode($resultProfile);
+	}
+
+	public function editprofileAPI(){
+		$resultProfile = $this->functions->getUserLog($_SESSION["patient_id"]);
+				
+
 	}
 
 	public function foodAdd($fname, $carbs, $fats, $protein, $calories, $description, $category_name){
@@ -661,6 +671,13 @@ class main extends CI_Controller {
 
 		echo "\n Success \n";
 		var_dump($result);
+	}
+
+	public function testUpload(){
+		$imageUpload = $this->input->post("formdata");
+		
+		echo json_encode($imageUpload);
+
 	}
 }
 /* End of file main.php */

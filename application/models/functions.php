@@ -18,7 +18,7 @@ class functions extends CI_Model {
 	}
 
 	public function register_profile($params){
-
+		
 			$fields = array(
 				'patient_id' => $this->guid(),
 				'patient_name' => $params['patient_name'],
@@ -49,8 +49,8 @@ class functions extends CI_Model {
     	}
 	}
 
-	public function getUserLog($username){
-		$this->db->where('username', $username);
+	public function getUserLog($patient_id){
+		$this->db->where('patient_id', $patient_id);
 		$query = $this->db->get('patient_info');
 		if ($query->num_rows() >= 1){
         	$data = $query->result_array();
