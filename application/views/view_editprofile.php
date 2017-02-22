@@ -81,7 +81,7 @@
                         <!-- fieldsets -->
                         <fieldset>
                             <h6 class="error" id="errorUser"></h6>
-                            <input type="text" name="username" id="inputUser" placeholder="Username" autocomplete="" value="" />
+                            <input type="text" name="username" id="inputUser" value="" />
                             <h6 class="error" id="errorOldPass"></h6>
                             <input type="password" name="oldPass" id="oldPass" placeholder="Old Password" value="" />
                             <h6 class="error" id="errorPass"></h6>
@@ -135,6 +135,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/registration.js"></script>
+    <script src="../application/views/js/edit-profileApi.js"></script>
     <!-- <script src="../application/views/js/validate-registration.js"></script> -->
 
     </body>

@@ -8,6 +8,7 @@ $(document).ready(function(){
 			dataType: "json",
 			success: function(data){
 				console.log(data);
+
 				if (typeof data["water_amount"] !=='undefined' && typeof data["gained_water"] !=='undefined') {
 					$("#waterVal").text(data["water_amount"]);
 
