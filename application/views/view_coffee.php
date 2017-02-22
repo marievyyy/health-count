@@ -84,11 +84,6 @@
 
                             <div class="row">
                                 <div class="col-md-2 col-md-offset-1">
-                                    <input type="radio" name="coffee_cup" id="caflait" value="caflait">
-                                    <label for="caflait" class="caflait"></label>
-                                    <h6>Caf Au Lait</h6>
-                                </div>
-                                <div class="col-md-2">
                                     <input type="radio" name="coffee_cup" id="caramel" value="caramel">
                                     <label for="caramel" class="caramel"></label>
                                     <h6>Caramel Macchiato</h6>

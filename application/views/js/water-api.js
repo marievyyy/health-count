@@ -44,7 +44,7 @@ $(document).ready(function(){
 			$("#dehydrate").text("Slightly Dehydrated");
 		}else if (dataUrine == "urine-six" || dataUrine == "urine-seven"){
 			$('.newColor').removeClass("normal medium low").addClass("high");
-			$("#dehydrate").text("Highly!! Dehydrated");
+			$("#dehydrate").text("Highly Dehydrated!");
 		}else{
 			$('.newColor').removeClass("normal medium low high");
 			$("#dehydrate").text("Dehydration Not Set");

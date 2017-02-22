@@ -94,8 +94,28 @@ class main extends CI_Controller {
 		$this->load->view('view_activity');
 	}
 
+	public function activityrun(){
+		$this->load->view('view_activityrun');
+	}
+
+	public function activityexer(){
+		$this->load->view('view_activityexer');
+	}
+
+	public function activitywork(){
+		$this->load->view('view_activitywork');
+	}
+
 	public function sleep(){
 		$this->load->view('view_sleep');
+	}
+
+	public function meditation(){
+		$this->load->view('view_meditation');
+	}
+
+	public function about(){
+		$this->load->view('view_about');
 	}
 
 	public function editprofile(){
