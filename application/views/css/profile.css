@@ -18,6 +18,24 @@ body {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width:5px;
+}
+
+::webkit-scrollbar-track {
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background:rgba(0,0,0,0.8);
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background:rgba(204,204,204,0.4);
+}
+
+
 
 div.container-fluid.profile-page {
   padding: 0;
@@ -38,11 +56,16 @@ div.container-fluid.profile-page {
   float: right;
 }
 
+.profile-page img.profileImg {
+  margin-top: 100px;
+  min-height: 256px;
+}
+
 .profile-page h3 {
   font-family: 'bernadette';
   font-weight: 400;
   font-size: 28px;
-  margin-top: 350px;
+  margin-top: 50px;
 }
 
 .profile-page button {
@@ -90,7 +113,6 @@ button:hover:after {
 }
 
 .profile-page .personal {
-  margin-top: 10%;
   margin-bottom: 5%;
   background-color: #FFE869;
 }

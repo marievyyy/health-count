@@ -129,14 +129,19 @@
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="submit" name="next" class="next action-button" value="Results" />
                         </fieldset>
-                        <fieldset>
-                            <h2 class="fs-title">Results</h2>
-                            <div>
-                                <h3 id="caffeineStatus">High Amount of Caffeine!</h3>
-                                <p>Today's Caffeine:<span id="caffeineTotal"></span>mg.</p>
-                                <p>Drink Added:<span id="caffeineAdded"></span>mg.</p>
+                        <fieldset class="result">
+                            <div class="col-md-6">
                                 <img class="cup" src="../application/views/img/mocha.png">
                             </div>
+                            <div class="col-md-6">
+                                <h2 class="fs-title">Results</h2>
+                                <div>
+                                    <h3 id="caffeineStatus">High Amount of Caffeine!</h3>
+                                    <p>Today's Caffeine: <span id="caffeineTotal"></span> mg.</p>
+                                    <p>Drink Added: <span id="caffeineAdded"></span> mg.</p>
+                                    
+                                </div>
+                                </div>
                         </fieldset>
                     </form>
                 </div> 

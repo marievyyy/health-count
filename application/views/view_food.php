@@ -41,51 +41,14 @@
             <div id="menuToggle"><i class="icon-reorder"></i></div>
         </nav>
 
-        <div class="container food-page">
+        <div class="container food-page" align="center">
             <h1>Food</h1>
             <h4><span>0 kcal </span>/2150 daily calories</h4>
 
-            <div class="row main">
-                <div class="col-md-4 col-sm-4" align="center">
-                    <a href="">
-                        <img src="../application/views/img/breakfast.png">
-                        <h6>Breakfast</h6>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-4" align="center">
-                    <a href="">
-                        <img src="../application/views/img/lunch.png">
-                        <h6>Lunch</h6>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-4" align="center">
-                    <a href="">
-                        <img src="../application/views/img/dinner.png">
-                        <h6>Dinner</h6>
-                    </a>    
-                </div>
-            </div>
-
-            <div class="row snack">
-                <div class="col-md-4 col-sm-4" align="center">
-                    <a href="">
-                        <img src="../application/views/img/morning snack.png">
-                        <h6>Morning Snack</h6>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-4" align="center">
-                    <a href="">
-                        <img src="../application/views/img/afternoon snack.png">
-                        <h6>Afternoon Snack</h6>
-                    </a> 
-                </div>
-                <div class="col-md-4 col-sm-4" align="center">
-                    <a href="">
-                        <img src="../application/views/img/dinner snack.png">
-                        <h6>Dinner Snack</h6>
-                    </a>
-                </div>
-            </div>
+            <form method="post">
+                <input type="text" name="foodlist" id="foodlist" value=""
+                placeholder="Search for Food">
+            </form>
 
         </div>
 
