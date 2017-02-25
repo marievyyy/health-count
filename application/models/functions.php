@@ -49,6 +49,18 @@ class functions extends CI_Model {
     	}
 	}
 
+	public function getUserAccount($username){
+		$this->db->where('username', $username);
+		$query = $this->db->get('patient_info');
+		if ($query->num_rows() >= 1){
+        	$data = $query->result_array();
+        	return $data[0];
+    	}
+    	else{
+        	return 'not yet exist';
+    	}
+	}
+
 	public function getUserLog($patient_id){
 		$this->db->where('patient_id', $patient_id);
 		$query = $this->db->get('patient_info');

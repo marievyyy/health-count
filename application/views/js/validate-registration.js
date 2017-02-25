@@ -80,7 +80,7 @@ $(document).ready(function (){
 
 		if(password.length >= 6 && password.length <= 255){
 			
-			if (password.match(/\d/) != null && password.match(/\W/) != null && password != ""){
+			if (password.match(/\d/) != null || password.match(/\W/) != null && password != ""){
 				$('#errorPass').text("Success");
 
 			}else{
@@ -115,7 +115,7 @@ $(document).ready(function (){
 
 		if(password.length >= 6 && password.length <= 255){
 			
-			if (password.match(/\d/) != null && password.match(/\W/) != null && password != ""){
+			if (password.match(/\d/) != null || password.match(/\W/) != null && password != ""){
 
 				if (password == conpass){
 					$('#errorconPass').text("Success");
