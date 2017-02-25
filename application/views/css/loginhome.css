@@ -72,11 +72,51 @@ body {
   font-size: 24px;
   font-weight: 300;
   color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 60px;
 }
 
 .home-page .box {
   height: 500px;
   width: 520px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   border-top: 5px solid #a6ce38;
 }
+
+/* WATER  SECTION */
+.water span#dehydrate {
+  font-family: 'Oswald';
+  font-size: 80px;
+  text-transform: uppercase;
+  margin-top: 10%;
+  color: #a6ce38;
+}
+
+.water h3.title {
+  font-family: 'Oswald';
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #303E27;
+}
+
+/* END OF WATER  SECTION */
+
+
+/* COFFEE SECTION */
+.coffee h3#caffeineStatus {
+  font-family: 'Oswald';
+  font-size: 80px;
+  text-transform: uppercase;
+  margin-top: 10%;
+  color: #a6ce38;
+}
+
+.coffee p  {
+  font-family: 'Oswald';
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #303E27;
+  margin-top: 8%;
+}
+/* END OF COFFEE SECTION */

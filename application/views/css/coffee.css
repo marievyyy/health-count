@@ -179,7 +179,7 @@ label.instantcoffee {
 /* INTAKE RESULTS  */
 #msform h3 {
   font-family: 'Oswald';
-  font-size: 65px;
+  font-size: 80px;
   font-weight: 400;
   color: #7D5E3F;
   text-transform: uppercase;
@@ -224,4 +224,5 @@ fieldset.result img {
   font-size: 23px;
   font-weight: 300;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }

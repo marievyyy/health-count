@@ -46,41 +46,45 @@
                 <div class="row first">
                     <div class="col-md-6">
                         <div id="container-highchart4" class="box gain">
-                            <h2>Gain Calorie</h2>
+                            <h2>Total Gain Calorie</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div id="container-highchart4" class="box burn">
-                            <h2>Burned Calorie</h2>
+                            <h2>Total Burned Calorie</h2>
                         </div>
                     </div>
                 </div>
 
-                <div class="row first">
+                <div class="row first water">
                     <div class="col-md-6">
                         <div id="container-highchart4" class="box watergraph">
                             <h2>Water</h2>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 water">
                         <div id="container-highchart4" class="box dehy">
                             <h2>Dehydration</h2>
+                            <p class="newColor"><span id="dehydrate">Highly Dehydrated</span></p>
+                            <h3 class="title">Ideal Hydration Amount: <span>16.9</span> L</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="row first">
-                    <div class="col-md-6">
+                    <div class="col-md-6 coffee">
                         <div id="container-highchart4" class="box coffee">
-                            <h2>Coffee</h2>
+                            <h2>Caffeine</h2>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 coffee">
                         <div id="container-highchart5" class="box sleep">
                             <h2>Body Caffeine Status</h2>
+                            <h3 id="caffeineStatus">High Amount of Caffeine</h3>
+                            <p>Today's Caffeine: <span id="caffeineTotal">116</span> mg.</p>
                         </div>
                     </div>
                 </div>
