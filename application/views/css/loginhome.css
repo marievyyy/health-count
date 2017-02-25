@@ -16,6 +16,24 @@ body {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width:5px;
+}
+
+::webkit-scrollbar-track {
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background:rgba(0,0,0,0.8);
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background:rgba(204,204,204,0.4);
+}
+
+
 /* ----------------------------- Menu */
 
 .menu-wrap a.logout {
@@ -32,65 +50,21 @@ body {
 }
 
 /* ---------------- Background images */
-.main-banner {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: initial;
+.home-page {
+  background:url('../img/banner1.png') no-repeat center center fixed;
+   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  position: absolute;
-  vertical-align: middle;
-  display: table;
 }
-
-.main-banner {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner4.png);
-  animation: xfade 18s 10s infinite;
-}
-.main-banner.two {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner2.png);
-  animation: xfade 18s 6s infinite;
-}
-.main-banner.three {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner3.png);
-  animation: xfade 18s 0s infinite;
-}
-.main-banner.four {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/banner1.png);
-  animation: xfade 18s 0s infinite;
-}
-
-@keyframes xfade{
- 0%{
-    opacity: 1;
- }
- 20% {
-    opacity:0;
- }
- 40%{
-    opacity: 1;
- }
- 60% {
-    opacity:0;
- }
- 80% {
-     opacity: 1;
- }
- 100% {
-     opacity: 1;
- }
-}
-
-/* ------------------ End of background-image */
 
 .home-page .first {
   margin-top: 5%;
 }
 
-.home-page .second {
-  margin-top: 2%;
+.home-page .last {
+  margin-top: 5%;
+  margin-bottom: 7%;
 }
 
 .home-page h2 {
@@ -101,8 +75,8 @@ body {
 }
 
 .home-page .box {
-  height: 255px;
-  width: 350px;
+  height: 500px;
+  width: 520px;
   background-color: rgba(255, 255, 255, 0.7);
   border-top: 5px solid #a6ce38;
 }

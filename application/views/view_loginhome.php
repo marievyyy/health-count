@@ -41,71 +41,65 @@
             <div id="menuToggle"><i class="icon-reorder"></i></div>
         </nav>
 
-        <div>
-            <!-- For the banner section -->
-            <div>
-                <figure>
-                    <div class="main-banner">
-                    </div>
-                </figure>
-                <figure>
-                    <div class="main-banner two">
-                    </div>
-                </figure>
-                <figure>
-                    <div class="main-banner three">
-                    </div>
-                </figure>
-                <figure>
-                    <div class="main-banner four">
-                    </div>
-                </figure>
-            </div>
-            <!-- End of the banner section -->
-
-            <div class="container home-page" align="center">
+        <section id="home">
+            <div class="container-fluid home-page" align="center">
                 <div class="row first">
-                    <div class="col-md-4">
-                        <div id="container-highchart1" class="box food">
-                            <h2>Food</h2>
+                    <div class="col-md-6">
+                        <div id="container-highchart4" class="box gain">
+                            <h2>Gain Calorie</h2>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div id="container-highchart2" class="box water">
+                    <div class="col-md-6">
+                        <div id="container-highchart4" class="box burn">
+                            <h2>Burned Calorie</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row first">
+                    <div class="col-md-6">
+                        <div id="container-highchart4" class="box watergraph">
                             <h2>Water</h2>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div id="container-highchart3" class="box coffee">
-                            <h2>Coffee</h2>
+                    <div class="col-md-6">
+                        <div id="container-highchart4" class="box dehy">
+                            <h2>Dehydration</h2>
                         </div>
                     </div>
                 </div>
 
-                <div class="row second">
-                    <div class="col-md-4">
-                        <div id="container-highchart4" class="box activities">
-                            <h2>Activities</h2>
+                <div class="row first">
+                    <div class="col-md-6">
+                        <div id="container-highchart4" class="box coffee">
+                            <h2>Coffee</h2>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                        <div id="container-highchart5" class="box sleep">
+                            <h2>Body Caffeine Status</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row last">
+                    <div class="col-md-6">
+                        <div id="container-highchart4" class="box activity">
+                            <h2>Activity</h2>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
                         <div id="container-highchart5" class="box sleep">
                             <h2>Sleep</h2>
                         </div>
                     </div>
-
-                    <div class="col-md-4">
-                        <div id="container-highchart6" class="box meditation">
-                            <h2>Meditation</h2>
-                        </div>
-                    </div>
                 </div>
-
             </div>
-        </div>
+        </section>
 
 
 

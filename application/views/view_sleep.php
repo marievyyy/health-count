@@ -41,7 +41,7 @@
             <div id="menuToggle"><i class="icon-reorder"></i></div>
         </nav>
 
-        <div class="container sleep-page">
+        <div class="container sleep-page" align="center">
             <h1>Sleep</h1>
             <div class="row">
                 <div class="col-md-4">
@@ -49,6 +49,20 @@
                         <div class="hour"></div>
                         <div class="minute"></div>
                   </div> 
+                </div>
+
+                <div class="col-md-4">
+                    <form id="activityRun" method="post">
+                        <h3 class="start">Start of Sleep Time:</h3>
+                        <input class="work" type="text" name="distance" id="distance" placeholder="">
+                        <h3 class="last">End of Sleep Time:</h3>
+                        <input class="work" type="text" name="distance" id="distance" placeholder="">
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <h4 class="burnCal">16.0</h4>
+                    <h4 class="desc">Total Burn Calories</h4>
                 </div>
             </div>
 

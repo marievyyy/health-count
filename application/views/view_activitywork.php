@@ -43,21 +43,23 @@
 
         <div class="container act-page" align="center">
             <h1>Activities</h1>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <a href="">
                     <img src="../application/views/img/volleyball.png">
                 </a>
             </div>
-            <div class="col-md-6" align="center">
+            <div class="col-md-4" align="center">
                 <form id="activityRun" method="post">
-                    <h3 class="start">Repititions</h3>
+                    <h3 class="start">Repititions:</h3>
                     <input class="work" type="text" name="distance" id="distance" placeholder="">
-                    <h3 class="last">Sets</h3>
+                    <h3 class="last">Sets:</h3>
                     <input class="work" type="text" name="distance" id="distance" placeholder="">
                 </form>
             </div>
-
-                
+            <div class="col-md-4" align="center">
+                <h4 class="burnCal">16.0</h4>
+                <h4 class="desc">Total Burn Calories</h4>
+            </div>
         </div>
 
     <!-- Bootstrap core JavaScript -->

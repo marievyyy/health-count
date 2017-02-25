@@ -18,6 +18,23 @@ body {
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width:5px;
+}
+
+::webkit-scrollbar-track {
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background:rgba(0,0,0,0.8);
+  -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background:rgba(204,204,204,0.4);
+}
+
 /* ---------------- Background images */
 .main-banner {
   background-position: center center;
@@ -246,4 +263,17 @@ body {
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.menu-wrap a.logout {
+  font-family: 'Oswald';
+  font-size: 16px;
+  color: #303E27;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
 }

@@ -36,6 +36,7 @@
                 <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
                 <a href="/health/main/about" class="smoothScroll">About-Us</a>
                 <a href="/health/main/profile" class="smoothScroll">Profile</a>
+                <a href="/health/main/logout" class="logout">Log Out</a>
             </div>
             
             <!-- Menu button -->

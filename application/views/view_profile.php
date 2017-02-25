@@ -43,6 +43,7 @@
 
         <div class="container-fluid profile-page" align="center">
             <div class="col-sm-3" id="left">
+                <img class="profileImg" src="../application/views/img/doctor.png">
                 <h3 id="pname" ></h3>
                 <button class="personal"><a href="#">Personal Information</a></button><br>
                 <button><a href="/health/main/editprofile">Edit Profile</a></button>
