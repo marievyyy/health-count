@@ -65,9 +65,30 @@ body {
   font-size: 20px;
 }
 
-input[type="text"] {
+.foodChain h3.foodtitle {
+  font-family: 'Oswald';
+  font-weight: 300;
+  font-size: 23px;
+  text-transform: uppercase;
+}
+
+.foodChain label {
+  padding-top: 5px;
+  margin-left: 10px;
+}
+
+.foodChain input[type=radio] {
+  display: none;
+}
+
+.foodChain input[type="radio"]:checked+label { 
+  background-color: #B74242; 
+  color: #fff;
+} 
+
+.foodmenu input[type="text"] {
   margin-top: 40px;
-  width: 900px;
+  width: 500px;
   line-height: 50px;
   font-family: 'Oswald';
   font-size: 20px;
@@ -81,4 +102,91 @@ input[type="text"]:hover,
 input[type="text"]:focus {
   outline: none;
   border: 2px solid #E79E85;
+}
+
+.wrap-list {
+  height: 85%;
+  padding: 20px 22px;
+}
+
+label {
+  text-align: left;
+  font-size: 17px;
+  font-family: 'Oswald';
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  top: 14px;
+  right: 12px;
+  float: right;
+  color: rgba(0,0,0,.1);
+  border-radius: 0;
+}
+
+input[type="checkbox"]:checked + label {
+  color: #000;
+  outline: none;
+  border-radius: 0;
+}
+
+.list {
+  list-style: none;
+  color: rgba(0,0,0,.7);
+}
+
+.list li:nth-child(odd) {
+  background: #EA7362;
+}
+
+.list li {
+  float: left;
+  width: 100%;
+}
+
+label {
+  padding: 5px;
+  cursor: pointer;
+  float: left;
+  width: 95%;
+  transition: all .3s ease;
+}
+
+/* PAGINATION */
+.page a {
+  background-color: #D3D6DB;
+  padding: 5px 10px;
+  color: #333;
+  font-family: 'Oswald';
+  font-weight: 300;
+  font-size: 15px;
+  margin: 0 2px;
+}
+
+.page a:hover,
+.page a:focus {
+  text-decoration: none;
+  background-color: #B74242;
+  color: #fff;
+}
+
+input[type=submit] {
+  width: 500px;
+  height: 30px;
+  background-color: #333;
+  outline: 0;
+  border: 1px solid #333;
+  color: #fff;
+  font-family: 'Oswald';
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+input[type=submit]:hover {
+  background-color: #B74242;
+  border: 1px solid #B74242;
+  color: #fff;
 }

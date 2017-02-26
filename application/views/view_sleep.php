@@ -61,8 +61,10 @@
                 </div>
 
                 <div class="col-md-4">
-                    <h4 class="burnCal">16.0</h4>
-                    <h4 class="desc">Total Burn Calories</h4>
+                    <h4 class="sleepStatus">Over Slept</h4>
+                    <h4 class="sleepDesc">Over slept for:<span>20 hrs</span></h4>
+                    <!-- Over Slept // Normal // Lack of Sleep -->
+                    <h4 class="desc">Total Burn Calories: <span>10</span></h4>
                 </div>
             </div>
 

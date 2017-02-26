@@ -162,20 +162,29 @@ body {
 }
 
 
-.sleep-page h4.burnCal {
+.sleep-page h4.sleepStatus {
   font-family: 'Oswald';
-  font-size: 210px;
+  font-size: 105px;
   font-weight: 300;
   color: #282F44;
   margin-top: 10%;
   margin-left: 8%;
+  margin-bottom: 2%;
 }
 
-.sleep-page h4.desc {
+.sleep-page h4.sleepDesc,
+.sleep-page h4.sleepDesc span,
+.sleep-page h4.desc,
+.sleep-page h4.desc span {
   font-family: 'Oswald';
-  font-size: 35px;
+  font-size: 20px;
   font-weight: 300;
   color: #3C3C3C;
   margin-left: 10%;
+}
+
+.sleep-page h4.sleepDesc span,
+.sleep-page h4.desc span {
+  margin-left: 1%;
 }
 

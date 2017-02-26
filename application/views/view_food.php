@@ -41,14 +41,90 @@
             <div id="menuToggle"><i class="icon-reorder"></i></div>
         </nav>
 
-        <div class="container food-page" align="center">
+        <div class="container food-page">
             <h1>Food</h1>
             <h4><span>0 kcal </span>/2150 daily calories</h4>
 
-            <form method="post">
-                <input type="text" name="foodlist" id="foodlist" value=""
-                placeholder="Search for Food">
-            </form>
+            <div class="col-md-6 foodChain">
+                <form id="activityRun" method="post">
+                    <h3 class="foodtitle">Choose for the following</h3>
+                    <div class="row">
+                        <input type="radio" name="food" id="jollibee" value="jollibee">
+                        <label for="jollibee" class="jollibee"><span>Jollibee</span></label>
+
+                        <input type="radio" name="food" id="mcdo" value="mcdo">
+                        <label for="mcdo" class="mcdo"><span>McDonalds</span></label>
+
+                        <input type="radio" name="food" id="kfc" value="kfc">
+                        <label for="kfc" class="kfc"><span>Kentucky Fried Chicken</span></label>
+
+                        <input type="radio" name="food" id="chowking" value="chowking">
+                        <label for="chowking" class="chowking"><span>Chowking</span></label>
+
+                        <input type="radio" name="food" id="kenny" value="kenny">
+                        <label for="kenny" class="kenny"><span>Kenny Roger Roasters</span></label>
+
+                        <input type="radio" name="food" id="greenwich" value="greenwich">
+                        <label for="greenwich" class="greenwich"><span>Greenwich</span></label>
+
+                        <input type="radio" name="food" id="pizzahut" value="pizzahut">
+                        <label for="pizzahut" class="pizzahut"><span>Pizza Hut</span></label>
+
+                        <input type="radio" name="food" id="cuisine" value="cuisine">
+                        <label for="cuisine" class="cuisine"><span>Other Cuisine</span></label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6 foodmenu">
+                <form method="post" align="center">
+                    <input  type="text" name="foodlist" id="foodlist" value=""
+                    placeholder="Search for Food">
+
+                    <div class="wrap">
+                        <div class="wrap-list">
+                            <ol class="list">
+                                <li>
+                                    <input type="checkbox" id="check-1">
+                                    <label for="check-1">Halo-Halo</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="check-2">
+                                    <label for="check-2">Spicy-Leg</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="check-3">
+                                    <label for="check-3">Spicy Breast</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="check-4">
+                                    <label for="check-4">Yumburger</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="check-5">
+                                    <label for="check-5">Mashed Potato With Gravy (Regular) </label>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="page">
+                          <nav class="pagination" role="navigation">
+                            <a class="prev" href="#">< Previous</a>
+                            <a href="#">1</a>
+                            <a href="#">2</a>
+                            <a class="active" href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a class="next" href="#">Next ></a>
+                          </nav>
+                        </div>
+                    </div>
+
+                    <input type="submit" id="submitted" name="submitted" value="Submit">
+                </form>        
+
+            </div>
+
 
         </div>
 
