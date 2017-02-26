@@ -1,16 +1,7 @@
 $(document).ready(function(){
 	var tmp;
-	$.ajax({
-			type:"GET",
-			url: "http://localhost/health/main/profileAPI",
-			dataType: "json",
-			async: false,
-			success: function(data){
-				tmp = data;
-			}
-		});
 	var profileData = function () {
-    var tmp = null;
+    	var tmp = null;
 	    $.ajax({
 		        'async': false,
 		        type:"GET",

@@ -102,7 +102,7 @@
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6>Birthday</h6>
-                            <h6 class="error" id="errorBirthday">Input your birthday!</h6>
+                            <h6 class="error" id="errorBirthday"></h6>
                             <input type="date" name="birthday" id="inputBirthday" placeholder="Birthday" />
                             <h6>Gender</h6>
                             <select id="gender" name="gender" value="">

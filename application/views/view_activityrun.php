@@ -68,7 +68,7 @@
                     <h3>Distance Travel</h3>
                     <input class="distance" type="text" name="distance" id="distance" placeholder="Distance in meters">
                     <h3  class="time">Time Travel</h3>
-                    <input class="distance" type="text" name="distance" id="distance" placeholder="TIme in minutes">
+                    <input class="distance" type="text" name="timedis" id="distance" placeholder="TIme in minutes">
                 </form>
             </div>
             <div class="col-md-3" align="center">

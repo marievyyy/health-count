@@ -905,6 +905,17 @@ class main extends CI_Controller {
 			}
 	}
 
+	public function activitySpeed(){
+		$actType = $this->input->post('activityrun');
+		$actDis = $this->input->post('distance');
+		$actTime = $this->input->post('timedis');
+
+		echo $actType;
+		echo $actDis;
+		echo $actTime;
+
+	}
+
 	public function foodAdd($fname, $carbs, $fats, $protein, $calories, $description, $category_name){
 		
 		$foodDetails = array(
