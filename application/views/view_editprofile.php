@@ -81,6 +81,7 @@
                         <!-- fieldsets -->
                         <fieldset>
                             <h6 class="error" id="errorUser"></h6>
+                            <h6 class="holder">Username</h6>
                             <input type="text" name="username" id="inputUser" value="" />
                             <h6 class="error" id="errorOldPass"></h6>
                             <input type="password" name="oldPass" id="oldPass" placeholder="Old Password" value="" />
@@ -93,8 +94,10 @@
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6 class="error" id="errorName"></h6>
+                            <h6 class="holder">Full Name</h6>
                             <input type="text" name="fullname" id="inputName" placeholder="Name" />
                             <h6 class="error" id="errorAge"></h6>
+                            <h6 class="holder">Age</h6>
                             <input type="text" name="age" id="inputAge" placeholder="Age" />
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="button" name="next" class="next action-button" id="next2" value="Next" />
@@ -102,7 +105,7 @@
                         <fieldset>
                             <h2 class="fs-title">Personal Info</h2>
                             <h6>Birthday</h6>
-                            <h6 class="error" id="errorBirthday">Input your birthday!</h6>
+                            <h6 class="error" id="errorBirthday"></h6>
                             <input type="date" name="birthday" id="inputBirthday" placeholder="Birthday" />
                             <h6>Gender</h6>
                             <select id="gender" name="gender" value="">
@@ -116,8 +119,10 @@
                             <h2 class="fs-title">Body Details</h2>
 
                             <h6 class="error" id="errorHeight"></h6>
+                            <h6 class="holder">Height in cm</h6>
                             <input type="text" name="height" placeholder="Height in cm" id="height"/>
                             <h6 class="error" id="errorWeight"></h6>
+                            <h6 class="holder">Weight in kgs</h6>
                             <input type="text" name="weight" placeholder="Weight in Kgs" id="weight" />
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="submit" name="submit" class="submit action-button" value="Update" />
