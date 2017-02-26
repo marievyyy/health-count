@@ -75,7 +75,10 @@
                 <h4 class="burnCal">16.0</h4>
                 <h4 class="desc">Total Burn Calories</h4>
             </div>
-
+            <div class="col-md-12" align="center">
+                <br><br>
+                <input type="submit" id="submitted" name="submitted" value="Submit">
+            </div>
                 
         </div>
 

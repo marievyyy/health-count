@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,21 +42,15 @@
 
         <div class="container act-page" align="center">
             <h1>Activities</h1>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <a href="/health/main/activityrun">
                     <img src="../application/views/img/bike.png">
                 </a>
                 <h2>Run</h2>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <a href="/health/main/activityexer">
                     <img src="../application/views/img/weightlifting.png">
-                </a>
-                <h2>Exercise</h2>
-            </div>
-            <div class="col-md-4">
-                <a href="/health/main/activitywork">
-                    <img src="../application/views/img/volleyball.png">    
                 </a>
                 <h2>Workout</h2>
             </div>
