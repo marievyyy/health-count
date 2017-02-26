@@ -53,7 +53,6 @@ body {
 
 .act-page img {
   margin-top: 55px;
-  margin-bottom: 10px;
 }
 
 .act-page h2 {
@@ -66,14 +65,15 @@ body {
 
 .act-page h3 {
   font-family: 'Oswald';
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 300;
   display: inline-block;
   margin-right: 15px;
+  text-transform: uppercase;
 }
 
 .act-page h3.time {
-  margin-left: 38px;
+  margin-left: 48px;
 }
 
 .act-page h3.start {
@@ -111,6 +111,10 @@ label.run { background: #354649; }
 label.walk { background: #233142; }
 label.jog { background: #36506C; }
 label.cycling { background: #6C7A89; }
+label.pushUp, label.jumping, label.building { background: #36D1C4; }
+label.sitUp, label.vigor, label.home { background: #4AA9AF; }
+label.pullUp, label.calisthenics, label.aero { background: #6EB6FF; }
+
 
 input[type="radio"]:hover {
   cursor: pointer;
@@ -149,3 +153,36 @@ input[type="radio"]:hover {
 }
 
 
+/* WORKOUT */
+
+.act-page .workout1 h3,
+.act-page .workout2 h3 {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.act-page .workout2 span {
+  color: #fff;
+}
+
+input[type=submit] {
+  outline: none;
+  border: none;
+  height: 45px;
+  width: 180px;
+  color: #FABC41;
+  font-family: 'Oswald';
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 2px solid #FABC41;
+  background-color: transparent;
+  line-height: 20px;
+  font-size: 14px;
+  margin-top: 1px;
+}
+
+input#submitted:hover {
+  background-color: #FABC41;
+  color: #fff;
+}

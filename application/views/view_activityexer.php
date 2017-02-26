@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
         <!-- Custom style -->
         <link rel="stylesheet" href="../application/views/css/activity-menu.css">
-        <link rel="stylesheet" href="../application/views/css/activity-work.css">
+        <link rel="stylesheet" href="../application/views/css/activity.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
     </head>
 
@@ -43,21 +43,56 @@
 
         <div class="container act-page" align="center">
             <h1>Activities</h1>
-            <div class="col-md-4">
-                <a href="">
-                    <img src="../application/views/img/weightlifting.png">
-                </a>
+            <div class="col-md-4 workout1">
+                <img src="../application/views/img/weightlifting.png">
+                <h3 class="duration">Duration:</h3>
+                <br>
+                <input class="work" type="text" name="distance" id="distance" placeholder="Exercise duration in seconds">
             </div>
-            <div class="col-md-4" align="center">
+            <div class="col-md-4 workout2" align="center">
                 <form id="activityRun" method="post">
-                    <h3 class="duration">Duration:</h3>
-                    <input class="work" type="text" name="distance" id="distance" placeholder="Exercise duration in seconds">
+                <h3 class="start">Choose your activity</h3>
+                    <div class="row">
+                        <input type="radio" name="activityrun" id="pushUp" value="pushUp">
+                        <label for="pushUp" class="pushUp"><span>Push Up</span></label>
+
+                        <input type="radio" name="activityrun" id="sitUp" value="sitUp">
+                        <label for="sitUp" class="sitUp"><span>Sit Up</span></label>
+
+                        <input type="radio" name="activityrun" id="pullUp" value="pullUp">
+                        <label for="pullUp" class="pullUp"><span>Pull Up</span></label>
+
+                        <input type="radio" name="activityrun" id="jumping" value="jumping">
+                        <label for="jumping" class="jumping"><span>Jumping Jack</span></label>
+
+                        <input type="radio" name="activityrun" id="vigor" value="vigor">
+                        <label for="vigor" class="vigor"><span>Vigor</span></label>
+
+                        <input type="radio" name="activityrun" id="calisthenics" value="calisthenics">
+                        <label for="calisthenics" class="calisthenics"><span>Calisthenics</span></label>
+
+                        <input type="radio" name="activityrun" id="building" value="building">
+                        <label for="building" class="building"><span>Body Building</span></label>
+
+                        <input type="radio" name="activityrun" id="home" value="home">
+                        <label for="home" class="home"><span>Home Exercise</span></label>
+
+                        <input type="radio" name="activityrun" id="aero" value="aero">
+                        <label for="aero" class="aero"><span>Aerobics</span></label>
+                    </div>
+                    <br>
+                    
                 </form>
             </div>
             <div class="col-md-4" align="center">
                 <h4 class="burnCal">16.0</h4>
                 <h4 class="desc">Total Burn Calories</h4>
             </div>
+
+            <div class="col-md-12" align="center">
+                <input type="submit" id="submitted" name="submitted" value="Submit">
+            </div>
+
         </div>
 
     <!-- Bootstrap core JavaScript -->
