@@ -54,6 +54,7 @@ div.container-fluid.profile-page {
   background-color: #b1d770;
   text-align: center;
   float: right;
+  height: 100vh;
 }
 
 .profile-page img.profileImg {
@@ -129,7 +130,7 @@ button:hover:after {
 
 .profile-page .personal-info {
   background-color: #f3f6f7;
-  margin: 19px 5px;
+  margin: 27px 5px;
   border-radius: 15px;
   -webkit-box-shadow: 0px 3px 13px 1px rgba(48,62,39,0.69);
   -moz-box-shadow: 0px 3px 13px 1px rgba(48,62,39,0.69);
