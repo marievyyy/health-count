@@ -69,15 +69,15 @@
                     <input class="distance" type="text" name="distance" id="distanceTrav" placeholder="Min per 1Km">
                     <h3  class="time">Total Time</h3>
                     <input class="distance" type="text" name="timedis" id="distance" placeholder="TIme in minutes">
+                    <div class="col-md-12" align="center">
+                        <br><br>
+                        <input type="submit" id="submitbtn" name="submitted" value="Submit">
+                    </div>
                 </form>
             </div>
             <div class="col-md-3" align="center">
                 <h4 class="burnCal" id="output">0.0</h4>
                 <h4 class="desc">Total Burn Calories</h4>
-            </div>
-            <div class="col-md-12" align="center">
-                <br><br>
-                <input type="submit" id="submitbtn" name="submitted" value="Submit">
             </div>
                 
         </div>
