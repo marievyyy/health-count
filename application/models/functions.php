@@ -237,6 +237,20 @@ class functions extends CI_Model {
 		$this->db->update('caffeine_status', $fields);
 	}
 
+	public function insertActivityRun($params){
+		$fields = array(
+			'activity_id' => $this->guid(),
+			'patient_id' => $params['patient_id'],
+			'activity_name' => $params['activity_name'],
+			'act_duration' => $params['act_duration'],
+			'date_recorded' => date("Y-m-d"),
+			'time_recorded' => date("H:i:s"),
+			'calories_burn' => $params['calories_burn']
+		);
+
+		$this->db->insert('activity', $fields);
+	}
+
 	public function insertFoodDetails($foodDetails){
 		$fields = array(
 			'food_id' => $this->guid(),

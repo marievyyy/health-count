@@ -65,14 +65,14 @@
                         <label for="cycling" class="cycling"><span>Cycling</span></label>
                     </div>
                     <br>
-                    <h3>Distance Travel</h3>
-                    <input class="distance" type="text" name="distance" id="distance" placeholder="Distance in meters">
-                    <h3  class="time">Time Travel</h3>
+                    <h3>Speed Duration</h3>
+                    <input class="distance" type="text" name="distance" id="distanceTrav" placeholder="Min per 1Km">
+                    <h3  class="time">Total Time</h3>
                     <input class="distance" type="text" name="timedis" id="distance" placeholder="TIme in minutes">
                 </form>
             </div>
             <div class="col-md-3" align="center">
-                <h4 class="burnCal">16.0</h4>
+                <h4 class="burnCal" id="output">0.0</h4>
                 <h4 class="desc">Total Burn Calories</h4>
             </div>
 
@@ -84,7 +84,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
     <script src="../application/views/js/main.js"></script>
-
+    <script src="../application/views/js/activity-api.js"></script>
 
     </body>
 </html>
