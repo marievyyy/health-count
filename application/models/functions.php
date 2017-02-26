@@ -84,6 +84,45 @@ class functions extends CI_Model {
     	}
 	}
 
+	public function updateProfile($params){
+		$this->db->where('patient_id', $params['patient_id']);
+
+			$fields = array(
+				'patient_name' => $params['patient_name'],
+				'birth_date' => $params['birth_date'],
+				'age' => $params['age'],
+				'gender' => $params['gender'],
+				'weight' => $params['weight'],
+				'height' => $params['height'],
+				'profile_picture' => $params['profile_picture'], 
+				'bmi' => $params['bmi'], 
+				'bmi_status' => $params['bmi_status'], 
+				'username' => $params['username'] 
+				);
+
+			$this->db->update('patient_info', $fields);
+	}
+
+	public function updateProfilePass($params){
+		$this->db->where('patient_id', $params['patient_id']);
+
+			$fields = array(
+				'patient_name' => $params['patient_name'],
+				'birth_date' => $params['birth_date'],
+				'age' => $params['age'],
+				'gender' => $params['gender'],
+				'weight' => $params['weight'],
+				'height' => $params['height'],
+				'profile_picture' => $params['profile_picture'], 
+				'bmi' => $params['bmi'], 
+				'bmi_status' => $params['bmi_status'], 
+				'username' => $params['username'],
+				'password' => $params["password"] 
+				);
+
+			$this->db->update('patient_info', $fields);
+	}
+
 	public function getActDurationToday($patient_id){
 		$this->db->select('act_duration');
 		$this->db->where('date_recorded', date('Y-m-d'));

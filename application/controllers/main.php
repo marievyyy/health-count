@@ -242,7 +242,7 @@ class main extends CI_Controller {
 		
 		//Data Retrieve from AJAX
 		$register = array();
-		$register['patient_name'] = $this->input->post('fullname');;
+		$register['patient_name'] = $this->input->post('fullname');
 		$register['profile_picture'] = '';
 		$register['bmi'] = '';
 		$register['bmi_status'] = '';
@@ -751,11 +751,158 @@ class main extends CI_Controller {
 	}
 
 	public function editprofileAPI(){
-		$resultProfile = $this->functions->getUserLog($_SESSION["patient_id"]);
+
+		//Data Retrieve from AJAX
+		$params = array();
+		$params['patient_id'] = $_SESSION["patient_id"];
+		$params['patient_name'] = $this->input->post('fullname');
+		$params['profile_picture'] = '';
+		$params['bmi'] = '';
+		$params['bmi_status'] = '';
+		$params['age'] = $this->input->post('age');;
+		$params['birth_date'] = $this->input->post('birthday');
+		$params['gender'] = $this->input->post('gender');
+		$params['weight'] = $this->input->post('weight');
+		$params['height'] = $this->input->post('height');
+		$params['username'] = $this->input->post('username');
+		$params['oldpassword'] = $this->input->post('oldPass');
+		$params['password'] = $this->input->post('pass');
+		$params['conpassword'] = $this->input->post('cpass');
+		//End of Retrieving
 
 
-				
+		//Error Result when parameters are invalid, doesn't save in database
+		$errorResultName = "Error Name";
+		$errorResultUsername = "Error Username";
+		$errorResultPass = "Error Password";
+		$errorResultAge = "Error Age";
+		$errorResultBirth = "Error Birthday";
+		$errorResultWeight = "Invalid weight input";
+		$errorResultHeight = "Invalid height input";
+		//Note of valid parameter
+		$pass = "passed";
 
+		//remove spaces from first to last string for name and username
+		trim($params["patient_name"]);
+		trim($params["username"]);
+
+		//change double space for name
+		$params['patient_name'] = preg_replace("/!\s+!/", ' ', $params['patient_name']);
+		//age convert to integer
+		$params["age"] = intval($params["age"]);
+		//extract birthday into array
+		list($byear, $bday, $bmonth) = explode("-", $params["birth_date"]);
+		list($yyyy, $mm, $dd) = explode("/", date("Y/m/d"));
+		//parameter validation value
+		$yyyyToday = $yyyy - 6;
+		$ageToday;
+
+		//get total character inputed
+		$usernameLength = strlen($params['username']);
+		$passwordLength = strlen($params["password"]);
+		$nameLength = strlen($params['patient_name']);
+
+		$this->load->model('functions');
+		
+		//username validation
+		if(preg_match("/\W/", $params["username"]) == false && $usernameLength >= 6 && $usernameLength <= 255){
+			//password validation
+			if (preg_match("/[\d\W]/", $params["password"]) == true && $params["password"] == $params["conpassword"] && $passwordLength >= 6 && $passwordLength <= 255 ||  $params["password"] == "" && $params["conpassword"] == "") {
+				//name validation
+				if (preg_match("/[^a-zA-Z ]/", $params["patient_name"]) == false && $nameLength >= 8 && $nameLength <= 255) {
+						//age validation
+						if(is_int($params["age"]) == true && $params["age"] >= 6 && $params["age"] <= 89){
+							//birthdate validation
+							if ($bmonth < $mm && $bday > $dd) {
+								$ageToday = $yyyy - $byear;
+							}else{
+								$ageToday = $yyyy - $byear - 1;
+							}
+							if ($byear < $yyyyToday && $params["age"] == $ageToday) {
+								//height validation
+								if(empty($params['height']) != true && is_numeric($params['height']) == true && $params['height'] >= 126.9 && $params['height'] <= 193.0){
+									//weight validation
+									if (empty($params['weight']) != true && is_numeric($params['weight']) == true && $params['weight'] >= 20 && $params['weight'] <= 1000) {
+
+										$weightbmi = $params["weight"];
+										$heightbmi = $params["height"] / 100;
+										$heightbmisq = $heightbmi * $heightbmi;
+
+										$params["bmi"] = $weightbmi / $heightbmisq;
+										$params["bmi"] = number_format((float)$params["bmi"], 2,'.','');
+
+										if ($params["height"] >= 126.79 && $params["weight"] >= 24.94 && $params["bmi"] <= 18.5) {
+											$params["bmi_status"] = "Underweight";
+										}
+										else if ($params["height"] >= 126.79 && $params["weight"] >= 24.94 && $params["bmi"] >= 18.5 && $params["bmi"] <= 24.9) {
+											$params["bmi_status"] = "Normal";
+										}
+										else if ($params["height"] >= 126.79 && $params["weight"] >= 24.94 && $params["bmi"] >= 25.0 && $params["bmi"] <= 29.9) {
+											$params["bmi_status"] = "Overweight";
+										}
+										else if ($params["height"] >= 126.79 && $params["weight"] >= 24.94 && $params["bmi"] >= 30.0) {
+											$params["bmi_status"] = "Obese";
+										}else{
+											$params["bmi_status"] = "Unknown Data";
+										}
+										//password encryption
+										if ( $params["password"] == "" &&  $params["conpassword"] == "") {
+
+											$this->functions->updateProfile($params);
+											//when data is valid
+											echo json_encode($pass);
+
+										}
+										else{
+											$params["password"] = password_hash($params["password"], PASSWORD_BCRYPT);
+
+											$this->functions->updateProfilePass($params);
+											//when data is valid
+											echo json_encode($pass);
+										}
+
+									}else{
+										echo json_encode($errorResultWeight);
+									}
+								}else{
+									echo json_encode($errorResultHeight);
+								}
+							}else{
+								echo json_encode($errorResultBirth);
+							}
+							
+						}else{
+							echo json_encode($errorResultAge);
+						}
+					}
+					else{
+						echo json_encode($errorResultName);
+					}
+			}else{
+				echo json_encode($errorResultPass);
+			}
+		}else{
+			echo json_encode($errorResultUsername);
+		}	
+
+	}
+
+	public function confirmOldPassword(){
+		$password = $this->input->post('oldPass');
+		$out = "Valid";
+		$out2 = "Not";
+
+		$this->load->model('functions');
+		$result = "valid username";
+
+		$resultUsername = $this->functions->getUserAccount($_SESSION["username"]);
+		//bypass security for database insert
+		$result = password_verify($password, $resultUsername["password"]);
+			if ($result == true) {
+				echo json_encode($out);
+			}else{
+				echo json_encode($out2);
+			}
 	}
 
 	public function foodAdd($fname, $carbs, $fats, $protein, $calories, $description, $category_name){

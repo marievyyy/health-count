@@ -94,7 +94,7 @@ $(document).ready(function (){
 	});
 
 	//confirm password errorhandler per type
-	$("#cpass").keyup(function(){
+	$("#cpass").change(function(){
 		var password = $('input[name=pass]').val();
 		var conpass = $('input[name=cpass]').val();
 
@@ -113,25 +113,13 @@ $(document).ready(function (){
 		var password = $('input[name=pass]').val();
 		var conpass = $('input[name=cpass]').val();
 
-		if(password.length >= 6 && password.length <= 255){
-			
-			if (password.match(/\d/) != null || password.match(/\W/) != null && password != ""){
-
-				if (password == conpass){
-					$('#errorconPass').text("Success");
-					console.log("accepted");
-					$('#next1').attr("disabled", false);
-				}else{
-					console.log("Password doesnt Match");
-					$('#errorconPass').text("Password doesnt Match");
-				}
-			}else{
-				console.log("must contain numbers or special chars");
-				$('#errorconPass').text("Invalid Input");
-			}
+		if (password == conpass && password != null && password != ""){//accept data if all validation passed
+			$('#errorconPass').text("Success");
+			console.log("accepted");
+			$('#next1').attr("disabled", false);
 		}else{
-			console.log("password length minimum of 6 maximum of 255");
-			$('#errorconPass').text("Invalid Input");
+			console.log("Password doesnt Match");
+			$('#errorconPass').text("Password doesnt Match");
 		}
 	});
 	//complete name errorhandler

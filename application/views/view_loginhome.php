@@ -45,13 +45,13 @@
             <div class="container-fluid home-page" align="center">
                 <div class="row first">
                     <div class="col-md-6">
-                        <div id="container-highchart4" class="box gain">
+                        <div id="container-highchart1" class="box gain">
                             <h2>Gain Calorie</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div id="container-highchart4" class="box burn">
+                        <div id="container-highchart1" class="box burn">
                             <h2>Burned Calorie</h2>
                         </div>
                     </div>
@@ -59,13 +59,13 @@
 
                 <div class="row first">
                     <div class="col-md-6">
-                        <div id="container-highchart4" class="box watergraph">
+                        <div id="container-highchart1" class="box watergraph">
                             <h2>Water</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div id="container-highchart4" class="box dehy">
+                        <div id="container-highchart1" class="box dehy">
                             <h2>Dehydration</h2>
                         </div>
                     </div>
@@ -73,13 +73,13 @@
 
                 <div class="row first">
                     <div class="col-md-6">
-                        <div id="container-highchart4" class="box coffee">
+                        <div id="container-highchart1" class="box coffee">
                             <h2>Coffee</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div id="container-highchart5" class="box sleep">
+                        <div id="container-highchart1" class="box sleep">
                             <h2>Body Caffeine Status</h2>
                         </div>
                     </div>
@@ -87,13 +87,13 @@
 
                 <div class="row last">
                     <div class="col-md-6">
-                        <div id="container-highchart4" class="box activity">
+                        <div id="container-highchart1" class="box activity">
                             <h2>Activity</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div id="container-highchart5" class="box sleep">
+                        <div id="container-highchart1" class="box sleep">
                             <h2>Sleep</h2>
                         </div>
                     </div>
