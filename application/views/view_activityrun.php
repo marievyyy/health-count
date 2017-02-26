@@ -77,7 +77,7 @@
             </div>
             <div class="col-md-12" align="center">
                 <br><br>
-                <input type="submit" id="submitted" name="submitted" value="Submit">
+                <input type="submit" id="submitbtn" name="submitted" value="Submit">
             </div>
                 
         </div>
