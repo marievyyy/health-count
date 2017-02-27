@@ -433,18 +433,48 @@ class main extends CI_Controller {
 		$resultAct = $this->functions->getActDurationToday($_SESSION["patient_id"]);
 		$oztoLiters = 0.0295735;
 		//if there is already data for today then output it.
-		if (is_array($resultWaterAPI) == true) {
-			$resultWater = array(
-					'water_amount' => $resultWaterAPI["water_amount"],
-					'gained_water' => $resultWaterAPI["gained_water"],
-					'urine' => $resultWaterAPI["urine"]
-				);
-			echo json_encode($resultWater);
-		}else{
-			//if no data then create new one for today
-			//this also check  for existing activities today and tally the duration.
-			if (is_array($resultAct) == true) {
+		if (is_array($resultAct) == true) {
+			if (is_array($resultWaterAPI) == true) {
+				
+				//if there is an activity and there is no existing water data 
+				$sum2=0;
+				//parse the data activites for today and sum the total.
+				foreach ($resultAct as $i) {
+					foreach ($i as $key => $item) {
+						$sum2 = $sum2+$item;
+					}
+				}	
 
+				//total minutes
+				$time_min = $sum2;
+
+				if ($sum2 == $resultWaterAPI["actDuration_Total"]) {
+					$newDuration = 0;
+
+				}else{
+					$newDuration = $sum2 - $resultWaterAPI["actDuration_Total"];
+
+				}
+				
+				$totalValue = ($newDuration/30) * (12*0.0295735);
+				$totalLitersAdded = round($totalValue * $oztoLiters, 2);
+
+				$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
+
+				$resultWater = array(
+					'patient_id' => $_SESSION['patient_id'],
+					'water_amount' => $amountWater,
+					'gained_water' => $resultWaterAPI["gained_water"],
+					'actDuration_total' => $time_min,
+					'urine' => "urine-three" 
+				);
+				
+				//do not save in the database the negative output, if exceed remains zero
+					$this->functions->updateWaterAPI($resultWater);
+					echo json_encode($resultWater);			
+
+			}else{
+				//if there is an activity but there is no existing water data 
 				$sum2=0;
 				//parse the data activites for today and sum the total.
 				foreach ($resultAct as $i) {
@@ -472,7 +502,16 @@ class main extends CI_Controller {
 				//result
 				$this->functions->insertWaterAPI($params);
 				echo json_encode($totalLiters);
-				
+			}
+		}else{
+			if (is_array($resultWaterAPI) == true) {
+				//if there is no activity but there is an existing water data
+				$resultWater = array(
+					'water_amount' => $resultWaterAPI["water_amount"],
+					'gained_water' => $resultWaterAPI["gained_water"],
+					'urine' => $resultWaterAPI["urine"]
+				);
+				echo json_encode($resultWater);
 			}else{
 				//if there is no activites for today compute using weight only.
 				$amountWater = $_SESSION["weight"] * 0.5;
@@ -505,15 +544,15 @@ class main extends CI_Controller {
 		$oldglassVal = $resultWaterAPI["gained_water"];
 
 		//calculation for the total value of water base on amount of glass
-		function calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $actDuration_new, $urineColor){
+		function calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $time_min, $urineColor){
 			$urineVal = 0;
 			$urineWater = 0;
 			$oztoLiters = 0.0295735;
 			$actualWater = $amountWater;
+			$durationTime = $time_min;
 
 			$gainedWater = $addedglassVal * $oztoLiters;
 			$totalWater = round($amountWater - $gainedWater, 2);
-
 
 			if ($urineColor == "urine-one") {
 				$urineVal = 0.00;
@@ -559,7 +598,7 @@ class main extends CI_Controller {
 					'patient_id' => $_SESSION['patient_id'],
 					'water_amount' => $amountVal,
 					'gained_water' => $glassVal,
-					'actDuration_total' => $actDuration_new,
+					'actDuration_total' => $time_min,
 					'urine' => $urineColor 
 				);
 			return $resultWater;
@@ -568,23 +607,25 @@ class main extends CI_Controller {
 		//this update if there is an additional activities for today.
 		if (is_array($resultAct) == true) {
 
+			$newDuration;
 			$sum2=0;
-			$newDuration=0;
-			$actDuration_new=0;
-			foreach ($result as $i) {
+			//parse the data activites for today and sum the total.
+			foreach ($resultAct as $i) {
 				foreach ($i as $key => $item) {
 					$sum2 = $sum2+$item;
 				}
 			}	
-			//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
+
+				//total minutes
 			$time_min = $sum2;
 
 			//get the actual duration for today's activitiy
-			if ($time_min = $resultWaterAPI["actDuration_total"]) {
+			if ($sum2 == $resultWaterAPI["actDuration_Total"]) {
 				$newDuration = 0;
+
 			}else{
-				$newDuration = $time_min - $resultWaterAPI["actDuration_total"];
-				$actDuration_new = $time_min;
+				$newDuration = $sum2 - $resultWaterAPI["actDuration_Total"];
+
 			}
 			
 			$totalValue = ($newDuration/30) * (12*0.0295735);
@@ -592,8 +633,7 @@ class main extends CI_Controller {
 
 			$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
 
-			$resultCal = calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $actDuration_new, $urineColor);
-			
+			$resultCal = calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $time_min, $urineColor);
 			//do not save in the database the negative output, if exceed remains zero
 			if ($resultCal["water_amount"] > 0.00) {
 				$this->functions->updateWaterAPI($resultCal);
@@ -607,9 +647,8 @@ class main extends CI_Controller {
 		}else{
 			//if there is no activities use this
 			$amountWater = $resultWaterAPI["water_amount"];
-			$actDuration_new = 0;
-
-			$resultCal = calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $actDuration_new, $urineColor);
+			$time_min = 0;
+			$resultCal = calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $time_min, $urineColor);
 			
 			//do not save in the database the negative output, if exceed remains zero
 			if ($resultCal["water_amount"] > 0.00) {
@@ -902,80 +941,76 @@ class main extends CI_Controller {
 
 		$metVal = 0;
 		$speed;
-		$speedWalk;
-		$speedCycling;
 
 		if ($actDuration >= 1 && $actDuration <= 440) {
 			
 			if ($actType == "jog") {
 				$metVal = 8.0;
 				
-				$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-				$burnedCalTotal = $burnedCalMin * $actDuration;
+				$actHours = $actDuration / 60;
+					$burnedCal = round($metVal * $_SESSION["weight"] * $actHours, 2);
 
 				$params = array(
 					'patient_id' => $_SESSION["patient_id"], 
 					'activity_name' => $actType,
 					'act_duration' => $actDuration,
-					'calories_burn' => $burnedCalTotal
+					'calories_burn' => $burnedCal
 					);
+				$this->functions->insertActivity($params);
 
-				$this->functions->insertActivityRun($params);
-				echo json_encode($params);
+				echo json_encode($burnedCal);
 			}
 			else if (empty($actType) == true) {
 				echo json_encode("No Activity");
 			}
 			else{
-				$speed = round($actDis * 1.609344, 1);
-				$speedWalk = round(37.28227153424 / $actDis, 2);
-				$speedCycling = round(37.28227153424 / $actDis, 2);
+				$speed = round(37.28227153424/ $actDis, 2);
 
-				if ($speed >= 4.3 && $speed <= 15 && $actType == "run") {
+				if ($speed >= 4 && $speed <= 14 && $actType == "run") {
 
-					if ($actType == "run" && $speed >= 4.3 && $speed < 4.6) {
+					if ($actType == "run" && $speed = 14) {
 						$metVal = 23.0;
 					}
-					else if ($actType == "run" && $speed >= 4.6 && $speed < 5) {
+					else if ($actType == "run" && $speed >= 13 && $speed < 14) {
 						$metVal = 19.8;
 					}
-					else if ($actType == "run" && $speed >= 5 && $speed < 5.5) {
+					else if ($actType == "run" && $speed >= 12 && $speed < 13) {
 						$metVal = 19.0;
 					}
-					else if ($actType == "run" && $speed >= 5.5 && $speed < 6) {
+					else if ($actType == "run" && $speed >= 11 && $speed < 12) {
 						$metVal = 18.0;
 					}
-					else if ($actType == "run" && $speed >= 6 && $speed < 6.5) {
+					else if ($actType == "run" && $speed >= 10 && $speed < 9) {
 						$metVal = 16.0;
 					}
-					else if ($actType == "run" && $speed >= 6.5 && $speed < 7) {
+					else if ($actType == "run" && $speed >= 9 && $speed < 8.6) {
 						$metVal = 15.0;
 					}
-					else if ($actType == "run" && $speed >= 7 && $speed < 7.5) {
+					else if ($actType == "run" && $speed >= 8.6 && $speed < 8) {
 						$metVal = 14.0;
 					}
-					else if ($actType == "run" && $speed >= 7.5 && $speed < 8) {
+					else if ($actType == "run" && $speed >= 8 && $speed < 7.5) {
 						$metVal = 13.5;
 					}
-					else if ($actType == "run" && $speed >= 8 && $speed < 8.5) {
+					else if ($actType == "run" && $speed >= 7.5 && $speed < 7) {
 						$metVal = 12.5;
 					}
-					else if ($actType == "run" && $speed >= 8.5 && $speed < 9) {
+					else if ($actType == "run" && $speed >= 7 && $speed < 6.7) {
 						$metVal = 11.5;
 					}
-					else if ($actType == "run" && $speed >= 9 && $speed < 10) {
+					else if ($actType == "run" && $speed >= 6.7 && $speed < 6) {
 						$metVal = 11.0;
 					}
-					else if ($actType == "run" && $speed >= 10 && $speed < 11.5) {
+					else if ($actType == "run" && $speed >= 6 && $speed < 5.2) {
 						$metVal = 10.0;
 					}
-					else if ($actType == "run" && $speed >= 11.5 && $speed < 12) {
+					else if ($actType == "run" && $speed >= 5.2 && $speed < 5) {
 						$metVal = 9.0;
 					}
-					else if ($actType == "run" && $speed >= 12 && $speed < 15) {
+					else if ($actType == "run" && $speed >= 5 && $speed < 4) {
 						$metVal = 8.0;
 					}
-					else if ($actType == "run" && $speed >= 15) {
+					else if ($actType == "run" && $speed >= 4 && $speed < 5) {
 						$metVal = 6.0;
 					}
 					else{
@@ -997,14 +1032,14 @@ class main extends CI_Controller {
 					echo json_encode($burnedCal);
 				}
 
-				else if ($speedWalk >= 7.45 && $speedWalk < 13.31 && $actType == "walk") {
-					if ($actType == "walk" && $speedWalk <= 13.31 && $speedWalk > 10.65) {
-						$metVal = 3.3;
+				else if ($speed >= 2.5 && $speed < 5.0 && $actType == "walk") {
+					if ($actType == "walk" && $speed <= 3.5 && $speed > 2.5) {
+						$metVal = 3.0;
 					}
-					else if ($actType == "walk" && $speedWalk <= 10.65 && $speedWalk > 7.45) {
+					else if ($actType == "walk" && $speed <= 5.0 && $speed > 3.5) {
 						$metVal = 3.8;
 					}
-					else if ($actType == "walk" && $speedWalk = 7.45) {
+					else if ($actType == "walk" && $speed = 5.0) {
 						$metVal = 8.0;
 					}
 					else{
@@ -1026,20 +1061,20 @@ class main extends CI_Controller {
 					echo json_encode($burnedCal);
 				}
 
-				else if ($speedCycling >= 5.5 && $speedCycling <= 20 && $actType == "cycling") {
-					if ($actType == "cycling" && $speedCycling >= 5.5 && $speedCycling < 10 ) {
+				else if ($speed >= 5.5 && $speed <= 20 && $actType == "cycling") {
+					if ($actType == "cycling" && $speed >= 5.5 && $speed < 10 ) {
 						$metVal = 8.0;
 					}
-					else if ($actType == "cycling" && $speedCycling >= 10 && $speedCycling < 12 ) {
+					else if ($actType == "cycling" && $speed >= 10 && $speed < 12 ) {
 						$metVal = 6.0;
 					}
-					else if ($actType == "cycling" && $speedCycling >= 12 && $speedCycling < 16 ) {
+					else if ($actType == "cycling" && $speed >= 12 && $speed < 16 ) {
 						$metVal = 8.0;
 					}
-					else if ($actType == "cycling" && $speedCycling >= 16 && $speedCycling < 20 ) {
+					else if ($actType == "cycling" && $speed >= 16 && $speed < 20 ) {
 						$metVal = 12.0;
 					}
-					else if ($actType == "cycling" && $speedCycling >= 20 ) {
+					else if ($actType == "cycling" && $speed >= 20 ) {
 						$metVal = 16.0;
 					}
 					else{

@@ -127,7 +127,6 @@ class functions extends CI_Model {
 		$this->db->select('act_duration');
 		$this->db->where('date_recorded', date('Y-m-d'));
 		$this->db->where('patient_id', $patient_id);
-		$this->db->order_by("time_recorded", "desc");
 		$query = $this->db->get('activity');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
@@ -141,7 +140,6 @@ class functions extends CI_Model {
 	public function getWaterAPI($patient_id){
 		$this->db->where('date_recorded', date('Y-m-d'));
 		$this->db->where('patient_id', $patient_id);
-		$this->db->order_by("time_recorded", "desc");
 		$query = $this->db->get('water');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
@@ -172,7 +170,7 @@ class functions extends CI_Model {
 		$this->db->where('date_recorded', date('Y-m-d'));
 
 		$fields = array(
-			'actDuration_total' => $params['actDuration_total'],
+			'actDuration_Total' => $params['actDuration_total'],
 			'urine' => $params['urine'],
 			'gained_water' => $params['gained_water'],
 			'water_amount' => $params['water_amount'],

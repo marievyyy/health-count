@@ -59,7 +59,8 @@ $(document).ready(function(){
 		$('#water-add').attr("disabled", false);
 	});
 
-	$('#msform').submit(function(){
+	$('#msform').submit(function(e){
+		e.preventDefault();
 		var glassVal = $("#glassVal").val();
 		var urineColor = $("input[name=urine_color]:checked").val();
 		console.log(glassVal);
