@@ -52,17 +52,18 @@
                 </div>
 
                 <div class="col-md-4">
-                    <form id="activityRun" method="post">
+                    <form id="sleepForm" method="post">
                         <h3 class="start">Start of Sleep Time:</h3>
-                        <input class="work" type="text" name="distance" id="distance" placeholder="">
+                        <input class="work" type="time" name="startSleep" id="distance" placeholder="">
                         <h3 class="last">End of Sleep Time:</h3>
-                        <input class="work" type="text" name="distance" id="distance" placeholder="">
+                        <input class="work" type="time" name="endSleep" id="distance" placeholder="">
+                        <input type="submit" name="submitted" value="Submit">
                     </form>
                 </div>
 
                 <div class="col-md-4">
                     <h4 class="sleepStatus">Over Slept</h4>
-                    <h4 class="sleepDesc">Over slept for:<span>20 hrs</span></h4>
+                    <h4 class="sleepDesc">Over slept for:<span id="sleepVal">20 hrs</span></h4>
                     <!-- Over Slept // Normal // Lack of Sleep -->
                     <h4 class="desc">Total Burn Calories: <span>10</span></h4>
                 </div>
@@ -77,7 +78,7 @@
     <script src='../application/views/js/moment.min.js'></script>
     <script src="../application/views/js/main.js"></script>
     <script src="../application/views/js/sleep.js"></script>
-
+    <script src="../application/views/js/sleep-api.js"></script>
 
     </body>
 </html>

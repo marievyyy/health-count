@@ -249,6 +249,23 @@ class functions extends CI_Model {
 		$this->db->insert('activity', $fields);
 	}
 
+	public function getTodaySleep($patient_id){
+		$this->db->where('patient_id', $patient_id);
+		$this->db->where('date_recorded', date('Y-m-d'));
+		$query = $this->db->get('sleep');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data[0];
+
+    	}
+    	else{
+        	return 'no sleep record';
+    	}
+	}
+	
+	public function insertSleep(){
+
+	}
 	public function insertFoodDetails($foodDetails){
 		$fields = array(
 			'food_id' => $this->guid(),

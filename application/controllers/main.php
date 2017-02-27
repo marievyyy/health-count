@@ -1172,6 +1172,32 @@ class main extends CI_Controller {
 
 	}
 
+	public function sleepAPI(){
+		$startSleep = $this->input->post('startSleep');
+		$endSleep = $this->input->post('endSleep');
+
+		$totalSleep = abs($startSleep-$endSleep);
+
+		$sleepDesc1 = "";
+		$sleepMET = 0.92;
+		$totalburn = $sleepMET * $_SESSION["weight"] * $totalSleep;
+
+		if ($_SESSION["age"] >= 6 && $_SESSION["age"] <= 13 && $totalSleep >= 9 && $totalSleep <= 11) {
+			# code...
+		}
+		else if ($_SESSION["age"] >= 14 && $_SESSION["age"] <= 17 && $totalSleep >= 8 && $totalSleep <= 10) {
+			# code...
+		}
+		else if ($_SESSION["age"] >= 18 && $_SESSION["age"] <= 64 && $totalSleep >= 7 && $totalSleep <= 9) {
+			# code...
+		}
+		else if ($_SESSION["age"] >= 65 && $totalSleep >= 7 && $totalSleep <= 8) {
+			# code...
+		}
+		echo json_encode($totalSleep);
+
+	}
+
 	public function foodAdd($fname, $carbs, $fats, $protein, $calories, $description, $category_name){
 		
 		$foodDetails = array(
