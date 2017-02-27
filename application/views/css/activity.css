@@ -68,12 +68,11 @@ body {
   font-size: 26px;
   font-weight: 300;
   display: inline-block;
-  margin-right: 15px;
   text-transform: uppercase;
 }
 
 .act-page h3.time {
-  margin-left: 48px;
+  margin-left: 55px;
 }
 
 .act-page h3.start {
@@ -128,6 +127,7 @@ input[type="radio"]:hover {
   text-transform: uppercase;
   padding-left: 10px;
   border: 3px solid #FABC41;
+  margin-left: 10px;
 }
 
 .act-page input[type="text"]:hover,
@@ -138,10 +138,11 @@ input[type="radio"]:hover {
 
 .act-page h4.burnCal {
   font-family: 'Oswald';
-  font-size: 200px;
+  font-size: 140px;
   font-weight: 300;
   color: #FFCE3E;
-  margin-top: 25%;
+  margin-top: 20%;
+  margin-left: -20px;
 }
 
 .act-page h4.desc {
@@ -150,10 +151,15 @@ input[type="radio"]:hover {
   font-weight: 300;
   color: #FFCE3E;
   margin-left: 10%;
+  margin-left: -20px;
 }
 
 
 /* WORKOUT */
+
+.act-page .workout1 h3.duration {
+  margin-left: 20px;
+}
 
 .act-page .workout1 h3,
 .act-page .workout2 h3 {
