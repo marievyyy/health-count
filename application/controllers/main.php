@@ -911,128 +911,15 @@ class main extends CI_Controller {
 		$actTime = $this->input->post('timedis');
 
 		$metVal = 0;
+		$speed;
+		$speedWalk;
+		$speedCycling;
 
-		$speed = round($actDis * 1.609344, 1);
-		$speedWalk = round(37.28227153424 / $actDis, 2);
-		$speedCycling = round(37.28227153424 / $actDis, 2);
-
-		if ($actDis > 1 && $actDis < 440) {
-			if ($speed >= 4.3 && $speed <= 15 && $actType == "run") {
-
-				if ($actType == "run" && $speed >= 4.3 && $speed < 4.6) {
-					$metVal = 23.0;
-				}
-				else if ($actType == "run" && $speed >= 4.6 && $speed < 5) {
-					$metVal = 19.8;
-				}
-				else if ($actType == "run" && $speed >= 5 && $speed < 5.5) {
-					$metVal = 19.0;
-				}
-				else if ($actType == "run" && $speed >= 5.5 && $speed < 6) {
-					$metVal = 18.0;
-				}
-				else if ($actType == "run" && $speed >= 6 && $speed < 6.5) {
-					$metVal = 16.0;
-				}
-				else if ($actType == "run" && $speed >= 6.5 && $speed < 7) {
-					$metVal = 15.0;
-				}
-				else if ($actType == "run" && $speed >= 7 && $speed < 7.5) {
-					$metVal = 14.0;
-				}
-				else if ($actType == "run" && $speed >= 7.5 && $speed < 8) {
-					$metVal = 13.5;
-				}
-				else if ($actType == "run" && $speed >= 8 && $speed < 8.5) {
-					$metVal = 12.5;
-				}
-				else if ($actType == "run" && $speed >= 8.5 && $speed < 9) {
-					$metVal = 11.5;
-				}
-				else if ($actType == "run" && $speed >= 9 && $speed < 10) {
-					$metVal = 11.0;
-				}
-				else if ($actType == "run" && $speed >= 10 && $speed < 11.5) {
-					$metVal = 10.0;
-				}
-				else if ($actType == "run" && $speed >= 11.5 && $speed < 12) {
-					$metVal = 9.0;
-				}
-				else if ($actType == "run" && $speed >= 12 && $speed < 15) {
-					$metVal = 8.0;
-				}
-				else if ($actType == "run" && $speed >= 15) {
-					$metVal = 6.0;
-				}
-				else{
-
-				}
+		if ($actTime > 1 && $actTime < 440) {
+			
+			if ($actType == "jog") {
+				$metVal = 8.0;
 				
-
-				$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-				$burnedCalTotal = $burnedCalMin * $actTime;
-
-				$params = array(
-					'patient_id' => $_SESSION["patient_id"], 
-					'activity_name' => $actType,
-					'act_duration' => $actTime,
-					'calories_burn' => $burnedCalTotal
-					);
-
-				$this->functions->insertActivityRun($params);
-				echo json_encode($params);
-			}
-
-			else if ($speedWalk >= 7.45 && $speedWalk < 13.31 && $actType == "walk") {
-				if ($actType == "walk" && $speedWalk <= 13.31 && $speedWalk > 10.65) {
-					$metVal = 3.3;
-				}
-				else if ($actType == "walk" && $speedWalk <= 10.65 && $speedWalk > 7.45) {
-					$metVal = 3.8;
-				}
-				else if ($actType == "walk" && $speedWalk = 7.45) {
-					$metVal = 8.0;
-				}
-				else{
-
-				}
-				
-
-				$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-				$burnedCalTotal = $burnedCalMin * $actTime;
-
-				$params = array(
-					'patient_id' => $_SESSION["patient_id"], 
-					'activity_name' => $actType,
-					'act_duration' => $actTime,
-					'calories_burn' => $burnedCalTotal
-					);
-
-				$this->functions->insertActivityRun($params);
-				echo json_encode($params);
-			}
-
-			else if ($speedCycling >= 5.5 && $speedCycling <= 20 && $actType == "cycling") {
-				if ($actType == "cycling" && $speedCycling >= 5.5 && $speedCycling < 10 ) {
-					$metVal = 8.0;
-				}
-				else if ($actType == "cycling" && $speedCycling >= 10 && $speedCycling < 12 ) {
-					$metVal = 6.0;
-				}
-				else if ($actType == "cycling" && $speedCycling >= 12 && $speedCycling < 16 ) {
-					$metVal = 8.0;
-				}
-				else if ($actType == "cycling" && $speedCycling >= 16 && $speedCycling < 20 ) {
-					$metVal = 12.0;
-				}
-				else if ($actType == "cycling" && $speedCycling >= 20 ) {
-					$metVal = 16.0;
-				}
-				else{
-					$metVal = 0;
-				}
-				
-
 				$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
 				$burnedCalTotal = $burnedCalMin * $actTime;
 
@@ -1047,25 +934,142 @@ class main extends CI_Controller {
 				echo json_encode($params);
 			}
 			else{
-				echo json_encode("Invalid Speed");	
-			}
-			
-			if ($actType == "jog") {
-				$metVal = 8.0;
-				
+					$speed = round($actDis * 1.609344, 1);
+					$speedWalk = round(37.28227153424 / $actDis, 2);
+					$speedCycling = round(37.28227153424 / $actDis, 2);
 
-				$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-				$burnedCalTotal = $burnedCalMin * $actTime;
+					if ($speed >= 4.3 && $speed <= 15 && $actType == "run") {
 
-				$params = array(
-					'patient_id' => $_SESSION["patient_id"], 
-					'activity_name' => $actType,
-					'act_duration' => $actTime,
-					'calories_burn' => $burnedCalTotal
-					);
+					if ($actType == "run" && $speed >= 4.3 && $speed < 4.6) {
+						$metVal = 23.0;
+					}
+					else if ($actType == "run" && $speed >= 4.6 && $speed < 5) {
+						$metVal = 19.8;
+					}
+					else if ($actType == "run" && $speed >= 5 && $speed < 5.5) {
+						$metVal = 19.0;
+					}
+					else if ($actType == "run" && $speed >= 5.5 && $speed < 6) {
+						$metVal = 18.0;
+					}
+					else if ($actType == "run" && $speed >= 6 && $speed < 6.5) {
+						$metVal = 16.0;
+					}
+					else if ($actType == "run" && $speed >= 6.5 && $speed < 7) {
+						$metVal = 15.0;
+					}
+					else if ($actType == "run" && $speed >= 7 && $speed < 7.5) {
+						$metVal = 14.0;
+					}
+					else if ($actType == "run" && $speed >= 7.5 && $speed < 8) {
+						$metVal = 13.5;
+					}
+					else if ($actType == "run" && $speed >= 8 && $speed < 8.5) {
+						$metVal = 12.5;
+					}
+					else if ($actType == "run" && $speed >= 8.5 && $speed < 9) {
+						$metVal = 11.5;
+					}
+					else if ($actType == "run" && $speed >= 9 && $speed < 10) {
+						$metVal = 11.0;
+					}
+					else if ($actType == "run" && $speed >= 10 && $speed < 11.5) {
+						$metVal = 10.0;
+					}
+					else if ($actType == "run" && $speed >= 11.5 && $speed < 12) {
+						$metVal = 9.0;
+					}
+					else if ($actType == "run" && $speed >= 12 && $speed < 15) {
+						$metVal = 8.0;
+					}
+					else if ($actType == "run" && $speed >= 15) {
+						$metVal = 6.0;
+					}
+					else{
 
-				$this->functions->insertActivityRun($params);
-				echo json_encode($params);
+					}
+					
+
+					$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
+					$burnedCalTotal = $burnedCalMin * $actTime;
+
+					$params = array(
+						'patient_id' => $_SESSION["patient_id"], 
+						'activity_name' => $actType,
+						'act_duration' => $actTime,
+						'calories_burn' => $burnedCalTotal
+						);
+
+					$this->functions->insertActivityRun($params);
+					echo json_encode($params);
+				}
+
+				else if ($speedWalk >= 7.45 && $speedWalk < 13.31 && $actType == "walk") {
+					if ($actType == "walk" && $speedWalk <= 13.31 && $speedWalk > 10.65) {
+						$metVal = 3.3;
+					}
+					else if ($actType == "walk" && $speedWalk <= 10.65 && $speedWalk > 7.45) {
+						$metVal = 3.8;
+					}
+					else if ($actType == "walk" && $speedWalk = 7.45) {
+						$metVal = 8.0;
+					}
+					else{
+
+					}
+					
+
+					$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
+					$burnedCalTotal = $burnedCalMin * $actTime;
+
+					$params = array(
+						'patient_id' => $_SESSION["patient_id"], 
+						'activity_name' => $actType,
+						'act_duration' => $actTime,
+						'calories_burn' => $burnedCalTotal
+						);
+
+					$this->functions->insertActivityRun($params);
+					echo json_encode($params);
+				}
+
+				else if ($speedCycling >= 5.5 && $speedCycling <= 20 && $actType == "cycling") {
+					if ($actType == "cycling" && $speedCycling >= 5.5 && $speedCycling < 10 ) {
+						$metVal = 8.0;
+					}
+					else if ($actType == "cycling" && $speedCycling >= 10 && $speedCycling < 12 ) {
+						$metVal = 6.0;
+					}
+					else if ($actType == "cycling" && $speedCycling >= 12 && $speedCycling < 16 ) {
+						$metVal = 8.0;
+					}
+					else if ($actType == "cycling" && $speedCycling >= 16 && $speedCycling < 20 ) {
+						$metVal = 12.0;
+					}
+					else if ($actType == "cycling" && $speedCycling >= 20 ) {
+						$metVal = 16.0;
+					}
+					else{
+						$metVal = 0;
+					}
+					
+
+					$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
+					$burnedCalTotal = $burnedCalMin * $actTime;
+
+					$params = array(
+						'patient_id' => $_SESSION["patient_id"], 
+						'activity_name' => $actType,
+						'act_duration' => $actTime,
+						'calories_burn' => $burnedCalTotal
+						);
+
+					$this->functions->insertActivityRun($params);
+					echo json_encode($params);
+				}
+				else{
+					echo json_encode("Invalid Speed");	
+				}
 			}
 
 
