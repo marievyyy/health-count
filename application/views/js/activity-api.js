@@ -36,13 +36,16 @@ $(document).ready(function(){
 			success: function(data){
 				console.log(data);
 				if (data == "Invalid Speed") {
-					$('#output').text("Invalid Speed");
+					$('#output').html("").text("Invalid Speed");
 				}
 				else if(data == "Invalid Time Duration"){
-					$('#output').text("Invalid Time");
+					$('#output').html("").text("Invalid Time");
+				}
+				else if(data == "No Activity"){
+					$('#output').html("").text("No Activity");
 				}
 				else{
-					$('#output').html("").text(data.calories_burn);
+					$('#output').html("").text(data);
 				}
 			}
 		});

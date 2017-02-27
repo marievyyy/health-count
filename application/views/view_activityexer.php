@@ -43,14 +43,14 @@
 
         <div class="container act-page" align="center">
             <h1>Activities</h1>
+            <form id="activityExer" method="post">
             <div class="col-md-4 workout1">
                 <img src="../application/views/img/weightlifting.png">
                 <h3 class="duration">Duration:</h3>
                 <br>
-                <input class="work" type="text" name="distance" id="distance" placeholder="Exercise duration in seconds">
+                <input class="work" type="text" name="duration" id="distance" placeholder="Exercise duration in seconds">
             </div>
             <div class="col-md-4 workout2" align="center">
-                <form id="activityRun" method="post">
                 <h3 class="start">Choose your activity</h3>
                     <div class="row">
                         <input type="radio" name="activityrun" id="pushUp" value="pushUp">
@@ -81,16 +81,14 @@
                         <label for="aero" class="aero"><span>Aerobics</span></label>
                     </div>
                     <br>
-                    
+                    <div class="col-md-12" align="center">
+                        <input type="submit" id="submitted" name="submitted" value="Submit">
+                    </div>  
                 </form>
             </div>
             <div class="col-md-4" align="center">
-                <h4 class="burnCal">16.0</h4>
+                <h4 class="burnCal" id="output">0.0</h4>
                 <h4 class="desc">Total Burn Calories</h4>
-            </div>
-
-            <div class="col-md-12" align="center">
-                <input type="submit" id="submitted" name="submitted" value="Submit">
             </div>
 
         </div>
@@ -100,7 +98,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
     <script src="../application/views/js/main.js"></script>
-
+    <script src="../application/views/js/activitytwo-api.js"></script>
 
     </body>
 </html>

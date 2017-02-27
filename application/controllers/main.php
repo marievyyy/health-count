@@ -445,21 +445,16 @@ class main extends CI_Controller {
 			//this also check  for existing activities today and tally the duration.
 			if (is_array($resultAct) == true) {
 
-				$sum = strtotime('00:00:00');
 				$sum2=0;
 				//parse the data activites for today and sum the total.
 				foreach ($resultAct as $i) {
 					foreach ($i as $key => $item) {
-						$sum1=strtotime($item)-$sum;
-						$sum2 = $sum2+$sum1;
+						$sum2 = $sum2+$item;
 					}
 				}	
-				$sum3=$sum+$sum2;
-				$str_time = date("H:i:s",$sum3);
-				//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
-				sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-				//convet time to total minutes
-				$time_min = $hours * 60 + $minutes;
+
+				//total minutes
+				$time_min = $sum2;
 
 				//get total total needed water with parameters of weight and activites round it to two.
 				$amountWater = $_SESSION["weight"] * 0.5;
@@ -573,21 +568,16 @@ class main extends CI_Controller {
 		//this update if there is an additional activities for today.
 		if (is_array($resultAct) == true) {
 
-			$sum = strtotime('00:00:00');
 			$sum2=0;
 			$newDuration=0;
 			$actDuration_new=0;
 			foreach ($result as $i) {
 				foreach ($i as $key => $item) {
-					$sum1=strtotime($item)-$sum;
-					$sum2 = $sum2+$sum1;
+					$sum2 = $sum2+$item;
 				}
 			}	
-			$sum3=$sum+$sum2;
-			$str_time = date("H:i:s",$sum3);
 			//$str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $str_time);
-			sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-			$time_min = $hours * 60 + $minutes;
+			$time_min = $sum2;
 
 			//get the actual duration for today's activitiy
 			if ($time_min = $resultWaterAPI["actDuration_total"]) {
@@ -617,7 +607,7 @@ class main extends CI_Controller {
 		}else{
 			//if there is no activities use this
 			$amountWater = $resultWaterAPI["water_amount"];
-			$actDuration_new = '00:00:00';
+			$actDuration_new = 0;
 
 			$resultCal = calculateWaterVal($addedglassVal, $oldglassVal, $amountWater, $actDuration_new, $urineColor);
 			
@@ -908,37 +898,40 @@ class main extends CI_Controller {
 	public function activitySpeed(){
 		$actType = $this->input->post('activityrun');
 		$actDis = $this->input->post('distance');
-		$actTime = $this->input->post('timedis');
+		$actDuration = $this->input->post('timedis');
 
 		$metVal = 0;
 		$speed;
 		$speedWalk;
 		$speedCycling;
 
-		if ($actTime > 1 && $actTime < 440) {
+		if ($actDuration >= 1 && $actDuration <= 440) {
 			
 			if ($actType == "jog") {
 				$metVal = 8.0;
 				
 				$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-				$burnedCalTotal = $burnedCalMin * $actTime;
+				$burnedCalTotal = $burnedCalMin * $actDuration;
 
 				$params = array(
 					'patient_id' => $_SESSION["patient_id"], 
 					'activity_name' => $actType,
-					'act_duration' => $actTime,
+					'act_duration' => $actDuration,
 					'calories_burn' => $burnedCalTotal
 					);
 
 				$this->functions->insertActivityRun($params);
 				echo json_encode($params);
 			}
+			else if (empty($actType) == true) {
+				echo json_encode("No Activity");
+			}
 			else{
-					$speed = round($actDis * 1.609344, 1);
-					$speedWalk = round(37.28227153424 / $actDis, 2);
-					$speedCycling = round(37.28227153424 / $actDis, 2);
+				$speed = round($actDis * 1.609344, 1);
+				$speedWalk = round(37.28227153424 / $actDis, 2);
+				$speedCycling = round(37.28227153424 / $actDis, 2);
 
-					if ($speed >= 4.3 && $speed <= 15 && $actType == "run") {
+				if ($speed >= 4.3 && $speed <= 15 && $actType == "run") {
 
 					if ($actType == "run" && $speed >= 4.3 && $speed < 4.6) {
 						$metVal = 23.0;
@@ -986,22 +979,22 @@ class main extends CI_Controller {
 						$metVal = 6.0;
 					}
 					else{
-
+						$metVal = 0;
 					}
 					
 
-					$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-					$burnedCalTotal = $burnedCalMin * $actTime;
+					$actHours = $actDuration / 60;
+					$burnedCal = round($metVal * $_SESSION["weight"] * $actHours, 2);
 
 					$params = array(
 						'patient_id' => $_SESSION["patient_id"], 
 						'activity_name' => $actType,
-						'act_duration' => $actTime,
-						'calories_burn' => $burnedCalTotal
+						'act_duration' => $actDuration,
+						'calories_burn' => $burnedCal
 						);
+					$this->functions->insertActivity($params);
 
-					$this->functions->insertActivityRun($params);
-					echo json_encode($params);
+					echo json_encode($burnedCal);
 				}
 
 				else if ($speedWalk >= 7.45 && $speedWalk < 13.31 && $actType == "walk") {
@@ -1015,22 +1008,22 @@ class main extends CI_Controller {
 						$metVal = 8.0;
 					}
 					else{
-
+						$metVal = 0;
 					}
 					
 
-					$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-					$burnedCalTotal = $burnedCalMin * $actTime;
+					$actHours = $actDuration / 60;
+					$burnedCal = round($metVal * $_SESSION["weight"] * $actHours, 2);
 
 					$params = array(
 						'patient_id' => $_SESSION["patient_id"], 
 						'activity_name' => $actType,
-						'act_duration' => $actTime,
-						'calories_burn' => $burnedCalTotal
+						'act_duration' => $actDuration,
+						'calories_burn' => $burnedCal
 						);
+					$this->functions->insertActivity($params);
 
-					$this->functions->insertActivityRun($params);
-					echo json_encode($params);
+					echo json_encode($burnedCal);
 				}
 
 				else if ($speedCycling >= 5.5 && $speedCycling <= 20 && $actType == "cycling") {
@@ -1054,18 +1047,18 @@ class main extends CI_Controller {
 					}
 					
 
-					$burnedCalMin = $metVal * 3.5 * $_SESSION["weight"] / 200;
-					$burnedCalTotal = $burnedCalMin * $actTime;
+					$actHours = $actDuration / 60;
+					$burnedCal = round($metVal * $_SESSION["weight"] * $actHours, 2);
 
 					$params = array(
 						'patient_id' => $_SESSION["patient_id"], 
 						'activity_name' => $actType,
-						'act_duration' => $actTime,
-						'calories_burn' => $burnedCalTotal
+						'act_duration' => $actDuration,
+						'calories_burn' => $burnedCal
 						);
+					$this->functions->insertActivity($params);
 
-					$this->functions->insertActivityRun($params);
-					echo json_encode($params);
+					echo json_encode($burnedCal);
 				}
 				else{
 					echo json_encode("Invalid Speed");	
@@ -1075,6 +1068,71 @@ class main extends CI_Controller {
 
 		}else{
 			echo json_encode("Invalid Time Duration");
+		}
+
+	}
+
+	public function activityExcercise(){
+		$actType = $this->input->post('activityrun');
+		$actDuration = $this->input->post('duration');
+		$metVal = 0;
+
+		if (empty($actType) != true && $actType != "" && $actDuration >= 1 && $actDuration <= 440) {
+
+			switch ($actType) {
+				case "pushUp":
+					$metVal = 3.8;
+					break;
+				case 'sitUp':
+					$metVal = 2.8;
+					break;
+				case 'pullUp':
+					$metVal = 3.8;
+					break;
+				case 'jumping':
+					$metVal = 3.8;
+					break;
+				case 'vigor':
+					$metVal = 8.0;
+					break;
+				case 'calisthenics':
+					$metVal = 3.5;
+					break;
+				case 'building':
+					$metVal = 3.0;
+					break;
+				case 'home':
+					$metVal = 3.8;
+					break;
+				case 'aero':
+					$metVal = 3.8;
+					break;
+				default:
+					$metVal = 0;
+					break;
+			}
+
+			$actHours = $actDuration / 60;
+			$burnedCal = round($metVal * $_SESSION["weight"] * $actHours, 2);
+
+			$params = array(
+				'patient_id' => $_SESSION["patient_id"], 
+				'activity_name' => $actType,
+				'act_duration' => $actDuration,
+				'calories_burn' => $burnedCal
+				);
+			$this->functions->insertActivity($params);
+
+			echo json_encode($burnedCal);
+		}
+		else if(empty($actType) == true || $actType == ""){
+			echo json_encode("Required Activity Type");
+		}
+		else if($actDuration < 1 && $actDuration > 440){
+			echo json_encode("Invalid Duration");			
+		}
+		else{
+			echo json_encode("Invalid Input");
 		}
 
 	}

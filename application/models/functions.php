@@ -237,7 +237,7 @@ class functions extends CI_Model {
 		$this->db->update('caffeine_status', $fields);
 	}
 
-	public function insertActivityRun($params){
+	public function insertActivity($params){
 		$fields = array(
 			'activity_id' => $this->guid(),
 			'patient_id' => $params['patient_id'],
