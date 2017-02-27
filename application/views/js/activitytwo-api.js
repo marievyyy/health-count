@@ -18,7 +18,7 @@ $(document).ready(function (){
 					$("#output").html("").text('Invalid Input');
 				}
 				else{
-					$("#output").html("").text(data);
+					$("#output").html("").text(data.toFixed(1));
 				}
 			}
 		});

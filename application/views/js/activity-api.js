@@ -45,7 +45,7 @@ $(document).ready(function(){
 					$('#output').html("").text("No Activity");
 				}
 				else{
-					$('#output').html("").text(data);
+					$('#output').html("").text(data.toFixed(1));
 				}
 			}
 		});
