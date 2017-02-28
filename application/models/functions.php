@@ -263,8 +263,18 @@ class functions extends CI_Model {
     	}
 	}
 	
-	public function insertSleep(){
+	public function insertSleep($params){
+		$fields = array(
+			'patient_id' => $params['patient_id'],
+			'calories_burn' => $params['burnCal'],
+			'wake_up' => $params['endSleep'],
+			'sleep_time' => $params['startSleep'],
+			'sleep_duration' => $params['sleepTotal'],
+			'sleep_level' => $params['sleepDesc'],
+			'date_recorded' => date("Y-m-d")
+		);
 
+		$this->db->insert('sleep', $fields);
 	}
 	public function insertFoodDetails($foodDetails){
 		$fields = array(

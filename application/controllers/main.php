@@ -1173,28 +1173,122 @@ class main extends CI_Controller {
 	}
 
 	public function sleepAPI(){
-		$startSleep = $this->input->post('startSleep');
-		$endSleep = $this->input->post('endSleep');
+		$sleepData = $this->functions->getTodaySleep($_SESSION["patient_id"]);
+		$sleepExist = "Already Sleep";
 
-		$totalSleep = abs($startSleep-$endSleep);
+		if ($sleepData == "no sleep record") {
 
-		$sleepDesc1 = "";
-		$sleepMET = 0.92;
-		$totalburn = $sleepMET * $_SESSION["weight"] * $totalSleep;
+			$startSleep = $this->input->post('startSleep');
+			$endSleep = $this->input->post('endSleep');
+			$startSleepArr = explode(":", $startSleep);
+			$endSleepArr = explode(":", $endSleep);
+			$totalSleep = array();
+			$sleepDuration = 0;
 
-		if ($_SESSION["age"] >= 6 && $_SESSION["age"] <= 13 && $totalSleep >= 9 && $totalSleep <= 11) {
-			# code...
+			if ($startSleepArr[0] > $endSleepArr[0] && $startSleepArr[0] > 12) {
+				$x = $startSleepArr[0] - 12;
+				$j = 12 - $x;
+
+				$totalSleep[0] = $endSleepArr[0] + $j;
+				if ($startSleepArr[1] > $endSleepArr[1]) {
+					$minSleep = abs($startSleepArr[1] - $endSleepArr[1]);
+					$totalSleep[1] = $minSleep / 60;
+					$sleepDuration = round($totalSleep[0] - $totalSleep[1],2);
+				}
+				else{
+					$minSleep = abs($startSleepArr[1] - $endSleepArr[1]);
+					$totalSleep[1] = $minSleep / 60;
+					$sleepDuration = round($totalSleep[0] + $totalSleep[1],2);
+				}
+
+			}
+			else if ($startSleepArr[0] > $endSleepArr[0] && $startSleepArr[0] < 12) {
+				$x = 24 - $startSleep;
+				$totalSleep[0] = $endSleepArr[0] + $x;
+				if ($startSleepArr[1] > $endSleepArr[1]) {
+					$minSleep = abs($startSleepArr[1] - $endSleepArr[1]);
+					$totalSleep[1] = $minSleep / 60;
+					$sleepDuration = round($totalSleep[0] - $totalSleep[1],2);
+				}
+				else{
+					$minSleep = abs($startSleepArr[1] - $endSleepArr[1]);
+					$totalSleep[1] = $minSleep / 60;
+					$sleepDuration = round($totalSleep[0] + $totalSleep[1],2);
+				}
+			}
+			else{
+				$totalSleep[0] = abs($startSleepArr[0] - $endSleepArr[0]);
+				if ($startSleepArr[1] > $endSleepArr[1]) {
+					$minSleep = abs($startSleepArr[1] - $endSleepArr[1]);
+					$totalSleep[1] = $minSleep / 60;
+					$sleepDuration = round($totalSleep[0] - $totalSleep[1],2);
+				}
+				else{
+					$minSleep = abs($startSleepArr[1] - $endSleepArr[1]);
+					$totalSleep[1] = $minSleep / 60;
+					$sleepDuration = round($totalSleep[0] + $totalSleep[1],2);
+				}
+			}
+
+			$sleepDesc = "";
+			$desc1 = "Normal";
+			$desc2 = "Over Sleep";
+			$desc3 = "Sleep Deprived";
+			$sleepMET = 0.92;
+
+			$totalburn = $sleepMET * $_SESSION["weight"] * $sleepDuration;
+
+			//normal sleep
+			if ($_SESSION["age"] >= 6 && $_SESSION["age"] <= 13 && $sleepDuration >= 9 && $sleepDuration <= 11) {
+				
+				$sleepDesc = $desc1;
+			}
+			else if ($_SESSION["age"] >= 14 && $_SESSION["age"] <= 17 && $sleepDuration >= 8 && $sleepDuration <= 10) {
+				
+				$sleepDesc = $desc1;
+			}
+			else if ($_SESSION["age"] >= 18 && $_SESSION["age"] <= 64 && $sleepDuration >= 7 && $sleepDuration <= 9) {
+				
+				$sleepDesc = $desc1;
+			}
+			else if ($_SESSION["age"] >= 65 && $sleepDuration >= 7 && $sleepDuration <= 8) {
+				
+				$sleepDesc = $desc1;
+			}
+			//over sleep
+			else if ($_SESSION["age"] >= 6 && $_SESSION["age"] <= 13 && $sleepDuration >= 12) {
+				
+				$sleepDesc = $desc2;
+			}
+			else if ($_SESSION["age"] >= 14 && $_SESSION["age"] <= 17 && $sleepDuration >= 11) {
+				
+				$sleepDesc = $desc2;
+			}
+			else if ($_SESSION["age"] >= 18 && $_SESSION["age"] <= 64 && $sleepDuration >= 10) {
+				
+				$sleepDesc = $desc2;
+			}
+			else if ($_SESSION["age"] >= 65 && $sleepDuration >= 9) {
+				
+				$sleepDesc = $desc2;
+			}
+			else{
+				$sleepDesc = $desc3;
+			}
+			$params = array(
+				'patient_id' => $_SESSION["patient_id"],
+				'sleepTotal' => $sleepDuration,
+				'sleepDesc' => $sleepDesc,
+				'startSleep' => $startSleep,
+				'endSleep' => $endSleep,
+				'burnCal' => $totalburn
+				);
+			$this->functions->insertSleep($params);
+			echo json_encode($params);
 		}
-		else if ($_SESSION["age"] >= 14 && $_SESSION["age"] <= 17 && $totalSleep >= 8 && $totalSleep <= 10) {
-			# code...
+		else{
+			echo json_encode("Already Slept");
 		}
-		else if ($_SESSION["age"] >= 18 && $_SESSION["age"] <= 64 && $totalSleep >= 7 && $totalSleep <= 9) {
-			# code...
-		}
-		else if ($_SESSION["age"] >= 65 && $totalSleep >= 7 && $totalSleep <= 8) {
-			# code...
-		}
-		echo json_encode($totalSleep);
 
 	}
 
