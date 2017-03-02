@@ -155,19 +155,20 @@ label {
 }
 
 /* PAGINATION */
-.page a {
+.page button {
   background-color: #D3D6DB;
   padding: 5px 10px;
   color: #333;
   font-family: 'Oswald';
   font-weight: 300;
   font-size: 15px;
-  margin: 0 2px;
+  margin: 15px 2px;
+  outline: none;
+  border: 0;
 }
 
-.page a:hover,
-.page a:focus {
-  text-decoration: none;
+.page button:hover,
+.page button:focus {
   background-color: #B74242;
   color: #fff;
 }
