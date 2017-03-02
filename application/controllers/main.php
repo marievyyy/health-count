@@ -1319,7 +1319,13 @@ class main extends CI_Controller {
 		
 	}
 
-	public function getPopularFood(){
+	public function tallyFood(){
+		$resultFood = $this->functions->getAllFood();
+
+		echo json_encode($resultFood.length);
+	}
+
+	public function getPaginateFood(){
 		$resultFood = $this->functions->getAllFood();
 		echo json_encode($resultFood);
 	}

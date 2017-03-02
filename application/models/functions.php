@@ -297,7 +297,20 @@ class functions extends CI_Model {
 
 	public function getAllFood(){
 		$this->db->order_by("tally_submit", "asc");
-		//$this->db->limit(5, $start);
+		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
+	public function getPaginateFood($start){
+		$this->db->order_by("tally_submit", "asc");
+		$this->db->limit(5, $start);
 		$query = $this->db->get('food');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
