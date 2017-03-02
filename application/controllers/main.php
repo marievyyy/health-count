@@ -27,6 +27,9 @@ class main extends CI_Controller {
 		}
 	}
 
+	public function newfood(){
+		$this->load->view('foodCMS');
+	}
 	public function logout(){
 		if (isset($_SESSION["patient_id"]) == true && !empty($_SESSION["patient_id"]) == true) {
 			session_unset();
@@ -1292,8 +1295,15 @@ class main extends CI_Controller {
 
 	}
 
-	public function foodAdd($fname, $carbs, $fats, $protein, $calories, $description, $category_name){
-		
+	public function foodAdd(){
+		$fname = $this->input->post("foodname");
+		$carbs = $this->input->post("carbs");
+		$fats = $this->input->post("fats");
+		$protein = $this->input->post("protein");
+		$calories = $this->input->post("calories");
+		$description = $this->input->post("description");
+		$categoryname = $this->input->post("categoryname");
+
 		$foodDetails = array(
 				"food_name" => $fname,
 				"carbs" => $carbs,
@@ -1301,14 +1311,26 @@ class main extends CI_Controller {
 				"protein" => $protein,
 				"calories" => $calories,
 				"description" => $description,
-				"category_name" => $category_name
+				"category_name" => $categoryname
 			);
 
 		$result = $this->functions->insertFoodDetails($foodDetails);
 
-		echo "\n Success \n";
-		var_dump($result);
+		
 	}
+
+	public function getPopularFood(){
+		$resultFood = $this->functions->getAllFood();
+		echo json_encode($resultFood);
+	}
+
+	public function getFoodList(){
+		$fkeyword = $this->input->post('fkeyword');
+		$fcat = $this->input->post('fcat');
+
+		echo json_encode($fkeyword);
+	}
+
 
 	public function testUpload(){
 		$imageUpload = $this->input->post("formdata");
