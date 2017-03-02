@@ -88,14 +88,8 @@
                         </div>
 
                         <div class="page">
-                            <div class="row">
-                                <button class="next">< Previous</button>
-                                <button class="pagenum">1</button>
-                                <button class="pagenum">2</button>
-                                <button class="pagenum">3</button>
-                                <button class="pagenum">4</button>
-                                <button class="pagenum">5</button>
-                                <button class="next">Next ></button>
+                            <div class="row" id="pageNum">
+    
                             </div>
                         </div>
                     </div>

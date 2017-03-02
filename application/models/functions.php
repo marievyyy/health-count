@@ -322,9 +322,44 @@ class functions extends CI_Model {
     	}
 	}
 
-	public function searchFoodKey(){
-		$this->db->like('name',$keyword);
- 		$this->db->like('category',$keyword2);
+	public function searchFoodKey($keyword, $fcat){
+		$this->db->like('food_name',$keyword);
+ 		$this->db->like('category_name',$fcat);
+ 		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
+	public function searchFoodWord($keyword){
+		$this->db->like('food_name',$keyword);
+ 		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
+	public function searchFoodCat($fcat){
+ 		$this->db->where('category_name',$fcat);
+ 		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
 	}
 }
 

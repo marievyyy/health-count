@@ -1,95 +1,73 @@
 $(document).ready(function (){
 	
 	$.ajax({
-			url: 'http://localhost/health/main/getPopularfood',
+			url: 'http://localhost/health/main/tallyFood',
 			type: 'GET',
 			dataType: 'json',
-			beforeSend : function(){
-				console.log("Pls wait...");
-				$("#fooditem").html("").text("Loading...");
-			},
+			async: false,
 			success: function(data){
-				setTimeout(function() {
-		          delayPopularFood(data);
-		        }, 1000);
+				console.log(data);
+				$('#pageNum').html("");
+
+				if (data > 1) {
+					$("#pageNum").prepend('<input type="button" class="next" value="< Previous">');
+					for (var i = 1; i <= data; i++) {
+						$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+i+'" value="'+i+'">');
+					}
+					$("#pageNum").append('<input type="button" class="next" value="Next >">');
+				}else{
+					console.log('less than 5 rows');
+				}
 			},
 			error: function(){
 				console.log('failed');
 			}
 		});
-	
-	function delayPopularFood(data){
-		$('#fooditem').html("");
-		var numPages = Math.ceil(data.length / 5);
-		var i = 0;
-		var j = 0;
-		var k = 0;
-		var y = 0;
 
-		if (numPages <= 1) {
-			for (i = 0; i < data.length; i++) {
-				console.log(data[i].food_name);
-				$('#fooditem').append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'></label></li>");
-				$('#food-'+i+'').text(data[i].food_name);
+	$.ajax({
+			url: 'http://localhost/health/main/firstFood',
+			type: 'GET',
+			dataType: 'json',
+			async: false,
+			success: function(data){
+				console.log(data);
+				$("#fooditem").html("");
+				for (var i = 0; i < data.length && i < 5; i++) {
+					$("#fooditem").append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+				}
+			},
+			error: function(){
+				console.log('failed');
 			}
-		}else{
-			for (i = 0; i < 5; i++) {
-				console.log(data[i].food_name);
-				$('#fooditem').append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"' ></label></li>");
-				$('#food-'+i+'').text(data[i].food_name);
-			}
-			$('#pages').prepend('<a class="prev" id="page-prev" href="#">< Previous</a>');
-			for (j = 1; j <= numPages; j++) {
-				$('#pages').append('<a class="" id="page-'+j+'" href="#">'+j+'</a>');
-				$('#page-'+j+'').click(function() {
-					$('#fooditem').html('');
+		});
 
-					for (k = y-5; k < y; k++) {
-
-						console.log(data[k].food_name);
-						$('#fooditem').append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+k+"' ></label></li>");
-						$('#food-'+k+'').text(data[k].food_name);
-					}
-				});
-				y = y+5;
+	$("input:button").click(function() {
+		var pageVal = $(this).val();
+		console.log(pageVal);
+		$.ajax({
+			url: 'http://localhost/health/main/paginateFood',
+			type: 'POST',
+			dataType: 'json',
+			async: false,
+			data: {pageVal: pageVal},
+			success: function(data){
+				console.log(data);
+				$("#fooditem").html("");
+				for (var i = 0; i < data.length; i++) {
+					$("#fooditem").append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+				}
+			},
+			error: function(){
+				console.log('failed');
 			}
-			$('#pages').append('<a class="next" id="page-next" href="#">Next ></a>');
-			$('#page-1').addClass('active').attr("disabled",true);
-		}
-	}
+		});
+
+	});
 
 	$("#foodlist").keyup(function(e) {
 		e.preventDefault();
 		var fkeyword = $("input[name=foodlist]").val();
-		var fcat = $("input[type=foodcat]:checked").val();
-
-		$.ajax({
-			url: 'http://localhost/health/main/getFoodList',
-			type: 'POST',
-			dataType: 'json',
-			data: {fkeyword: fkeyword},
-			beforeSend : function(){
-				console.log("Pls wait...");
-				$("#output").html("").text("Pls wait");
-			},
-			success: function(data){
-				setTimeout(function() {
-		          delaySuccess(data);
-		        }, 1000);
-				
-			}
-		});
-	});
-
-	function delaySuccess(data) {
-		console.log(data);
-				$("#output").html("").text("Done");
-	}
-
-	$("input[name=foodcat]").change(function(e) {
-		e.preventDefault();
-		var fkeyword = $("input[name=foodlist]").val();
-		var fcat = $("input[type=foodcat]:checked").val();
+		var fcat = $("input[name=foodcat]:checked").val();
 
 		$.ajax({
 			url: 'http://localhost/health/main/getFoodList',
@@ -101,7 +79,34 @@ $(document).ready(function (){
 			},
 			beforeSend : function(){
 				console.log("Pls wait...");
-				$("#output").html("").text("Pls wait");
+				$("#fooditem").html("").text("Pls wait");
+			},
+			success: function(data){
+				setTimeout(function() {
+		          delaySuccess(data);
+		        }, 1000);
+				
+			}
+		});
+	});
+
+	
+	$("input[name=foodcat]").change(function(e) {
+		e.preventDefault();
+		var fkeyword = $("input[name=foodlist]").val();
+		var fcat = $("input[name=foodcat]:checked").val();
+
+		$.ajax({
+			url: 'http://localhost/health/main/getFoodList',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				fkeyword: fkeyword,
+				fcat: fcat
+			},
+			beforeSend : function(){
+				console.log("Pls wait...");
+				$("#fooditem").html("").text("Pls wait");
 			},
 			success: function(data){
 				setTimeout(function() {
@@ -113,6 +118,45 @@ $(document).ready(function (){
 
 	});
 	
+	function delaySuccess(data) {
+		var fkeyword = $("input[name=foodlist]").val();
+		var fcat = $("input[name=foodcat]:checked").val();
+
+		$.ajax({
+			url: 'http://localhost/health/main/foodListPage',
+			type: 'POST',
+			dataType: 'json',
+			async: false,
+			data:{
+				fkeyword:fkeyword,
+				fcat:fcat
+			},
+			success: function(data){
+				console.log(data);
+				$('#pageNum').html("");
+
+				if (data > 1) {
+					$("#pageNum").prepend('<input type="button" class="next" value="< Previous">');
+					for (var i = 1; i <= data; i++) {
+						$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+i+'" value="'+i+'">');
+					}
+					$("#pageNum").append('<input type="button" class="next" value="Next >">');
+				}else{
+					console.log('less than 5 rows');
+				}
+			},
+			error: function(){
+				console.log('failed');
+			}
+		});
+
+		$("#fooditem").html("");
+		for (var i = 0; i < data.length && i < 5; i++) {
+			$("#fooditem").append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+		}
+	}
+
+
 	$("#formfood").submit(function(e) {
 		e.preventDefault();
 		$.ajax({

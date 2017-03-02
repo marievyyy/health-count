@@ -1321,20 +1321,63 @@ class main extends CI_Controller {
 
 	public function tallyFood(){
 		$resultFood = $this->functions->getAllFood();
-
-		echo json_encode($resultFood.length);
+		$numPage = ceil(sizeof($resultFood) / 5);
+		echo json_encode($numPage);
 	}
 
-	public function getPaginateFood(){
+	public function firstFood(){
 		$resultFood = $this->functions->getAllFood();
 		echo json_encode($resultFood);
+	}
+
+	public function paginateFood(){
+		$pageVal = $this->input->post("pageVal");
+
+		$resultFood = $this->functions->getAllFood();
+		$foodDataSize = sizeof($resultFood);
+		$start = ($pageVal * 5) - 5;
+		$resultFood = $this->functions->getPaginateFood($start);
+		echo json_encode($resultFood);
+	}
+
+	public function foodListPage(){
+		$fkeyword = $this->input->post('fkeyword');
+		$fcat = $this->input->post('fcat');
+
+		if (empty($fcat) == true || $fcat == "") {
+			$resultFood = $this->functions->searchFoodWord($fkeyword);
+			$numPage = ceil(sizeof($resultFood) / 5);
+			echo json_encode($numPage);
+		}
+		else if (empty($fkeyword) == true || $fkeyword == "") {
+			$resultFood = $this->functions->searchFoodCat($fcat);
+			$numPage = ceil(sizeof($resultFood) / 5);
+			echo json_encode($numPage);
+		}
+		else{
+			$resultFood = $this->functions->searchFoodKey($fkeyword, $fcat);
+			echo sizeof($resultFood);
+			$numPage = ceil(sizeof($resultFood) / 5);
+			echo json_encode($numPage);
+		}
 	}
 
 	public function getFoodList(){
 		$fkeyword = $this->input->post('fkeyword');
 		$fcat = $this->input->post('fcat');
 
-		echo json_encode($fkeyword);
+		if (empty($fcat) == true || $fcat == "") {
+			$result = $this->functions->searchFoodWord($fkeyword);
+			echo json_encode($result);
+		}
+		else if (empty($fkeyword) == true || $fkeyword == "") {
+			$result = $this->functions->searchFoodCat($fcat);
+			echo json_encode($result);
+		}
+		else{
+			$result = $this->functions->searchFoodKey($fkeyword, $fcat);
+			echo json_encode($result);
+		}
 	}
 
 
