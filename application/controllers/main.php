@@ -1346,20 +1346,16 @@ class main extends CI_Controller {
 
 		if (empty($fcat) == true || $fcat == "") {
 			$resultFood = $this->functions->searchFoodWord($fkeyword);
-			$numPage = ceil(sizeof($resultFood) / 5);
-			echo json_encode($numPage);
 		}
 		else if (empty($fkeyword) == true || $fkeyword == "") {
 			$resultFood = $this->functions->searchFoodCat($fcat);
-			$numPage = ceil(sizeof($resultFood) / 5);
-			echo json_encode($numPage);
 		}
 		else{
 			$resultFood = $this->functions->searchFoodKey($fkeyword, $fcat);
-			echo sizeof($resultFood);
-			$numPage = ceil(sizeof($resultFood) / 5);
-			echo json_encode($numPage);
+
 		}
+		$numPage = ceil(sizeof($resultFood) / 5);
+		echo json_encode($numPage);
 	}
 
 	public function getFoodList(){
@@ -1368,18 +1364,88 @@ class main extends CI_Controller {
 
 		if (empty($fcat) == true || $fcat == "") {
 			$result = $this->functions->searchFoodWord($fkeyword);
-			echo json_encode($result);
 		}
 		else if (empty($fkeyword) == true || $fkeyword == "") {
 			$result = $this->functions->searchFoodCat($fcat);
-			echo json_encode($result);
 		}
 		else{
 			$result = $this->functions->searchFoodKey($fkeyword, $fcat);
-			echo json_encode($result);
 		}
+		echo json_encode($result);
 	}
 
+	public function getFoodCal(){
+		$checkVal = $this->input->post('checkVal');
+		$errorNoVal = "no value";
+		$resultDetails = array();
+		$i = 0;
+		$totalcalories = 0;
+		$totalprotein = 0;
+		$totalfats = 0;
+		$totalcarbs = 0;
+		$dataSecond[0] = 0;
+		$dataSecond[1] = 0;
+		$dataSecond[2] = 0;
+		$dataSecond[3] = 0;
+
+		if (empty($checkVal) == true) {
+			echo json_encode($errorNoVal);
+		}
+		else{
+			foreach ($checkVal as $foodname) {
+				$resultDetails[$i]= $this->functions->searchFoodDetails($foodname);
+				$i++;
+			}
+			
+
+			foreach ($resultDetails as $value) {
+				foreach ($value as $nextval){
+					//var_dump($nextval);
+						$totalcalories = $nextval["calories"] + $dataSecond[0];
+						$dataSecond[0] = $nextval["calories"] ;
+						
+						$totalcarbs = $nextval["carbs"] + $dataSecond[1];
+						$dataSecond[1] = $nextval["carbs"];
+						
+						$totalprotein = $nextval["protein"] + $dataSecond[2];
+						$dataSecond[2] = $nextval["protein"];
+						
+						$totalfats = $nextval["fats"] + $dataSecond[3];
+						$dataSecond[3] = $nextval["fats"];
+
+						$foodDetails = array(
+								'food_id'=> $nextval["food_id"],
+								'patient_id'=> $_SESSION["patient_id"],
+								'total_fats'=> $totalfats,
+								'total_protein'=> $totalprotein,
+								'total_carbs'=> $totalcarbs,
+								'total_calories'=> $totalcalories
+							);
+						$this->functions->insertFoodNutrients($foodDetails);
+					}
+				}
+				echo json_encode("Success");
+			}
+	}
+
+	public function getTotalCal(){
+
+		$todayTotal = 0;
+		$sum2 = 0;
+
+		$todayCal = $this->functions->getFoodNutrients($_SESSION["patient_id"]);
+
+		if (empty($todayCal) != true) {
+			foreach ($todayCal as $valuecal) {
+				$todayTotal = $valuecal["total_calories"] + $sum2;
+				$sum2 = $todayTotal;
+			}
+			echo json_encode($todayTotal);
+		}
+		else{
+			echo json_encode("0");
+		}
+	}
 
 	public function testUpload(){
 		$imageUpload = $this->input->post("formdata");

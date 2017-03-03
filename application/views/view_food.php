@@ -43,7 +43,7 @@
 
         <div class="container food-page">
             <h1>Food</h1>
-            <h4><span>0 kcal </span>/2150 daily calories</h4>
+            <h4><span id="totalcal">0 </span><span> cal</span></span>/2150 daily calories</h4>
 
             <div class="col-md-6 foodChain">
                 <form id="foodsearch" method="post">
@@ -52,7 +52,7 @@
                         <input type="radio" name="foodcat" id="jollibee" value="jollibee">
                         <label for="jollibee" class="jollibee"><span>Jollibee</span></label>
 
-                        <input type="radio" name="foodcat" id="mcdo" value="mcdo">
+                        <input type="radio" name="foodcat" id="mcdo" value="mcdonalds">
                         <label for="mcdo" class="mcdo"><span>McDonalds</span></label>
 
                         <input type="radio" name="foodcat" id="kfc" value="kfc">

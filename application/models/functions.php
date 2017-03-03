@@ -361,6 +361,48 @@ class functions extends CI_Model {
         	return 'no food item';
     	}
 	}
+
+	public function searchFoodDetails($foodname){
+ 		$this->db->where('food_name',$foodname);
+ 		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
+	public function insertFoodNutrients($foodDetails){
+		$fields = array(
+			'food_id' => $foodDetails['food_id'],
+			'patient_id' => $foodDetails['patient_id'],
+			'total_fats' => $foodDetails['total_fats'],
+			'total_protein' => $foodDetails['total_protein'],
+			'total_carbs' => $foodDetails['total_carbs'],
+			'total_calories' => $foodDetails['total_calories'],
+			'time_recorded' => date("H:i:s"),
+			'date_recorded' => date("Y-m-d")
+		);
+
+		$this->db->insert('calories_intake', $fields);
+	}
+
+	public function getFoodNutrients($patient_id){
+		$this->db->where('patient_id',$patient_id);
+		$this->db->where('date_recorded',date('Y-m-d'));
+ 		$query = $this->db->get('calories_intake');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
 }
 
 /* End of file functions.php */

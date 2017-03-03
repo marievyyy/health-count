@@ -1,5 +1,7 @@
 $(document).ready(function (){
 	
+	var checkVal = [];
+
 	$.ajax({
 			url: 'http://localhost/health/main/tallyFood',
 			type: 'GET',
@@ -32,8 +34,13 @@ $(document).ready(function (){
 			success: function(data){
 				console.log(data);
 				$("#fooditem").html("");
-				for (var i = 0; i < data.length && i < 5; i++) {
-					$("#fooditem").append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+				if (data == "no food item" || data == false) {
+					$("#fooditem").append("<li><label for='check-1' id='food-"+i+"'>"+data+"</label></li>");
+				}else{
+					for (var i = 0; i < data.length && i < 5; i++) {
+					$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+					}
+					disableInput();
 				}
 			},
 			error: function(){
@@ -41,26 +48,43 @@ $(document).ready(function (){
 			}
 		});
 
+	$.ajax({
+		url: 'http://localhost/health/main/getTotalCal',
+		type: 'GET',
+		dataType: 'json',
+		async: false,
+		success:function(data){
+			console.log(data);
+			$("#totalcal").text(data);
+		}
+	});
+
 	$("input:button").click(function() {
 		var pageVal = $(this).val();
 		console.log(pageVal);
-		$.ajax({
-			url: 'http://localhost/health/main/paginateFood',
-			type: 'POST',
-			dataType: 'json',
-			async: false,
-			data: {pageVal: pageVal},
-			success: function(data){
-				console.log(data);
-				$("#fooditem").html("");
-				for (var i = 0; i < data.length; i++) {
-					$("#fooditem").append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+
+			$.ajax({
+				url: 'http://localhost/health/main/paginateFood',
+				type: 'POST',
+				dataType: 'json',
+				async: false,
+				data: {pageVal: pageVal},
+				success: function(data){
+					console.log(data);
+					$("#fooditem").html("");
+					if (data == "no food item" || data == false) {
+						$("#fooditem").append("<label for='check-1' id='food-"+i+"'>"+data+"</label>");
+					}else{
+						for (var i = 0; i < data.length && i < 5; i++) {
+						$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+						}
+						disableInput();
+					}
+				},
+				error: function(){
+					console.log('failed');
 				}
-			},
-			error: function(){
-				console.log('failed');
-			}
-		});
+			});
 
 	});
 
@@ -78,6 +102,7 @@ $(document).ready(function (){
 				fcat: fcat
 			},
 			beforeSend : function(){
+				$('#pageNum').html("");
 				console.log("Pls wait...");
 				$("#fooditem").html("").text("Pls wait");
 			},
@@ -105,6 +130,7 @@ $(document).ready(function (){
 				fcat: fcat
 			},
 			beforeSend : function(){
+				$('#pageNum').html("");
 				console.log("Pls wait...");
 				$("#fooditem").html("").text("Pls wait");
 			},
@@ -133,7 +159,6 @@ $(document).ready(function (){
 			},
 			success: function(data){
 				console.log(data);
-				$('#pageNum').html("");
 
 				if (data > 1) {
 					$("#pageNum").prepend('<input type="button" class="next" value="< Previous">');
@@ -151,21 +176,61 @@ $(document).ready(function (){
 		});
 
 		$("#fooditem").html("");
-		for (var i = 0; i < data.length && i < 5; i++) {
-			$("#fooditem").append("<li><input type='checkbox' id='check-1'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+		if (data == "no food item" || data == false) {
+			$("#fooditem").append("<label for='check-1' id='food-"+i+"'>"+data+"</label>");
+		}else{
+			for (var i = 0; i < data.length && i < 5; i++) {
+			$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
+			}
+			disableInput();
 		}
+	}
+
+	function disableInput(){
+		 $("input:checkbox").change(function() {
+		 	 console.log("value");
+	         if($(this).is(":checked")) {
+	         	console.log(checkVal);
+	        	$("input:button").attr('disabled', true);
+	        	$("#foodlist").attr('disabled', true);
+	        	$("input:radio").attr('disabled', true);  
+	        }
+	        else{
+	        	console.log('no value');
+	        	$("input:button").attr('disabled', false);
+	        	$("#foodlist").attr('disabled', false);
+	        	$("input:radio").attr('disabled', false);
+	        }
+		 });
 	}
 
 
 	$("#formfood").submit(function(e) {
 		e.preventDefault();
-		$.ajax({
-			url: 'http://localhost/health/main/sleepAPI',
-			type: 'POST',
-			dataType: 'json',
-			data: $(this).serialize(),
-			success:function(data){
-				console.log(data);
+        $('input:checkbox:checked').each(function(i){
+          checkVal[i] = $(this).val();
+        });
+        $('input:button').attr('disabled', false);
+        $("#foodlist").attr('disabled', false);
+        $("input:radio").attr('disabled', false);
+        console.log(checkVal);     
+				$.ajax({
+					url: 'http://localhost/health/main/getFoodCal',
+					type: 'POST',
+					dataType: 'json',
+					data: {checkVal: checkVal},
+					success:function(data){
+						console.log(data);
+						$.ajax({
+							url: 'http://localhost/health/main/getTotalCal',
+							type: 'GET',
+							dataType: 'json',
+							async: false,
+							success:function(data){
+								console.log(data);
+								$("#totalcal").text(data);
+							}
+						});
 			}
 		});
 		
