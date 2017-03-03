@@ -155,7 +155,12 @@ label {
 }
 
 /* PAGINATION */
-.page button {
+.foodmenu input.next,
+.foodmenu input#page-1,
+.foodmenu input#page-2,
+.foodmenu input#page-3,
+.foodmenu input#page-4,
+.foodmenu input#page-5 {
   background-color: #D3D6DB;
   padding: 5px 10px;
   color: #333;
@@ -167,8 +172,8 @@ label {
   border: 0;
 }
 
-.page button:hover,
-.page button:focus {
+.foodmenu button:hover,
+.foodmenu button:focus {
   background-color: #B74242;
   color: #fff;
 }
@@ -184,6 +189,7 @@ input[type=submit] {
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-top: 10px;
 }
 
 input[type=submit]:hover {

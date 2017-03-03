@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="../application/views/css/meditation-menu.css">
         <link rel="stylesheet" href="../application/views/css/meditation.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+
     </head>
 
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -43,14 +44,40 @@
 
         <div class="container page" align="center">
             <h1>Meditation</h1>
-     
+            <h2>Whatever your personal situation right now, <br> meditation can help you to feel greater calm and inner peace. </h2>
         </div>
+        <div class="container">
+            <div class="column add-bottom">
+                <div id="mainwrap">
+                    <div id="nowPlay">
+                        <span class="left" id="npAction">Paused...</span>
+                        <span class="right" id="npTitle"></span>
+                    </div>
+                    <div id="audiowrap">
+                        <div id="audio0">
+                            <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!</audio>
+                        </div>
+                        <div id="tracks">
+                            <a id="btnPrev">&laquo;</a>
+                            <a id="btnNext">&raquo;</a>
+                        </div>
+                    </div>
+                    <div id="plwrap">
+                        <ul id="plList"></ul>
+                    </div>
+                </div>
+            </div>
+ 
+          </div>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="../application/views/js/jquery.min.js"</script>
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
+    <script src="../application/views/js/html5media.min.js"></script>
     <script src="../application/views/js/main.js"></script>
+     <script src="../application/views/js/media.js"></script>
 
 
     </body>
