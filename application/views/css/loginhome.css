@@ -94,7 +94,7 @@ body {
 .water h3.title {
   font-family: 'Oswald';
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
   color: #303E27;
 }
@@ -114,7 +114,7 @@ body {
 .coffee p  {
   font-family: 'Oswald';
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
   color: #303E27;
   margin-top: 8%;
