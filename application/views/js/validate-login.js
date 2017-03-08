@@ -15,7 +15,7 @@ $(document).ready(function(){
 					window.location = "http://localhost/health/main/home";
 				}else{
 					console.log("Invalid input");
-					$('#error').html("Invalid input");
+					$('#error').html("Incorrect Username and Password");
 				}
 			},
 			error: function(data){

@@ -14,7 +14,7 @@
 	<label>Category: </label><input type="text" name="categoryname"><br>
 	<input type="submit" name="submitted" value="Submit">
 </form>
-	<p id="output"></p>
+	<div id="output"></div>
 
 	<script src="../application/views/js/jquery.min.js"></script>
 	<script src="../application/views/js/foodAdd.js"></script>

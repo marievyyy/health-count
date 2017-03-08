@@ -285,6 +285,7 @@ class main extends CI_Controller {
 		//parameter validation value
 		$yyyyToday = $yyyy - 6;
 		$ageToday;
+		
 
 		//get total character inputed
 		$usernameLength = strlen($register['username']);
@@ -296,7 +297,7 @@ class main extends CI_Controller {
 		//username validation
 		if(preg_match("/\W/", $register["username"]) == false && $usernameLength >= 6 && $usernameLength <= 255){
 			//password validation
-			if (preg_match("/[\d\W]/", $register["password"]) == true && $register["password"] == $register["conpassword"] && $passwordLength >= 6 && $passwordLength <= 255) {
+			if (preg_match("/[\w\d\W]/", $register["password"]) == true && $register["password"] == $register["conpassword"] && $passwordLength >= 6 && $passwordLength <= 255) {
 				//name validation
 				if (preg_match("/[^a-zA-Z ]/", $register["patient_name"]) == false && $nameLength >= 8 && $nameLength <= 255) {
 						//age validation
@@ -1316,6 +1317,7 @@ class main extends CI_Controller {
 
 		$result = $this->functions->insertFoodDetails($foodDetails);
 
+		echo json_encode($foodDetails);
 		
 	}
 

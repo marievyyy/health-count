@@ -45,13 +45,13 @@
             <div class="container-fluid home-page" align="center">
                 <div class="row first">
                     <div class="col-md-6">
-                        <div id="container-highchart1" class="box gain">
-                            <h2>Total Gain Calorie</h2>
+                        <div id="container-calories" class="box gain">
+                            <h2>Total Gain/Burned Calorie</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div id="container-highchart1" class="box burn">
+                        <div id="" class="box burn">
                             <h2>Total Burned Calorie</h2>
                         </div>
                     </div>
@@ -59,12 +59,12 @@
 
                 <div class="row first water">
                     <div class="col-md-6">
-                        <div id="container-highchart1" class="box watergraph">
+                        <div id="container-water" class="box watergraph">
                             <h2>Water</h2>
                         </div>
                     </div>
                     <div class="col-md-6 water">
-                        <div id="container-highchart1" class="box dehy">
+                        <div class="box dehy">
                             <h2>Dehydration</h2>
                             <p class="newColor"><span id="dehydrate">Highly Dehydrated</span></p>
                             <h3 class="title">Ideal Hydration Amount: <span>16.9</span> L</h3>
@@ -74,13 +74,13 @@
 
                 <div class="row first">
                     <div class="col-md-6 coffee">
-                        <div id="container-highchart1" class="box coffee">
+                        <div id="container-coffee" class="box coffee">
                             <h2>Caffeine</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6 coffee">
-                        <div id="container-highchart1" class="box sleep">
+                        <div class="box sleep">
                             <h2>Body Caffeine Status</h2>
                             <h3 id="caffeineStatus">High Amount of Caffeine</h3>
                             <p>Today's Caffeine: <span id="caffeineTotal">116</span> mg.</p>
@@ -90,13 +90,13 @@
 
                 <div class="row last">
                     <div class="col-md-6">
-                        <div id="container-highchart1" class="box activity">
+                        <div id="container-activity" class="box activity">
                             <h2>Activity</h2>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div id="container-highchart1" class="box sleep">
+                        <div id="container-sleep" class="box sleep">
                             <h2>Sleep</h2>
                         </div>
                     </div>
@@ -112,7 +112,12 @@
     <script src="../application/views/js/highcharts.js"></script>
     <script src="../application/views/js/exporting.js"></script>
     <script src="../application/views/js/highcharts-more.js"></script>
-    <script src="../application/views/js/highchart-home.js"></script>
+    <script src="../application/views/js/solid-gauge.js"></script>
+    <script src="../application/views/js/highchart-calories.js"></script>
+    <script src="../application/views/js/highchart-water.js"></script>
+    <script src="../application/views/js/highchart-coffee.js"></script>
+    <script src="../application/views/js/highchart-activity.js"></script>
+    <script src="../application/views/js/highchart-sleep.js"></script>
     <script src="../application/views/js/main.js"></script>
 
 

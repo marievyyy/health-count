@@ -204,6 +204,9 @@ $(document).ready(function (){
 		 });
 	}
 
+	$("input[type=checkbox]").change(function() {
+		
+	});
 
 	$("#formfood").submit(function(e) {
 		e.preventDefault();

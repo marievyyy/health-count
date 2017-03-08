@@ -156,11 +156,7 @@ label {
 
 /* PAGINATION */
 .foodmenu input.next,
-.foodmenu input#page-1,
-.foodmenu input#page-2,
-.foodmenu input#page-3,
-.foodmenu input#page-4,
-.foodmenu input#page-5 {
+.foodmenu input.pagenum{
   background-color: #D3D6DB;
   padding: 5px 10px;
   color: #333;
