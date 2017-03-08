@@ -43,16 +43,11 @@
 
         <section id="home">
             <div class="container-fluid home-page" align="center">
+                <h1>Health Status</h1>
                 <div class="row first">
-                    <div class="col-md-6">
-                        <div id="container-calories" class="box gain">
+                    <div class="col-md-12">
+                        <div id="container-calories" class="boxLong gain">
                             <h2>Total Gain/Burned Calorie</h2>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div id="" class="box burn">
-                            <h2>Total Burned Calorie</h2>
                         </div>
                     </div>
                 </div>
