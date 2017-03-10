@@ -39,8 +39,12 @@ body {
 /* ---------------- Background images */
 
 body {
-  background-color: #fff;
-  height: 100%;
+  background: url("../img/food.png") no-repeat center center fixed;
+    -webkit-backgorund-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%
 }
 
 .food-page h1 {
@@ -82,11 +86,12 @@ body {
 }
 
 .foodChain input[type="radio"]:checked+label { 
-  background-color: #B74242; 
+  background-color: #e0a6a2; 
   color: #fff;
 } 
 
 .foodmenu input[type="text"] {
+  color: #fff;
   margin-top: 40px;
   width: 500px;
   line-height: 50px;
@@ -96,12 +101,8 @@ body {
   text-transform: uppercase;
   padding-left: 15px;
   border: 2px solid #B74242;
-}
-
-input[type="text"]:hover,
-input[type="text"]:focus {
-  outline: none;
-  border: 2px solid #E79E85;
+  background-color: transparent;
+  outline: 0;
 }
 
 .wrap-list {
@@ -138,7 +139,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .list li:nth-child(odd) {
-  background: #EA7362;
+  background: #ebc5c2;
 }
 
 .list li {
@@ -168,8 +169,10 @@ label {
   border: 0;
 }
 
-.foodmenu button:hover,
-.foodmenu button:focus {
+.foodmenu input.next:hover,
+.foodmenu input.next:focus,
+.foodmenu input.pagenum:hover,
+.foodmenu input.pagenum:focus {
   background-color: #B74242;
   color: #fff;
 }

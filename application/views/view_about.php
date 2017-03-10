@@ -18,7 +18,6 @@
         <link rel="stylesheet" href="../application/views/css/aboutus.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     </head>
 
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -44,7 +43,7 @@
         </nav>
 
         <div class="container page">
-            <hr id="style" data-symbol="About Us">
+            <h1>About Us</h1>
             <div class="row first">
                 <div class="col-md-6" align="center">
                 <h2 class="content"><span class="name">Health Count</span> aims to help people to track down and give details about their health condition in a way by mainly giving information of their daily and weekly status of their activities, nutrient consumption and hydration status.</h2>

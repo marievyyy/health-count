@@ -39,6 +39,14 @@ body {
 
 /* ---------------- Background images */
 
+body {
+    background: url("../img/water.png") no-repeat center center fixed;
+    -webkit-backgorund-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%
+}
 
 .water-page h1 {
   font-family: 'bernadette';

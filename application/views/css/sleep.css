@@ -39,14 +39,18 @@ body {
 /* ---------------- Background images */
 
 body {
-  background-color: #fff;
-  height: 100%;
+  background: url("../img/sleep.png") no-repeat center center fixed;
+    -webkit-backgorund-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
 }
 
 .sleep-page h1 {
   font-family: 'bernadette';
   font-size: 80px;
-  color: #424a60;
+  color: #fff;
   text-align: center;
   margin-top: 5%;
 }
@@ -97,7 +101,7 @@ body {
 }
 
 .clock {
-  border: 5px solid #10316B;
+  border: 5px solid #fff;
   border-radius: 100%;
   display: block;
   height: 270px;
@@ -106,7 +110,7 @@ body {
   margin-top: 14%;
 }
 .clock .hour {
-  background: #10316B;
+  background: #F6F5F5;
   height: 0;
   left: 50%;
   position: absolute;
@@ -121,7 +125,7 @@ body {
   padding: 60px 2px 0;
 }
 .clock .minute {
-  background: #364F6B;
+  background: #F6F5F5;
   height: 0;
   left: 50%;
   position: absolute;
@@ -143,6 +147,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 20px;
   margin-top: 13%;
+  color: #fff;
 }
 
 div.middle {
@@ -155,9 +160,12 @@ div.middle {
   font-family: 'Oswald';
   font-weight: 400;
   text-transform: uppercase;
-  border: 3px solid #34495E;
-  font-size: 20px;
+  letter-spacing: 1px;
+  border: 3px solid #fff;
+  font-size: 22px;
   text-align: center;
+  background-color: transparent;
+  color: #fff;
 }
 
 .sleep-page input[type="time"]:hover,
@@ -171,7 +179,7 @@ div.middle {
   font-family: 'Oswald';
   font-size: 105px;
   font-weight: 300;
-  color: #282F44;
+  color: #fff;
   margin-top: 10%;
   margin-left: 8%;
   margin-bottom: 5%;
@@ -184,7 +192,7 @@ div.middle {
   font-family: 'Oswald';
   font-size: 20px;
   font-weight: 300;
-  color: #3C3C3C;
+  color: #fff;
   margin-left: 10%;
 }
 
@@ -198,12 +206,12 @@ input[type="submit"] {
   border: none;
   height: 45px;
   width: 290px;
-  color: #34495E;
+  color: #fff;
   font-family: 'Oswald';
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border: 2px solid #34495E;
+  border: 2px solid #fff;
   background-color: transparent;
   line-height: 20px;
   font-size: 14px;
@@ -212,6 +220,6 @@ input[type="submit"] {
 
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-  background-color: #34495E;
-  color: #fff;
+  background-color: #fff;
+  color: #34495E;
 }
