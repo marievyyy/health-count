@@ -99,6 +99,10 @@
             </div>
         </section>
 
+        <footer align="center">
+            <h4>All Rights Slightly Reserved | © RARIN 2017</h4>
+        </footer>
+
 
 
     <!-- Bootstrap core JavaScript -->

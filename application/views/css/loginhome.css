@@ -72,7 +72,7 @@ body {
   font-size: 60px;
   color: #a6ce38;
   margin-top: 5%;
-  text-shadow: 3px 1px 2px rgba(48, 62, 39, 1);
+  text-shadow: 3px 1px 2px rgba(255, 255, 255, 1);
 }
 
 .home-page h2 {
@@ -135,3 +135,17 @@ body {
   margin-top: 8%;
 }
 /* END OF COFFEE SECTION */
+
+footer {
+  height: 40px;
+  background-color: #a6ce38;
+}
+
+footer h4 {
+  font-family: 'Oswald';
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 10px 0;
+}

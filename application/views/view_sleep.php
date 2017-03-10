@@ -51,12 +51,13 @@
                   </div> 
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 middle">
                     <form id="sleepForm" method="post">
                         <h3 class="start">Start of Sleep Time:</h3>
                         <input class="work" type="time" name="startSleep" id="distance" placeholder="">
                         <h3 class="last">End of Sleep Time:</h3>
                         <input class="work" type="time" name="endSleep" id="distance" placeholder="">
+                        <br>
                         <input type="submit" name="submitted" value="Submit">
                     </form>
                 </div>

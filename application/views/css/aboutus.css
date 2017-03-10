@@ -12,8 +12,6 @@
 
 html,
 body {
-  min-height: 100%;
-  height: 100%;
   outline: 0;
   overflow-x: hidden;
 }
@@ -39,16 +37,112 @@ body {
 
 body {
   background-color: #fff;
-  height: 100%;
 }
 
-.page h1 {
+.page h2.content {
+  font-family: 'Oswald';
+  font-size: 22px;
+  color: #a6ce38;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+  margin-top: 20%;
+}
+
+.page h2.content span.name {
+  color: #336633;
+}
+
+.page h2.aims {
+  font-family: 'Oswald';
+  font-size: 18px;
+  color: #a6ce38;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+  margin-top: 12%;
+  padding: 0 50px;
+}
+
+hr {
+  height: 2px;
+  background: white;
+  border: none;
+  outline: none;
+  margin: 3em 3em 5em;
+  position: relative;
+  margin-top: 9%;
+}
+
+hr:before {
+  content: attr(data-symbol);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: white;
+  color: #a6ce38;
   font-family: 'bernadette';
   font-size: 80px;
   color: #a6ce38;
-  text-align: center;
-  margin-top: 5%;
+  padding: 0.5em 0.5em;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
+hr#style {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM0OThkYiIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMTBkN2FmIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzQ5OGRiIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #3498db), color-stop(50%, #336633), color-stop(100%, #336633));
+  background-image: -webkit-linear-gradient(left, #336633, #336633, #303e27);
+  background-image: linear-gradient(to right, #336633, #336633, #303e27);
+}
 
+hr#three:style {
+  color: #336633;
+}
 
+div.second {
+  margin-top: 30px;
+}
+
+/* THE TEAM */
+
+div.team {
+  margin-top: 60px;
+}
+
+.team h1 {
+  font-family: 'bernadette';
+  font-size: 70px;
+  color: #a6ce38;
+  margin-bottom: 50px;
+}
+
+.us img {
+  max-height: 350px;
+}
+
+.us h2 {
+  font-family: 'bernadette';
+  font-size: 20px;
+  color: #a6ce38;
+  margin-top: 15px;
+}
+
+.us h3 {
+  font-family: 'Oswald';
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+footer {
+  height: 40px;
+  background-color: #a6ce38;
+  margin-top: 0;
+}
+
+footer h4 {
+  padding: 10px;
+  font-family: 'Oswald';
+  font-weight: 300;
+  letter-spacing: 1px;
+}
