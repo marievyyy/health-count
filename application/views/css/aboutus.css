@@ -12,8 +12,6 @@
 
 html,
 body {
-  min-height: 100%;
-  height: 100%;
   outline: 0;
   overflow-x: hidden;
 }
@@ -39,16 +37,88 @@ body {
 
 body {
   background-color: #fff;
-  height: 100%;
 }
 
 .page h1 {
+  color: #fff;
   font-family: 'bernadette';
   font-size: 80px;
   color: #a6ce38;
   text-align: center;
   margin-top: 5%;
+  margin-bottom: 5%;
 }
 
+.page h2.content {
+  font-family: 'Oswald';
+  font-size: 22px;
+  color: #a6ce38;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+  margin-top: 20%;
+}
 
+.page h2.content span.name {
+  color: #336633;
+}
 
+.page h2.aims {
+  font-family: 'Oswald';
+  font-size: 18px;
+  color: #a6ce38;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+  margin-top: 12%;
+  padding: 0 50px;
+}
+
+div.second {
+  margin-top: 30px;
+}
+
+/* THE TEAM */
+
+div.team {
+  margin-top: 60px;
+}
+
+.team h1 {
+  font-family: 'bernadette';
+  font-size: 70px;
+  color: #a6ce38;
+  margin-bottom: 50px;
+}
+
+.us img {
+  max-height: 350px;
+}
+
+.us h2 {
+  font-family: 'bernadette';
+  font-size: 20px;
+  color: #a6ce38;
+  margin-top: 15px;
+}
+
+.us h3 {
+  font-family: 'Oswald';
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+footer {
+  height: 40px;
+  background-color: #a6ce38;
+  margin-top: 0;
+}
+
+footer h4 {
+  padding-top: 10px;
+  font-family: 'Oswald';
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 14px;
+}

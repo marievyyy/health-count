@@ -47,7 +47,7 @@
             <div class="button button-register"><a href="/health/main/register">Register Now</a></div>
             <div class="button button-signIn"><a href="/health/main/login">Sign In</a></div>
                 
-            <h6 class="footer">All Rights Slightly Reserved | © rvnar 2016</h6>
+            <h6 class="footer">All Rights Slightly Reserved | © rarin 2017</h6>
         </div>
 
     <!-- Bootstrap core JavaScript -->
