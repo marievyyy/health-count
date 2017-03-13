@@ -1,6 +1,8 @@
 $(document).ready(function (){
 	
 	var checkVal = [];
+	var pageintial = 1;
+	localStorage.setItem("pageadd",1);
 
 	$.ajax({
 			url: 'http://localhost/health/main/tallyFood',
@@ -9,14 +11,18 @@ $(document).ready(function (){
 			async: false,
 			success: function(data){
 				console.log(data);
+				pageintial = data;
 				$('#pageNum').html("");
-
 				if (data > 1) {
-					$("#pageNum").prepend('<input type="button" class="next" value="< Previous">');
-					for (var i = 1; i <= data; i++) {
+					for (var i = 1; i <= 5 && i <= data; i++) {
 						$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+i+'" value="'+i+'">');
 					}
-					$("#pageNum").append('<input type="button" class="next" value="Next >">');
+					if (data > 10) {
+						$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');
+						$("#pageNum").append('........');
+						$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+data+'" value="'+data+'">');
+						$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
+					}
 				}else{
 					console.log('less than 5 rows');
 				}
@@ -59,10 +65,9 @@ $(document).ready(function (){
 		}
 	});
 
-	$("input:button").click(function() {
+	$("input.pagenum").click(function() {
 		var pageVal = $(this).val();
 		console.log(pageVal);
-
 		$.ajax({
 			url: 'http://localhost/health/main/paginateFood',
 			type: 'POST',
@@ -78,7 +83,6 @@ $(document).ready(function (){
 					for (var i = 0; i < data.length && i < 5; i++) {
 					$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
 					}
-					disableInput();
 				}
 			},
 			error: function(){
@@ -103,7 +107,7 @@ $(document).ready(function (){
 			beforeSend : function(){
 				$('#pageNum').html("");
 				console.log("Pls wait...");
-				$("#fooditem").html("").text("Pls wait");
+				$("#fooditem").html('<div class="spinner"><span class="ball-1"></span><span class="ball-2"></span><span class="ball-3"></span><span class="ball-4"></span><span class="ball-5"></span><span class="ball-6"></span><span class="ball-7"></span><span class="ball-8"></span></div>');
 			},
 			success: function(data){
 				setTimeout(function() {
@@ -131,7 +135,7 @@ $(document).ready(function (){
 			beforeSend : function(){
 				$('#pageNum').html("");
 				console.log("Pls wait...");
-				$("#fooditem").html("").text("Pls wait");
+				$("#fooditem").html('<li class="spinner"><center><span class="ball-1"></span><span class="ball-2"></span><span class="ball-3"></span><span class="ball-4"></span><span class="ball-5"></span><span class="ball-6"></span><span class="ball-7"></span><span class="ball-8"></span></center></li>');
 			},
 			success: function(data){
 				setTimeout(function() {
@@ -141,6 +145,23 @@ $(document).ready(function (){
 			}
 		});
 
+	});
+
+	$("#next-btn").click(function() {
+		$('#pageNum').html("");	
+
+				var a = 0;
+				for (var i = 0; i <= 5; i++) {
+					a = i + parseInt(localStorage.pageadd);
+					$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+a+'" value="'+a+'">');
+				}
+				if (pageintial > 10) {
+						$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');
+						$("#pageNum").append('........');
+						$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+pageintial+'" value="'+pageintial+'">');
+						$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
+					}
+					console.log(localStorage.pageadd);
 	});
 	
 	function delaySuccess(data) {
@@ -234,7 +255,6 @@ $(document).ready(function (){
 							}
 						});
 			}
-		});
-		
+		});	
 	});
 });

@@ -23,11 +23,13 @@ class main extends CI_Controller {
 				echo "Unknown Error";
 			}	
 		}else{
+			unset($_SESSION["pagenum"]);
 			$this->load->view('view_homepage');
 		}
 	}
 
 	public function newfood(){
+		unset($_SESSION["pagenum"]);
 		$this->load->view('foodCMS');
 	}
 	public function logout(){
@@ -75,6 +77,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_food');
 			}else{
 				echo "Unknown Error";
@@ -90,6 +93,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_water');
 			}else{
 				echo "Unknown Error";
@@ -104,6 +108,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_coffee');
 			}else{
 				echo "Unknown Error";
@@ -118,6 +123,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_activity');
 			}else{
 				echo "Unknown Error";
@@ -132,6 +138,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_activityrun');
 			}else{
 				echo "Unknown Error";
@@ -146,6 +153,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_activityexer');
 			}else{
 				echo "Unknown Error";
@@ -160,6 +168,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_activitywork');
 			}else{
 				echo "Unknown Error";
@@ -174,6 +183,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_sleep');
 			}else{
 				echo "Unknown Error";
@@ -184,10 +194,12 @@ class main extends CI_Controller {
 	}
 
 	public function meditation(){
+		unset($_SESSION["pagenum"]);
 		$this->load->view('view_meditation');
 	}
 
 	public function about(){
+		unset($_SESSION["pagenum"]);
 		$this->load->view('view_about');
 	}
 
@@ -196,6 +208,7 @@ class main extends CI_Controller {
 
 			$result = $this->functions->getPatient_id($_SESSION["patient_id"]);
 			if ($result == 'existing account') {
+				unset($_SESSION["pagenum"]);
 				$this->load->view('view_editprofile');
 			}else{
 				echo "Unknown Error";
@@ -1340,6 +1353,28 @@ class main extends CI_Controller {
 		$start = ($pageVal * 5) - 5;
 		$resultFood = $this->functions->getPaginateFood($start);
 		echo json_encode($resultFood);
+	}
+
+	public function pageValNumAdd(){
+		$pageadd = $this->input->post('pageadd');
+
+		if (isset($_SESSION["pagenum"]) == true && !empty($_SESSION["pagenum"]) == true && $_SESSION["pagenum"] >= 1) {
+			$x= $_SESSION["pagenum"] + $pageadd;
+		}else{
+			$x = $pageadd + 1;
+		}
+		$_SESSION["pagenum"] = $x;
+		echo json_encode($x);
+		
+	}
+	public function pageValNumMinus(){
+		$pageadd = $this->input->post('pageadd');
+
+		$x = $_SESSION["pagenum"] - $pageadd;
+
+		$_SESSION["pagenum"] = $x;
+		echo json_encode($x);
+		
 	}
 
 	public function foodListPage(){

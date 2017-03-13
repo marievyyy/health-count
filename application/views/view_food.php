@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="../application/views/css/food-menu.css">
         <link rel="stylesheet" href="../application/views/css/food.css">
         <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../application/views/css/loading.css">
     </head>
 
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -107,7 +108,7 @@
     <script src="../application/views/js/bootstrap.min.js"></script>
     <script src="../application/views/js/smoothscroll.js"></script>
     <script src="../application/views/js/main.js"></script>
-    <script src="../application/views/js/food-api.js"></script>
+    <script src="../application/views/js/food-apiv2.js"></script>
 
     </body>
 </html>
