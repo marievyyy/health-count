@@ -2,7 +2,6 @@ $(document).ready(function (){
 
 	var pageintial = 0;
 	var checkVal = [];
-	var foodVal = [];
 	var valueBox;
 
 	$.ajax({
@@ -352,15 +351,12 @@ $(document).ready(function (){
 
 	$("#formfood").submit(function(e) {
 		e.preventDefault();
-        $('input:checkbox:checked').each(function(i){
-          foodVal[i] = $(this).val();
-        });
-        console.log(foodVal);     
+        console.log(checkVal);     
 		$.ajax({
 			url: 'http://localhost/health/main/getFoodCal',
 			type: 'POST',
 			dataType: 'json',
-			data: {foodVal: foodVal},
+			data: {checkVal: checkVal},
 			success:function(data){
 				console.log(data);
 				$.ajax({

@@ -1412,7 +1412,7 @@ class main extends CI_Controller {
 	}
 
 	public function getFoodCal(){
-		$checkVal = $this->input->post('foodVal');
+		$checkVal = $this->input->post('checkVal');
 		$errorNoVal = "no value";
 		$resultDetails = array();
 		$i = 0;
@@ -1430,8 +1430,12 @@ class main extends CI_Controller {
 		}
 		else{
 			foreach ($checkVal as $foodname) {
-				$resultDetails[$i]= $this->functions->searchFoodDetails($foodname);
-				$i++;
+				if ($foodname == "") {
+					
+				}else{
+					$resultDetails[$i]= $this->functions->searchFoodDetails($foodname);
+					$i++;
+				}
 			}
 			
 
