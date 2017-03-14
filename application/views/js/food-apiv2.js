@@ -1,6 +1,9 @@
 $(document).ready(function (){
 
 	var pageintial = 0;
+	var checkVal = [];
+	var foodVal = [];
+	var valueBox;
 
 	$.ajax({
 		url: 'http://localhost/health/main/firstFood',
@@ -9,6 +12,7 @@ $(document).ready(function (){
 		async: false,
 		success: function(data){
 			console.log(data);
+			valueBox = data;
 			$("#fooditem").html("");
 			if (data == "no food item" || data == false) {
 				$("#fooditem").append("<li><label for='check-1' id='food-"+i+"'>"+data+"</label></li>");
@@ -17,6 +21,8 @@ $(document).ready(function (){
 				$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
 				}
 			}
+			inputBox();
+			checkValueBox();
 		},
 		error: function(){
 			console.log('failed');
@@ -49,6 +55,7 @@ $(document).ready(function (){
 				nextButton();
 				prevButton();
 				pageNumList();
+				checkValueBox();
 			}
 			else{
 				console.log('less than 5 rows');
@@ -82,6 +89,7 @@ $(document).ready(function (){
 				data: {pageVal: pageVal},
 				success: function(data){
 					console.log(data);
+					valueBox = data;
 					$("#fooditem").html("");
 					if (data == "no food item" || data == false) {
 						$("#fooditem").append("<label for='check-1' id='food-"+i+"'>"+data+"</label>");
@@ -90,6 +98,8 @@ $(document).ready(function (){
 						$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
 						}
 					}
+					inputBox();
+					checkValueBox();
 				},
 				error: function(){
 					console.log('failed');
@@ -288,19 +298,19 @@ $(document).ready(function (){
 					$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+data+'" value="'+data+'">');
 					$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
 					$("#prev-btn").attr('disabled', true);
-					nextButton();
-					prevButton();
-					pageNumList();
 				}
 				else{
 					console.log('less than 5 rows');
 				}
+				nextButton();
+				prevButton();
+				pageNumList();
 			},
 			error: function(){
 				console.log('failed');
 			}
 		});
-
+		valueBox = data;
 		$("#fooditem").html("");
 		if (data == "no food item" || data == false) {
 			$("#fooditem").append("<label for='check-1' id='food-"+i+"'>"+data+"</label>");
@@ -309,5 +319,61 @@ $(document).ready(function (){
 			$("#fooditem").append("<li><input type='checkbox' id='check-1' value='"+data[i].food_name+"'><label for='check-1' id='food-"+i+"'>"+data[i].food_name+"</label></li>");
 			}
 		}
+		inputBox();
+		checkValueBox();
 	}
+
+	function inputBox(){
+		$("input:checkbox").change(function (){
+			console.log($(this).val());
+			if($(this).is(":checked")) {
+	         	checkVal.push($(this).val());
+	         	console.log(checkVal);
+	        }
+	        else{
+	        	console.log('no value ' + $(this).val());
+	        	var a = checkVal.indexOf($(this).val());
+	        	checkVal[a] = "";
+	        }
+		});
+	}
+
+	function checkValueBox(){
+		if (checkVal.length != 0) {
+	    	for (var x = 0; x < valueBox.length; x++) {
+	        	for (var y = 0; y < checkVal.length; y++) {
+	        		if (checkVal[y] == valueBox[x].food_name) {
+	        			$("input[value='"+valueBox[x].food_name+"']").prop('checked', true);
+	        		}	
+	        	}
+	        }
+	    }
+	}
+
+	$("#formfood").submit(function(e) {
+		e.preventDefault();
+        $('input:checkbox:checked').each(function(i){
+          foodVal[i] = $(this).val();
+        });
+        console.log(foodVal);     
+		$.ajax({
+			url: 'http://localhost/health/main/getFoodCal',
+			type: 'POST',
+			dataType: 'json',
+			data: {foodVal: foodVal},
+			success:function(data){
+				console.log(data);
+				$.ajax({
+					url: 'http://localhost/health/main/getTotalCal',
+					type: 'GET',
+					dataType: 'json',
+					async: false,
+					success:function(data){
+						console.log(data);
+						$("#totalcal").text(data);
+					}
+				});
+			}
+		});	
+	});
 });

@@ -1412,7 +1412,7 @@ class main extends CI_Controller {
 	}
 
 	public function getFoodCal(){
-		$checkVal = $this->input->post('checkVal');
+		$checkVal = $this->input->post('foodVal');
 		$errorNoVal = "no value";
 		$resultDetails = array();
 		$i = 0;
@@ -1471,7 +1471,6 @@ class main extends CI_Controller {
 		$sum2 = 0;
 
 		$todayCal = $this->functions->getFoodNutrients($_SESSION["patient_id"]);
-
 		if (empty($todayCal) != true) {
 			foreach ($todayCal as $valuecal) {
 				$todayTotal = $valuecal["total_calories"] + $sum2;
