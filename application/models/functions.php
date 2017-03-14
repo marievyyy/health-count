@@ -403,6 +403,21 @@ class functions extends CI_Model {
         	return 'no food item';
     	}
 	}
+
+	public function getDailyCalGained($patient_id, $start_date, $end_date){
+		$this->db->where('patient_id',$patient_id);
+		$this->db->where('date_recorded >=', $start_date);
+		$this->db->where('date_recorded <=', $end_date);
+ 		$query = $this->db->get('calories_intake');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
 }
 
 /* End of file functions.php */

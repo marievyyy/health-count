@@ -1487,6 +1487,26 @@ class main extends CI_Controller {
 		}
 	}
 
+	public function dailyCalorieGain(){
+		$todayTotal = 0;
+		$sum2 = 0;
+		
+		$start_date = date("Y-m-d", strtotime( "previous sunday"));
+		$end_date = date('Y-m-d', strtotime('next saturday'));
+		$todayCal = $this->functions->getFoodNutrients($_SESSION["patient_id"], $start_date, $end_date);
+
+		if (empty($todayCal) != true) {
+			foreach ($todayCal as $valuecal) {
+				$todayTotal = $valuecal["total_calories"] + $sum2;
+				$sum2 = $todayTotal;
+			}
+		}
+		else{
+			$todayTotal = 0;
+		}
+
+	}
+
 	public function testUpload(){
 		$imageUpload = $this->input->post("formdata");
 		

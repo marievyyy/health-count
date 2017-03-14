@@ -1,10 +1,23 @@
 $(document).ready(function() {
+
+    var values;
+    $.ajax({
+        url: 'http://localhost/health/main/dailyCalorieGain',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+        }
+    });
+
+
+    
 	Highcharts.chart('container-calories', {
         title: {
             text: 'Total Gained/Loss Calories'
         },
         xAxis: {
-            categories: ['Mon', 'Tue', 'Wens', 'Thurs', 'Fri', 'Sat', 'Sun']
+            categories: ['Sun','Mon', 'Tue', 'Wens', 'Thurs', 'Fri', 'Sat']
         },
         labels: {
             items: [{
@@ -19,22 +32,24 @@ $(document).ready(function() {
         series: [{
             type: 'column',
             name: 'gained',
-            data: [60,81,82,100,45,60,70]
+            data: [60,81,82,100,45,60,70],
+            color: 'green'  // gained color
         }, {
             type: 'column',
             name: 'loss',
-            data: [52,43,65,35,56,60,51]
+            data: [52,43,65,35,56,60,51],
+            color: 'black'  // loss color
         }, {
             type: 'pie',
             name: 'Total consumption',
             data: [{
                 name: 'gained',
                 y: 13,
-                color: Highcharts.getOptions().colors[0] // Jane's color
+                color: 'green' // gained color
             }, {
                 name: 'loss',
                 y: 19,
-                color: Highcharts.getOptions().colors[2] // Joe's color
+                color: 'black' // loss color
             }],
             center: [80, 80],
             size: 100,
