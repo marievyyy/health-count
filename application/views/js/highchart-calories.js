@@ -11,7 +11,7 @@ $(document).ready(function() {
         success: function(data){
             console.log(data);
             valuesGained = data[0];
-            dateVal = data[1].toString();
+            dateVal = data[1]
         }
     });
 

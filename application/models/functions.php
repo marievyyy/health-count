@@ -322,6 +322,52 @@ class functions extends CI_Model {
     	}
 	}
 
+	public function getPaginateFoodKey($start, $fkeyword){
+		$this->db->like('food_name',$fkeyword);
+		$this->db->order_by("tally_submit", "asc");
+		$this->db->limit(5, $start);
+		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
+	public function getPaginateFoodCat($start, $fcat){
+		$this->db->where('category_name',$fcat);
+		$this->db->order_by("tally_submit", "asc");
+		$this->db->limit(5, $start);
+		$query = $this->db->get('food');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
+	public function getPaginateFoodSearch($start, $fcat, $fkeyword){
+		$this->db->like('food_name',$fkeyword);
+ 		$this->db->where('category_name',$fcat);
+ 		$this->db->order_by("tally_submit", "asc");
+		$this->db->limit(5, $start);
+ 		$query = $this->db->get('food');
+		if ($uery->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
 	public function searchFoodKey($keyword, $fcat){
 		$this->db->like('food_name',$keyword);
  		$this->db->like('category_name',$fcat);
@@ -393,6 +439,7 @@ class functions extends CI_Model {
 	public function getFoodNutrients($patient_id){
 		$this->db->where('patient_id',$patient_id);
 		$this->db->where('date_recorded',date('Y-m-d'));
+		$this->db->order_by("time_recorded", "desc");
  		$query = $this->db->get('calories_intake');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
