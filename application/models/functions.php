@@ -480,6 +480,23 @@ class functions extends CI_Model {
         	return 'no food item';
     	}
 	}
+
+	public function getCoffeIntake($patient_id){
+		$this->db->select('caffeine_intake.caffeine_id,caffeine_intake.caffeine_type,caffeine_intake.servings,caffeine_intake.date_recorded,caffeine_status.caffeine_id,caffeine_status.patient_id');
+		$this->db->from('caffeine_intake');
+		$this->db->join('caffeine_status','caffeine_intake.caffeine_id = caffeine_status.caffeine_id');
+		$this->db->where('caffeine_status.patient_id', $patient_id);
+		$this->db->where('caffeine_intake.date_recorded', date('Y-m-d'));
+		$query = $this->db->get();
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no coffee data';
+    	}
+	}
 }
 
 /* End of file functions.php */

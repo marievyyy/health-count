@@ -1578,6 +1578,63 @@ class main extends CI_Controller {
 		echo json_encode($imageUpload);
 
 	}
+
+	public function homeWaterAPI(){
+		$resultWater = $this->functions->getWaterAPI($_SESSION["patient_id"]);
+
+		echo json_encode($resultWater);
+	}
+
+	public function homeCoffeeAPI(){
+		$resultCoffee = $this->functions->getCoffeeStatus($_SESSION["patient_id"]);
+
+		echo json_encode($resultCoffee);
+	}
+	public function homeCoffeePieAPI(){
+		$resultCoffee = $this->functions->getCoffeIntake($_SESSION["patient_id"]);
+
+		$servings["espresso"] = 0;
+		$servings["cappuccino"] = 0;
+		$servings["americano"] = 0;
+		$servings["cafelatte"] = 0;
+		$servings["mocha"] = 0;
+		$servings["caramel"] = 0;
+		$servings["frappe"] = 0;
+		$servings["instantcoffee"] = 0;
+		//var_dump($resultCoffee);
+		foreach ($resultCoffee as $valueCoffee) {
+			if ($valueCoffee["caffeine_type"] == 'espresso') {
+				$servings["espresso"] = $servings["espresso"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'cappuccino') {
+				$servings["cappuccino"] = $servings["cappuccino"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'americano') {
+				$servings["americano"] = $servings["americano"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'cafelatte') {
+				$servings["cafelatte"] = $servings["cafelatte"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'mocha') {
+				$servings["mocha"] = $servings["mocha"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'caramel') {
+				$servings["caramel"] = $servings["caramel"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'frappe') {
+				$servings["frappe"] = $servings["frappe"] + $valueCoffee["servings"];
+			}
+			else if ($valueCoffee["caffeine_type"] == 'instantcoffee') {
+				$servings["instantcoffee"] = $servings["instantcoffee"] + $valueCoffee["servings"];
+			}
+			else{
+
+			}
+		}
+
+		echo json_encode($servings);
+		
+	}
 }
 /* End of file main.php */
 /* Location: ./application/controllers/main.php */

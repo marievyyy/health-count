@@ -62,7 +62,7 @@
                         <div class="box dehy">
                             <h2>Dehydration</h2>
                             <p class="newColor"><span id="dehydrate">Highly Dehydrated</span></p>
-                            <h3 class="title">Ideal Hydration Amount: <span>16.9</span> L</h3>
+                            <h3 class="title">Ideal Hydration Amount: <span id="liters">16.9</span> L</h3>
                         </div>
                     </div>
                 </div>
@@ -117,6 +117,8 @@
     <script src="../application/views/js/highchart-coffee.js"></script>
     <script src="../application/views/js/highchart-activity.js"></script>
     <script src="../application/views/js/highchart-sleep.js"></script>
+    <script src="../application/views/js/water-dehydrated.js"></script>
+    <script src="../application/views/js/coffee-status.js"></script>
     <script src="../application/views/js/main.js"></script>
 
 
