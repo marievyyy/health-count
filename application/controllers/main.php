@@ -531,7 +531,7 @@ class main extends CI_Controller {
 				echo json_encode($resultWater);
 			}else{
 				//if there is no activites for today compute using weight only.
-				$amountWater = $_SESSION["weight"] * 0.5;
+				$amountWater = ($_SESSION["weight"]*2.20) * 0.5;
 				$totalLiters = round($amountWater * $oztoLiters, 2);
 
 				$params = array(
@@ -595,7 +595,7 @@ class main extends CI_Controller {
 			}
 			//0.059147
 			if ($amountWater <= 0 && $urineColor != "urine-one" && $urineColor != "urine-two") {
-				$weightWater = $_SESSION["weight"] * 0.5;
+				$weightWater = ($_SESSION["weight"]*2.20) * 0.5;
 				$roundweightWater = round($weightWater * $oztoLiters, 2);
 				$urineWater = abs($roundweightWater * $urineVal);
 
@@ -1355,6 +1355,35 @@ class main extends CI_Controller {
 		echo json_encode($resultFood);
 	}
 
+	public function paginateFoodSearch(){
+		$pageVal = $this->input->post("pageVal");
+		$fkeyword = $this->input->post('fkeyword');
+		$fcat = $this->input->post('fcat');
+		$resultFood;
+
+		if (empty($fcat) == true || $fcat == "") {
+			$resultFood = $this->functions->searchFoodWord($fkeyword);
+			$foodDataSize = sizeof($resultFood);
+			$start = ($pageVal * 5) - 5;
+			$resultFood = $this->functions->getPaginateFoodKey($start, $fkeyword);
+
+		}
+		else if (empty($fkeyword) == true || $fkeyword == "") {
+			$resultFood = $this->functions->searchFoodCat($fcat);
+			$foodDataSize = sizeof($resultFood);
+			$start = ($pageVal * 5) - 5;
+			$resultFood = $this->functions->getPaginateFoodCat($start, $fcat);
+
+		}
+		else{
+			$resultFood = $this->functions->searchFoodKey($fkeyword, $fcat);
+			$foodDataSize = sizeof($resultFood);
+			$start = ($pageVal * 5) - 5;
+			$resultFood = $this->functions->getPaginateFoodSearch($start, $fcat, $fkeyword);
+		}
+		echo json_encode($resultFood);
+	}
+
 	public function pageValNumAdd(){
 		$pageadd = $this->input->post('pageadd');
 
@@ -1380,7 +1409,8 @@ class main extends CI_Controller {
 	public function foodListPage(){
 		$fkeyword = $this->input->post('fkeyword');
 		$fcat = $this->input->post('fcat');
-
+		$resultFood;
+		$results = [];
 		if (empty($fcat) == true || $fcat == "") {
 			$resultFood = $this->functions->searchFoodWord($fkeyword);
 		}
@@ -1392,98 +1422,85 @@ class main extends CI_Controller {
 
 		}
 		$numPage = ceil(sizeof($resultFood) / 5);
-		echo json_encode($numPage);
+		array_push($results, $numPage);
+		array_push($results, $resultFood);
+		echo json_encode($results);
 	}
 
-	public function getFoodList(){
-		$fkeyword = $this->input->post('fkeyword');
-		$fcat = $this->input->post('fcat');
+	// public function getFoodList(){
+	// 	$fkeyword = $this->input->post('fkeyword');
+	// 	$fcat = $this->input->post('fcat');
 
-		if (empty($fcat) == true || $fcat == "") {
-			$result = $this->functions->searchFoodWord($fkeyword);
-		}
-		else if (empty($fkeyword) == true || $fkeyword == "") {
-			$result = $this->functions->searchFoodCat($fcat);
-		}
-		else{
-			$result = $this->functions->searchFoodKey($fkeyword, $fcat);
-		}
-		echo json_encode($result);
-	}
+	// 	if (empty($fcat) == true || $fcat == "") {
+	// 		$result = $this->functions->searchFoodWord($fkeyword);
+	// 	}
+	// 	else if (empty($fkeyword) == true || $fkeyword == "") {
+	// 		$result = $this->functions->searchFoodCat($fcat);
+	// 	}
+	// 	else{
+	// 		$result = $this->functions->searchFoodKey($fkeyword, $fcat);
+	// 	}
+	// 	echo json_encode($result);
+	// }
 
 	public function getFoodCal(){
 		$checkVal = $this->input->post('checkVal');
 		$errorNoVal = "no value";
-		$resultDetails = array();
+		$resultDetails;
 		$i = 0;
 		$totalcalories = 0;
 		$totalprotein = 0;
 		$totalfats = 0;
 		$totalcarbs = 0;
-		$dataSecond[0] = 0;
-		$dataSecond[1] = 0;
-		$dataSecond[2] = 0;
-		$dataSecond[3] = 0;
 
 		if (empty($checkVal) == true) {
 			echo json_encode($errorNoVal);
 		}
 		else{
 			foreach ($checkVal as $foodname) {
-				if ($foodname == "") {
+			if ($foodname == "") {
 					
 				}else{
 					$resultDetails[$i]= $this->functions->searchFoodDetails($foodname);
 					$i++;
 				}
 			}
-			
-
 			foreach ($resultDetails as $value) {
 				foreach ($value as $nextval){
-					//var_dump($nextval);
-						$totalcalories = $nextval["calories"] + $dataSecond[0];
-						$dataSecond[0] = $nextval["calories"] ;
-						
-						$totalcarbs = $nextval["carbs"] + $dataSecond[1];
-						$dataSecond[1] = $nextval["carbs"];
-						
-						$totalprotein = $nextval["protein"] + $dataSecond[2];
-						$dataSecond[2] = $nextval["protein"];
-						
-						$totalfats = $nextval["fats"] + $dataSecond[3];
-						$dataSecond[3] = $nextval["fats"];
-
-						$foodDetails = array(
-								'food_id'=> $nextval["food_id"],
-								'patient_id'=> $_SESSION["patient_id"],
-								'total_fats'=> $totalfats,
-								'total_protein'=> $totalprotein,
-								'total_carbs'=> $totalcarbs,
-								'total_calories'=> $totalcalories
-							);
-						$this->functions->insertFoodNutrients($foodDetails);
+					$latestNutrients = $this->functions->getFoodNutrients($_SESSION["patient_id"]);
+					if ($latestNutrients == 'no food item') {
+						$totalcalories = $nextval["calories"];
+						$totalcarbs = $nextval["carbs"];
+						$totalprotein = $nextval["protein"];
+						$totalfats = $nextval["fats"];
+					}else{
+						$totalcalories = $latestNutrients[0]["total_calories"] + $nextval["calories"];
+						$totalcarbs = $latestNutrients[0]["total_carbs"] + $nextval["carbs"];
+						$totalprotein = $latestNutrients[0]["total_protein"] + $nextval["protein"];
+						$totalfats = $latestNutrients[0]["total_fats"] + $nextval["fats"];
+					}
+					$foodDetails = array(
+							'food_id'=> $nextval["food_id"],
+							'patient_id'=> $_SESSION["patient_id"],
+							'total_fats'=> $totalfats,
+							'total_protein'=> $totalprotein,
+							'total_carbs'=> $totalcarbs,
+							'total_calories'=> $totalcalories
+						);
+					$this->functions->insertFoodNutrients($foodDetails);
 					}
 				}
 				echo json_encode("Success");
-			}
+		}
 	}
 
 	public function getTotalCal(){
 
-		$todayTotal = 0;
-		$sum2 = 0;
-
 		$todayCal = $this->functions->getFoodNutrients($_SESSION["patient_id"]);
-		if (empty($todayCal) != true) {
-			foreach ($todayCal as $valuecal) {
-				$todayTotal = $valuecal["total_calories"] + $sum2;
-				$sum2 = $todayTotal;
-			}
-			echo json_encode($todayTotal);
-		}
-		else{
-			echo json_encode("0");
+		if ($todayCal[1]["total_calories"] > $todayCal[0]["total_calories"]) {
+			echo json_encode($todayCal[1]["total_calories"]);
+		}else{
+			echo json_encode($todayCal[0]["total_calories"]);
 		}
 	}
 
