@@ -73,6 +73,9 @@
 
                         <input type="radio" name="foodcat" id="cuisine" value="cuisine">
                         <label for="cuisine" class="cuisine"><span>Other Cuisine</span></label>
+
+                         <input type="radio" name="foodcat" id="listAll" value="listAll">
+                        <label for="listAll" class="listAll"><span>List All</span></label>
                     </div>
                 </form>
             </div>
