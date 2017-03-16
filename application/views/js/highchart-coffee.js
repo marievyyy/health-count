@@ -34,7 +34,7 @@ $(document).ready(function() {
             type: 'pie'
         },
         title: {
-            text: 'Weekly Favorite Coffee'
+            text: 'This Week Favorite Coffee'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

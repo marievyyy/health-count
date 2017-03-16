@@ -1591,7 +1591,10 @@ class main extends CI_Controller {
 		echo json_encode($resultCoffee);
 	}
 	public function homeCoffeePieAPI(){
-		$resultCoffee = $this->functions->getCoffeIntake($_SESSION["patient_id"]);
+		$start_date = date("Y-m-d", strtotime( "previous sunday"));
+		$end_date = date('Y-m-d', strtotime('next saturday'));
+
+		$resultCoffee = $this->functions->getCoffeIntake($_SESSION["patient_id"], $start_date, $end_date);
 
 		$servings["espresso"] = 0;
 		$servings["cappuccino"] = 0;
