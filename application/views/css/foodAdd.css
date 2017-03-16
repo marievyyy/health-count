@@ -96,7 +96,7 @@ body {
   transform: translate(-50%, -50%);
   display: block;
   height: 500px;
-  width: 600px;
+  width: 1000px;
   background-color: transparent;
   padding: 70px 0px;
 }
@@ -105,11 +105,11 @@ h1 {
   font-family: 'bernadette';
   font-size: 60px;
   color: #a6ce38;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 form {
-  width: 300px;
+  width: 350px;
 }
 
 label {
@@ -128,6 +128,8 @@ input[type=text] {
   outline: none;
   border: 0;
   float: right;
+  width: 250px;
+  line-height: 16px;
 }
 
 input[type=submit] {
@@ -144,9 +146,17 @@ input[type=submit] {
   margin-left: 15%;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover,
+input[type=submit]:focus {
   background-color: #a6ce38;
   color: #fff;
+  outline: none;
+  border: 0;
+}
+
+div.border {
+  border: 2px solid #a6ce38;
+  padding: 20px;
 }
 
 p {

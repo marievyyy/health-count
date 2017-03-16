@@ -54,7 +54,7 @@
                         <input type="submit" name="submitted" value="Submit">
                     </form>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 border">
                     <div id="output"></div>
                 </div>
                
