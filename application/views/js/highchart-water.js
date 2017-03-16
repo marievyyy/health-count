@@ -1,4 +1,18 @@
 $(document).ready(function() {
+
+    var valuesWater = [0,0,0,0,0,0,0];
+
+    $.ajax({
+        url: 'http://localhost/health/main/homeWaterGraph',
+        type: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function(data){
+            console.log(data);
+            valuesWater = data;
+        }
+    });
+
     Highcharts.chart('container-water', {
         chart: {
             type: 'line'
@@ -10,7 +24,7 @@ $(document).ready(function() {
             text: 'Water Intake'
         },
         xAxis: {
-            categories: ['Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat', 'Sun']
+            categories: ['Sun','Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat']
         },
         yAxis: {
             title: {
@@ -27,7 +41,7 @@ $(document).ready(function() {
         },
         series: [{
             name: 'Water Intake',
-            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.26]
+            data: valuesWater
         }]
     });
 });

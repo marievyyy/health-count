@@ -1505,70 +1505,67 @@ class main extends CI_Controller {
 	}
 
 	public function dailyCalorieGain(){
-		$todayTotal = 0;
-		$sum2 = 0;
-		$dayCal = [];
-		$dateCal = [];
-		$resultCal = [];
 
-		$start_date = date("Y-m-d", strtotime( "previous sunday"));
-		$end_date = date('Y-m-d', strtotime('next saturday'));
-		$todayCal = $this->functions->getDailyCalGained($_SESSION["patient_id"], $start_date, $end_date);
+		$gained[0] = 0;
+		$gained[1] = 0;
+		$gained[2] = 0;
+		$gained[3] = 0;
+		$gained[4] = 0;
+		$gained[5] = 0;
+		$gained[6] = 0;
 
-		if (empty($todayCal) != true) {
-			$dateAdd = $todayCal[0]["date_recorded"];
-			foreach ($todayCal as $valuecal) {
-				if ($dateAdd == $valuecal["date_recorded"]) {
-					$todayTotal = $valuecal["total_calories"] + $sum2;
-					$sum2 = $todayTotal;
+		$start_date[0] = date("Y-m-d", strtotime( "previous sunday"));
+		$start_date[1] = date("Y-m-d", strtotime("previous sunday +1 days"));
+		$start_date[2] = date("Y-m-d", strtotime("previous sunday +2 days"));
+		$start_date[3] = date("Y-m-d", strtotime("previous sunday +3 days"));
+		$start_date[4] = date("Y-m-d", strtotime("previous sunday +4 days"));
+		$start_date[5] = date("Y-m-d", strtotime("previous sunday +5 days"));
+		$start_date[6] = date("Y-m-d", strtotime("previous sunday +6 days"));
+
+		for ($i=0; $i < sizeof($start_date); $i++) { 
+			$todayCal = $this->functions->getDailyCalGained($_SESSION["patient_id"], $start_date[$i]);
+			if ($todayCal == 'no food item') {
+				$gained[$i] = 0;
+			}else{
+				if ($todayCal[1]["total_calories"] > $todayCal[0]["total_calories"]) {
+					$gained[$i] = (float)$todayCal[1]["total_calories"];
 				}else{
-					array_push($dateCal, $dateAdd);
-					$dateAdd = $valuecal["date_recorded"];
-					array_push($dayCal, $todayTotal);
+					$gained[$i] = (float)$todayCal[0]["total_calories"];
 				}
 			}
-			array_push($dayCal, $todayTotal);
-			array_push($dateCal, $dateAdd);
 		}
-		else{
-			$todayTotal = 0;
-		}
-		array_push($resultCal, $dayCal, $dateCal);
-		echo json_encode($resultCal);
+		echo json_encode($gained);
 
 	}
 
 	public function dailyCalorieLoss(){
-		$todayTotal = 0;
-		$sum2 = 0;
-		$dayCal = [];
-		$dateCal = [];
-		$resultCal = [];
+		
+		$gained[0] = 0;
+		$gained[1] = 0;
+		$gained[2] = 0;
+		$gained[3] = 0;
+		$gained[4] = 0;
+		$gained[5] = 0;
+		$gained[6] = 0;
 
-		$start_date = date("Y-m-d", strtotime( "previous sunday"));
-		$end_date = date('Y-m-d', strtotime('next saturday'));
-		$todayCal = $this->functions->getDailyCalLoss($_SESSION["patient_id"], $start_date, $end_date);
+		$start_date[0] = date("Y-m-d", strtotime( "previous sunday"));
+		$start_date[1] = date("Y-m-d", strtotime("previous sunday +1 days"));
+		$start_date[2] = date("Y-m-d", strtotime("previous sunday +2 days"));
+		$start_date[3] = date("Y-m-d", strtotime("previous sunday +3 days"));
+		$start_date[4] = date("Y-m-d", strtotime("previous sunday +4 days"));
+		$start_date[5] = date("Y-m-d", strtotime("previous sunday +5 days"));
+		$start_date[6] = date("Y-m-d", strtotime("previous sunday +6 days"));
 
-		if (empty($todayCal) != true) {
-			$dateAdd = $todayCal[0]["date_recorded"];
-			foreach ($todayCal as $valuecal) {
-				if ($dateAdd == $valuecal["date_recorded"]) {
-					$todayTotal = $valuecal["calories_burn"] + $sum2;
-					$sum2 = $todayTotal;
-				}else{
-					array_push($dateCal,  $dateAdd);
-					$dateAdd = $valuecal["date_recorded"];
-					array_push($dayCal, $todayTotal);
-				}
+		for ($i=0; $i < sizeof($start_date); $i++) { 
+			$todayCal = $this->functions->getDailyCalLoss($_SESSION["patient_id"], $start_date[$i]);
+			
+			if ($todayCal == 'no food item') {
+				$gained[$i] = 0;
+			}else{
+				$gained[$i] = (float)$todayCal["calories_burn"];
 			}
-			array_push($dayCal, $todayTotal);
-			array_push($dateCal, $dateAdd);
 		}
-		else{
-			$todayTotal = 0;
-		}
-		array_push($resultCal, $dayCal, $dateCal);
-		echo json_encode($resultCal);
+		echo json_encode($gained);
 
 	}
 
@@ -1637,6 +1634,64 @@ class main extends CI_Controller {
 
 		echo json_encode($servings);
 		
+	}
+
+	public function homeWaterGraph(){
+		
+		$gained[0] = 0;
+		$gained[1] = 0;
+		$gained[2] = 0;
+		$gained[3] = 0;
+		$gained[4] = 0;
+		$gained[5] = 0;
+		$gained[6] = 0;
+
+		$start_date[0] = date("Y-m-d", strtotime( "previous sunday"));
+		$start_date[1] = date("Y-m-d", strtotime("previous sunday +1 days"));
+		$start_date[2] = date("Y-m-d", strtotime("previous sunday +2 days"));
+		$start_date[3] = date("Y-m-d", strtotime("previous sunday +3 days"));
+		$start_date[4] = date("Y-m-d", strtotime("previous sunday +4 days"));
+		$start_date[5] = date("Y-m-d", strtotime("previous sunday +5 days"));
+		$start_date[6] = date("Y-m-d", strtotime("previous sunday +6 days"));
+
+		for ($i=0; $i < sizeof($start_date); $i++) { 
+			$todayWater = $this->functions->getWaterChart($_SESSION["patient_id"], $start_date[$i]);
+			if ($todayWater == 'no water record') {
+				$gained[$i] = 0;
+			}else{
+				$gained[$i] = (float)$todayWater["water_amount"];
+			}
+		}
+		echo json_encode($gained);
+	}
+
+	public function homeSleepGraph(){
+		
+		$gained[0] = 0;
+		$gained[1] = 0;
+		$gained[2] = 0;
+		$gained[3] = 0;
+		$gained[4] = 0;
+		$gained[5] = 0;
+		$gained[6] = 0;
+
+		$start_date[0] = date("Y-m-d", strtotime( "previous sunday"));
+		$start_date[1] = date("Y-m-d", strtotime("previous sunday +1 days"));
+		$start_date[2] = date("Y-m-d", strtotime("previous sunday +2 days"));
+		$start_date[3] = date("Y-m-d", strtotime("previous sunday +3 days"));
+		$start_date[4] = date("Y-m-d", strtotime("previous sunday +4 days"));
+		$start_date[5] = date("Y-m-d", strtotime("previous sunday +5 days"));
+		$start_date[6] = date("Y-m-d", strtotime("previous sunday +6 days"));
+
+		for ($i=0; $i < sizeof($start_date); $i++) { 
+			$todaySleep = $this->functions->getSleepChart($_SESSION["patient_id"], $start_date[$i]);
+			if ($todaySleep == 'no sleep record') {
+				$gained[$i] = 0;
+			}else{
+				$gained[$i] = (float)$todaySleep["sleep_duration"];
+			}
+		}
+		echo json_encode($gained);
 	}
 }
 /* End of file main.php */

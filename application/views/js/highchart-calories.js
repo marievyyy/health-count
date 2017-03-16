@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
-    var valuesGained = [];
-    var valuesLoss = [];
-    var dateVal = [];
+    var valuesGained = [0,0,0,0,0,0,0];
+    var valuesLoss = [0,0,0,0,0,0,0];
     $.ajax({
         url: 'http://localhost/health/main/dailyCalorieGain',
         type: 'GET',
@@ -10,8 +9,7 @@ $(document).ready(function() {
         async: false,
         success: function(data){
             console.log(data);
-            valuesGained = data[0];
-            dateVal = data[1]
+            valuesGained = data;
         }
     });
 
@@ -22,18 +20,18 @@ $(document).ready(function() {
         async: false,
         success: function(data){
             console.log(data);
-            valuesLoss = data[0];
+            valuesLoss = data;
         }
     });
 
-    console.log(dateVal);
+    console.log(valuesGained);
+    console.log(valuesLoss);
 	Highcharts.chart('container-calories', {
         title: {
             text: 'Total Gained/Loss Calories'
         },
         xAxis: {
-            type: 'date',
-            categories: dateVal
+            categories: ['Sun', 'Mon', 'Tues', 'Wens', 'Thurs', 'Fri', 'Sat']
         },
         series: [{
             type: 'column',

@@ -1,4 +1,17 @@
 $(document).ready(function() {
+    var valuesSleep = [0,0,0,0,0,0,0];
+
+    $.ajax({
+        url: 'http://localhost/health/main/homeSleepGraph',
+        type: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function(data){
+            console.log(data);
+            valuesSleep = data;
+        }
+    });
+
     Highcharts.chart('container-sleep', {
         chart: {
             type: 'line'
@@ -10,7 +23,7 @@ $(document).ready(function() {
             text: 'Sleep Condition'
         },
         xAxis: {
-            categories: ['Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat', 'Sun']
+            categories: ['Sun', 'Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat']
         },
         yAxis: {
             title: {
@@ -27,7 +40,7 @@ $(document).ready(function() {
         },
         series: [{
             name: 'Hours of Sleep',
-            data: [7.0, 10.9, 9.5, 4.5, 8.4, 7.5, 11.2]
+            data: valuesSleep
         }]
     });
 });

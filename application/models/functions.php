@@ -451,10 +451,10 @@ class functions extends CI_Model {
     	}
 	}
 
-	public function getDailyCalGained($patient_id, $start_date, $end_date){
+	public function getDailyCalGained($patient_id, $start_date){
 		$this->db->where('patient_id',$patient_id);
-		$this->db->where('date_recorded >=', $start_date);
-		$this->db->where('date_recorded <=', $end_date);
+		$this->db->where('date_recorded', $start_date);
+		$this->db->order_by("time_recorded", "desc");
  		$query = $this->db->get('calories_intake');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
@@ -466,14 +466,14 @@ class functions extends CI_Model {
     	}
 	}
 
-	public function getDailyCalLoss($patient_id, $start_date, $end_date){
+	public function getDailyCalLoss($patient_id, $start_date){
 		$this->db->where('patient_id',$patient_id);
-		$this->db->where('date_recorded >=', $start_date);
-		$this->db->where('date_recorded <=', $end_date);
+		$this->db->where('date_recorded', $start_date);
+		$this->db->order_by("time_recorded", "desc");
  		$query = $this->db->get('activity');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
-        	return $data;
+        	return $data[0];
 
     	}
     	else{
@@ -496,6 +496,33 @@ class functions extends CI_Model {
     	}
     	else{
         	return 'no coffee data';
+    	}
+	}
+
+	public function getWaterChart($patient_id, $start_date){
+		$this->db->where('date_recorded', $start_date);
+		$this->db->where('patient_id', $patient_id);
+		$query = $this->db->get('water');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data[0];
+    	}
+    	else{
+        	return 'no water record';
+    	}
+	}
+
+	public function getSleepChart($patient_id, $start_date){
+		$this->db->where('patient_id', $patient_id);
+		$this->db->where('date_recorded', $start_date);
+		$query = $this->db->get('sleep');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data[0];
+
+    	}
+    	else{
+        	return 'no sleep record';
     	}
 	}
 }
