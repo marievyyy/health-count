@@ -89,6 +89,7 @@ $(document).ready(function (){
 					console.log(data);
 					valueBox = data;
 					$("#fooditem").html("");
+
 					if (data == "no food item" || data == false) {
 						$("#fooditem").append("<label for='check-1' id='food-"+i+"'>"+data+"</label>");
 					}else{
@@ -125,6 +126,7 @@ $(document).ready(function (){
 					},
 					success:function(data){
 						console.log(data);
+						
 
 						$('#pageNum').html("");
 						$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');
@@ -150,6 +152,7 @@ $(document).ready(function (){
 							for (var i = 0; i < 6; i++) {
 								a =  i + lastpage;
 								$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+a+'" value="'+a+'">');
+
 							}
 							$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
 							$("#next-btn").attr('disabled', true);
@@ -164,6 +167,7 @@ $(document).ready(function (){
 							$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
 							$("#next-btn").attr('disabled', false);
 						}
+						$("#page-"+data+"").focus();
 
 						pageNextFood(data);
 						nextButton();
@@ -196,21 +200,31 @@ $(document).ready(function (){
 					console.log(pageintial);
 					$('#pageNum').html("");
 					
-					y = parseInt(data) - 1;
+					var y = parseInt(data) - 1;
 					if (data <= 1) {
 						for (var x = 5; x > 0; x--) {
 							a = x + y;
 							$("#pageNum").prepend('<input type="button" name="pagenum" class="pagenum" id="page-'+a+'" value="'+a+'">');
 						}
-					$("#pageNum").append('........');
-					$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+pageintial+'" value="'+pageintial+'">');
-					$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
-					$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');
-					$("#prev-btn").attr('disabled', true);
+						$("#pageNum").append('........');
+						$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+pageintial+'" value="'+pageintial+'">');
+						$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
+						$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');
+						$("#prev-btn").attr('disabled', true);
+					}
+					else if (data >= parseInt(pageintial - 5)){
+						for (var x = 6; x > 0; x--) {
+							a = x + parseInt(pageintial - 6);
+							
+							$("#pageNum").prepend('<input type="button" name="pagenum" class="pagenum" id="page-'+a+'" value="'+a+'">');	
+						}	
+						$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
+							$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');
 					}
 					else{
 						for (var x = 5; x > 0; x--) {
 							a = x + y;
+							
 							$("#pageNum").prepend('<input type="button" name="pagenum" class="pagenum" id="page-'+a+'" value="'+a+'">');
 						}
 						$("#prev-btn").attr('disabled', false);
@@ -219,6 +233,7 @@ $(document).ready(function (){
 						$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
 						$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Previous">');	
 					}
+					$("#page-"+data+"").focus();
 					pageNextFood(data);
 					prevButton();
 					nextButton();
@@ -328,6 +343,10 @@ $(document).ready(function (){
 			for (var i = 1; i <= 5 && i <= data[0]; i++) {
 				$("#pageNum").append('<input type="button" name="pagenum" class="pagenum" id="page-'+i+'" value="'+i+'">');
 			}
+			$("#pageNum").prepend('<input type="button" class="next" id="prev-btn" value="< Prev">');
+			$("#pageNum").append('<input type="button" class="next" id="next-btn" value="Next >">');
+			$("#prev-btn").attr('disabled', true);
+			$("#next-btn").attr('disabled', true);
 
 		}
 		else if (data[0] > 5) {
