@@ -42,17 +42,22 @@
 
             <div class="add-container" align="center">
                 <h1>Add food</h1>
-                <form id="submitform" align="left">
-                    <label>Food Name: </label><input type="text" name="foodname"><br>
-                    <label>Carbs: </label><input type="text" name="carbs"><br>
-                    <label>Protein: </label><input type="text" name="protein"><br>
-                    <label>Fats: </label><input type="text" name="fats"><br>
-                    <label>Calories: </label><input type="text" name="calories"><br>
-                    <label>Description: </label><input type="text" name="description"><br>
-                    <label>Category: </label><input type="text" name="categoryname"><br>
-                    <input type="submit" name="submitted" value="Submit">
-                </form>
-                <div id="output"></div>
+                <div class="col-md-6">
+                    <form id="submitform" align="left">
+                        <label>Food Name: </label><input type="text" name="foodname"><br>
+                        <label>Carbs: </label><input type="text" name="carbs"><br>
+                        <label>Protein: </label><input type="text" name="protein"><br>
+                        <label>Fats: </label><input type="text" name="fats"><br>
+                        <label>Calories: </label><input type="text" name="calories"><br>
+                        <label>Description: </label><input type="text" name="description"><br>
+                        <label>Category: </label><input type="text" name="categoryname"><br>
+                        <input type="submit" name="submitted" value="Submit">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div id="output"></div>
+                </div>
+               
             </div>
 
 
