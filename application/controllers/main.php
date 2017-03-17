@@ -473,8 +473,8 @@ class main extends CI_Controller {
 
 				}
 				
-				$totalValue = (($newDuration/30) * 12) * 0.0295735;
-				$totalLitersAdded = round($totalValue * $oztoLiters, 2);
+				$totalValue = ($newDuration/30) * (12*$oztoLiters);
+				$totalLitersAdded = round($totalValue, 2);
 
 				$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
 
@@ -505,8 +505,8 @@ class main extends CI_Controller {
 
 				//get total total needed water with parameters of weight and activites round it to two.
 				$amountWater = ($_SESSION["weight"]*2.20) * 0.5;
-				$totalValue = $amountWater  + ((($time_min/30) * 12)*0.0295735);
-				$totalLiters = round($totalValue * $oztoLiters, 2);
+				$totalValue = $amountWater  + (($time_min/30) * (12*$oztoLiters));
+				$totalLiters = round($totalValue, 2);
 
 				$params = array(
 						'patient_id' => $_SESSION["patient_id"], 
@@ -645,8 +645,8 @@ class main extends CI_Controller {
 
 			}
 			
-			$totalValue = ($newDuration/30) * (12*0.0295735);
-			$totalLitersAdded = round($totalValue * $oztoLiters, 2);
+			$totalValue = ($newDuration/30) * (12*$oztoLiters);
+			$totalLitersAdded = round($totalValue, 2);
 
 			$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
 
