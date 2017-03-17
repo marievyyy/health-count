@@ -24,7 +24,7 @@ $(document).ready(function() {
             text: 'Water Intake'
         },
         xAxis: {
-            categories: ['Sun','Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat']
+            categories: ['Sun','Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
         },
         yAxis: {
             title: {

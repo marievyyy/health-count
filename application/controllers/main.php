@@ -1273,19 +1273,19 @@ class main extends CI_Controller {
 				$sleepDesc = $desc1;
 			}
 			//over sleep
-			else if ($_SESSION["age"] >= 6 && $_SESSION["age"] <= 13 && $sleepDuration >= 12) {
+			else if ($_SESSION["age"] >= 6 && $_SESSION["age"] <= 13 && $sleepDuration > 11) {
 				
 				$sleepDesc = $desc2;
 			}
-			else if ($_SESSION["age"] >= 14 && $_SESSION["age"] <= 17 && $sleepDuration >= 11) {
+			else if ($_SESSION["age"] >= 14 && $_SESSION["age"] <= 17 && $sleepDuration > 10) {
 				
 				$sleepDesc = $desc2;
 			}
-			else if ($_SESSION["age"] >= 18 && $_SESSION["age"] <= 64 && $sleepDuration >= 10) {
+			else if ($_SESSION["age"] >= 18 && $_SESSION["age"] <= 64 && $sleepDuration > 9) {
 				
 				$sleepDesc = $desc2;
 			}
-			else if ($_SESSION["age"] >= 65 && $sleepDuration >= 9) {
+			else if ($_SESSION["age"] >= 65 && $sleepDuration > 9) {
 				
 				$sleepDesc = $desc2;
 			}
@@ -1540,6 +1540,9 @@ class main extends CI_Controller {
 
 	public function dailyCalorieLoss(){
 		
+		$todayCalAct = [];
+		$todayCalSleep = [];
+
 		$gained[0] = 0;
 		$gained[1] = 0;
 		$gained[2] = 0;
@@ -1547,6 +1550,22 @@ class main extends CI_Controller {
 		$gained[4] = 0;
 		$gained[5] = 0;
 		$gained[6] = 0;
+
+		$activityBurn[0] = 0;
+		$activityBurn[1] = 0;
+		$activityBurn[2] = 0;
+		$activityBurn[3] = 0;
+		$activityBurn[4] = 0;
+		$activityBurn[5] = 0;
+		$activityBurn[6] = 0;
+
+		$sleepBurn[0] = 0;
+		$sleepBurn[1] = 0;
+		$sleepBurn[2] = 0;
+		$sleepBurn[3] = 0;
+		$sleepBurn[4] = 0;
+		$sleepBurn[5] = 0;
+		$sleepBurn[6] = 0;
 
 		$start_date[0] = date("Y-m-d", strtotime( "previous sunday"));
 		$start_date[1] = date("Y-m-d", strtotime("previous sunday +1 days"));
@@ -1557,13 +1576,33 @@ class main extends CI_Controller {
 		$start_date[6] = date("Y-m-d", strtotime("previous sunday +6 days"));
 
 		for ($i=0; $i < sizeof($start_date); $i++) { 
-			$todayCal = $this->functions->getDailyCalLoss($_SESSION["patient_id"], $start_date[$i]);
+			$todayCalAct[$i] = $this->functions->getDailyCalLossAct($_SESSION["patient_id"], $start_date[$i]);
 			
-			if ($todayCal == 'no food item') {
-				$gained[$i] = 0;
+
+			if ($todayCalAct[$i] == 'no food item') {
+				$activityBurn[$i] = 0;
 			}else{
-				$gained[$i] = (float)$todayCal["calories_burn"];
+				foreach ($todayCalAct[$i] as $valueCal) {
+					$activityBurn[$i] = $activityBurn[$i] + $valueCal["calories_burn"];
+				}
 			}
+		}
+
+		for ($i=0; $i < sizeof($start_date); $i++) { 
+			$todayCalSleep[$i] = $this->functions->getDailyCalLossSleep($_SESSION["patient_id"], $start_date[$i]);
+			
+
+			if ($todayCalSleep[$i] == 'no food item') {
+				$sleepBurn[$i] = 0;
+			}else{
+				foreach ($todayCalSleep[$i] as $valueCal) {
+					$sleepBurn[$i] = $sleepBurn[$i] + $valueCal["calories_burn"];
+				}
+			}
+		}
+
+		for ($i=0; $i <sizeof($gained) ; $i++) { 
+			$gained[$i] = $activityBurn[$i] + $sleepBurn[$i];
 		}
 		echo json_encode($gained);
 
@@ -1589,7 +1628,7 @@ class main extends CI_Controller {
 	}
 	public function homeCoffeePieAPI(){
 		$start_date = date("Y-m-d", strtotime( "previous sunday"));
-		$end_date = date('Y-m-d', strtotime('next saturday'));
+		$end_date = date('Y-m-d', strtotime('previous sunday +6 days'));
 
 		$resultCoffee = $this->functions->getCoffeIntake($_SESSION["patient_id"], $start_date, $end_date);
 
@@ -1663,6 +1702,38 @@ class main extends CI_Controller {
 			}
 		}
 		echo json_encode($gained);
+	}
+
+	public function activityPopular(){
+		$start_date = date("Y-m-d", strtotime( "previous sunday"));
+		$end_date = date('Y-m-d', strtotime('previous sunday +6 days'));
+
+		$resultActivity = $this->functions->getActivityPop($_SESSION["patient_id"], $start_date, $end_date);
+
+		$activityCat["cycling"] = 0;
+		$activityCat["run"] = 0;
+		$activityCat["jog"] = 0;
+		$activityCat["walk"] = 0;
+		$activityCat["excercise"] = 0;
+		//var_dump($resultCoffee);
+		foreach ($resultActivity as $valueActivity) {
+			if ($valueActivity["activity_name"] == 'cycling') {
+				$activityCat["cycling"] = $activityCat["cycling"] + 1;
+			}
+			else if ($valueActivity["activity_name"] == 'run') {
+				$activityCat["run"] = $activityCat["run"] + 1;
+			}
+			else if ($valueActivity["activity_name"] == 'jog') {
+				$activityCat["jog"] = $activityCat["jog"] + 1;
+			}
+			else if ($valueActivity["activity_name"] == 'walk') {
+				$activityCat["walk"] = $activityCat["walk"] + 1;
+			}
+			else{
+				$activityCat["excercise"] = $activityCat["excercise"] + 1;
+			}
+		}
+		echo json_encode($activityCat);
 	}
 
 	public function homeSleepGraph(){

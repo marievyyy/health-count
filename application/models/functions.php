@@ -466,20 +466,35 @@ class functions extends CI_Model {
     	}
 	}
 
-	public function getDailyCalLoss($patient_id, $start_date){
+	public function getDailyCalLossAct($patient_id, $start_date){
 		$this->db->where('patient_id',$patient_id);
 		$this->db->where('date_recorded', $start_date);
 		$this->db->order_by("time_recorded", "desc");
  		$query = $this->db->get('activity');
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
-        	return $data[0];
+        	return $data;
 
     	}
     	else{
         	return 'no food item';
     	}
 	}
+
+	public function getDailyCalLossSleep($patient_id, $start_date){
+		$this->db->where('patient_id',$patient_id);
+		$this->db->where('date_recorded', $start_date);
+ 		$query = $this->db->get('sleep');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
+
+    	}
+    	else{
+        	return 'no food item';
+    	}
+	}
+
 
 	public function getCoffeIntake($patient_id, $start_date, $end_date){
 		$this->db->select('caffeine_intake.caffeine_id,caffeine_intake.caffeine_type,caffeine_intake.servings,caffeine_intake.date_recorded,caffeine_status.caffeine_id,caffeine_status.patient_id');
@@ -519,6 +534,21 @@ class functions extends CI_Model {
 		if ($query->num_rows() >= 1){
 			$data = $query->result_array();
         	return $data[0];
+
+    	}
+    	else{
+        	return 'no sleep record';
+    	}
+	}
+
+	public function getActivityPop($patient_id, $start_date, $end_date){
+		$this->db->where('patient_id', $patient_id);
+		$this->db->where('date_recorded >=', $start_date);
+		$this->db->where('date_recorded <=', $end_date);
+		$query = $this->db->get('activity');
+		if ($query->num_rows() >= 1){
+			$data = $query->result_array();
+        	return $data;
 
     	}
     	else{

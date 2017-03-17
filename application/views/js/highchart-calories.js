@@ -31,7 +31,7 @@ $(document).ready(function() {
             text: 'Total Gained/Loss Calories'
         },
         xAxis: {
-            categories: ['Sun', 'Mon', 'Tues', 'Wens', 'Thurs', 'Fri', 'Sat']
+            categories: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
         },
         series: [{
             type: 'column',

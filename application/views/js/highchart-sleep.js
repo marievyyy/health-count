@@ -23,7 +23,7 @@ $(document).ready(function() {
             text: 'Sleep Condition'
         },
         xAxis: {
-            categories: ['Sun', 'Mon', 'Tue', 'Wen', 'Thur', 'Fri', 'Sat']
+            categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat']
         },
         yAxis: {
             title: {

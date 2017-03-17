@@ -1,170 +1,66 @@
 $(document).ready(function() {
-        Highcharts.chart('container-activity', {
-
-        chart: {
-            type: 'solidgauge',
-            marginTop: 80
-        },
-
-        title: {
-            text: 'Activity',
-            style: {
-                fontSize: '24px'
-            }
-        },
-
-        tooltip: {
-            borderWidth: 0,
-            backgroundColor: 'none',
-            shadow: false,
-            style: {
-                fontSize: '16px'
-            },
-            pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
-            positioner: function (labelWidth) {
-                return {
-                    x: 265 - labelWidth / 2,
-                    y: 245
-                };
-            }
-        },
-
-        pane: {
-            startAngle: 0,
-            endAngle: 270,
-            background: [{ // Track for Cycling
-                outerRadius: '112%',
-                innerRadius: '88%',
-                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.3).get(),
-                borderWidth: 0
-            }, { // Track for Run
-                outerRadius: '87%',
-                innerRadius: '63%',
-                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.3).get(),
-                borderWidth: 0
-            },{ // Track for Jog
-                outerRadius: '67%',
-                innerRadius: '56%',
-                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.3).get(),
-                borderWidth: 0
-            },{ // Track for Walk
-                outerRadius: '56%',
-                innerRadius: '45%',
-                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.3).get(),
-                borderWidth: 0
-            }, { // Track for Excercise
-                outerRadius: '45%',
-                innerRadius: '30%',
-                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2]).setOpacity(0.3).get(),
-                borderWidth: 0
-            }]
-        },
-
-        yAxis: {
-            min: 0,
-            max: 100,
-            lineWidth: 0,
-            tickPositions: []
-        },
-
-        plotOptions: {
-            solidgauge: {
-                borderWidth: '34px',
-                dataLabels: {
-                    enabled: false
-                },
-                linecap: 'round',
-                stickyTracking: true
-            }
-        },
-
-        series: [{
-            name: 'Cycling',
-            borderColor: Highcharts.getOptions().colors[0],
-            data: [{
-                color: Highcharts.getOptions().colors[0],
-                radius: '100%',
-                innerRadius: '100%',
-                y: 90
-            }]
-        }, {
-            name: 'Run',
-            borderColor: Highcharts.getOptions().colors[1],
-            data: [{
-                color: Highcharts.getOptions().colors[1],
-                radius: '75%',
-                innerRadius: '75%',
-                y: 25
-            }]
-        }, {
-            name: 'Jog',
-            borderColor: Highcharts.getOptions().colors[1],
-            data: [{
-                color: Highcharts.getOptions().colors[1],
-                radius: '75%',
-                innerRadius: '75%',
-                y: 25
-            }]
-        }, {
-            name: 'Walk',
-            borderColor: Highcharts.getOptions().colors[1],
-            data: [{
-                color: Highcharts.getOptions().colors[1],
-                radius: '75%',
-                innerRadius: '75%',
-                y: 25
-            }]
-        }, {
-            name: 'Excercise',
-            borderColor: Highcharts.getOptions().colors[2],
-            data: [{
-                color: Highcharts.getOptions().colors[2],
-                radius: '50%',
-                innerRadius: '50%',
-                y: 60
-            }]
-        }]
-    },
-
-    /**
-     * In the chart load callback, add icons on top of the circular shapes
-     */
-    function callback() {
-
-        // Move icon
-        // this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
-        //     .attr({
-        //         'stroke': '#303030',
-        //         'stroke-linecap': 'round',
-        //         'stroke-linejoin': 'round',
-        //         'stroke-width': 2,
-        //         'zIndex': 10
-        //     })
-        //     .translate(190, 26)
-        //     .add(this.series[2].group);
-
-        // Exercise icon
-        // this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8, 'M', 8, -8, 'L', 16, 0, 8, 8])
-        //     .attr({
-        //         'stroke': '#303030',
-        //         'stroke-linecap': 'round',
-        //         'stroke-linejoin': 'round',
-        //         'stroke-width': 2,
-        //         'zIndex': 10
-        //     })
-        //     .translate(190, 61)
-        //     .add(this.series[2].group);
-
-        // Stand icon
-        // this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
-        //     .attr({
-        //         'stroke': '#303030',
-        //         'stroke-linecap': 'round',
-        //         'stroke-linejoin': 'round',
-        //         'stroke-width': 2,
-        //         'zIndex': 10
-        //     })
-        //     .translate(190, 96)
-        //     .add(this.series[2].group);
+       
+    var activityPop = [];
+   $.ajax({
+        url: 'http://localhost/health/main/activityPopular',
+        type: 'GET',
+        dataType: 'json',
+        async: false,
+        success: function(data){
+            console.log(data);
+            activityPop = data;
+        }
     });
+
+    Highcharts.getOptions().plotOptions.pie.colors = (function () {
+        var colors = [],
+            base = Highcharts.getOptions().colors[0],
+            i;
+
+        for (i = 0; i < 10; i += 1) {
+            // Start out with a darkened base color (negative brighten), and end
+            // up with a much brighter color
+            colors.push(Highcharts.Color(base).brighten((i - 6) / 7).get());
+        }
+        return colors;
+    }());
+
+    // Build the chart
+    Highcharts.chart('container-activity', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'This Week Activity Ratio'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            data: [
+                { name: 'Cycling', y: activityPop["cycling"] },
+                { name: 'Run', y: activityPop["run"] },
+                { name: 'Jog', y: activityPop["jog"] },
+                { name: 'Walk', y: activityPop["walk"] },
+                { name: 'Excercise', y: activityPop["excercise"] }
+            ]
+        }]
+    }); 
 });
