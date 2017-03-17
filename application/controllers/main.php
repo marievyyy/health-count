@@ -594,7 +594,7 @@ class main extends CI_Controller {
 				$urineVal = 0;
 			}
 			//0.059147
-			if ($amountWater <= 0 && $urineColor != "urine-one" && $urineColor != "urine-two") {
+			if ($amountWater >= 0 && $urineColor != "urine-one" && $urineColor != "urine-two") {
 				$weightWater = ($_SESSION["weight"]*2.20) * 0.5;
 				$roundweightWater = round($weightWater * $oztoLiters, 2);
 				$urineWater = abs($roundweightWater * $urineVal);
