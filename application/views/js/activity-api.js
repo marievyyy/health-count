@@ -17,13 +17,6 @@ $(document).ready(function(){
 		}
 	});
 
-	$('input[name=distance]').keyup(function() {
-
-	});
-
-	$('input[name=timedis]').keyup(function() {
-
-	});
 
 	$('#activityRun').submit(function(e){
 		e.preventDefault();

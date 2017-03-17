@@ -956,7 +956,7 @@ class main extends CI_Controller {
 		$actDis = $this->input->post('distance');
 		$actDuration = $this->input->post('timedis');
 
-		$metVal = 0;
+		$metVal;
 		$speed;
 
 		if ($actDuration >= 1 && $actDuration <= 440) {
@@ -981,59 +981,59 @@ class main extends CI_Controller {
 				echo json_encode("No Activity");
 			}
 			else{
-				$speed = round(37.28227153424/ $actDis, 2);
+				//speed to mph
+				$speed = 37.28227153424/ $actDis;
 
 				if ($speed >= 4 && $speed <= 14 && $actType == "run") {
 
-					if ($actType == "run" && $speed = 14) {
-						$metVal = 23.0;
-					}
-					else if ($actType == "run" && $speed >= 13 && $speed < 14) {
-						$metVal = 19.8;
-					}
-					else if ($actType == "run" && $speed >= 12 && $speed < 13) {
-						$metVal = 19.0;
-					}
-					else if ($actType == "run" && $speed >= 11 && $speed < 12) {
-						$metVal = 18.0;
-					}
-					else if ($actType == "run" && $speed >= 10 && $speed < 9) {
-						$metVal = 16.0;
-					}
-					else if ($actType == "run" && $speed >= 9 && $speed < 8.6) {
-						$metVal = 15.0;
-					}
-					else if ($actType == "run" && $speed >= 8.6 && $speed < 8) {
-						$metVal = 14.0;
-					}
-					else if ($actType == "run" && $speed >= 8 && $speed < 7.5) {
-						$metVal = 13.5;
-					}
-					else if ($actType == "run" && $speed >= 7.5 && $speed < 7) {
-						$metVal = 12.5;
-					}
-					else if ($actType == "run" && $speed >= 7 && $speed < 6.7) {
-						$metVal = 11.5;
-					}
-					else if ($actType == "run" && $speed >= 6.7 && $speed < 6) {
-						$metVal = 11.0;
-					}
-					else if ($actType == "run" && $speed >= 6 && $speed < 5.2) {
-						$metVal = 10.0;
-					}
-					else if ($actType == "run" && $speed >= 5.2 && $speed < 5) {
-						$metVal = 9.0;
-					}
-					else if ($actType == "run" && $speed >= 5 && $speed < 4) {
-						$metVal = 8.0;
-					}
-					else if ($actType == "run" && $speed >= 4 && $speed < 5) {
+					if ($speed >= 4 && $speed < 5) {
 						$metVal = 6.0;
 					}
-					else{
-						$metVal = 0;
+					else if ($speed >= 5 && $speed < 5.2) {
+						$metVal = 8.0;
 					}
-					
+					else if ($speed >= 5.2 && $speed < 6) {
+						$metVal = 9.0;
+					}
+					else if ($speed >= 6 && $speed < 6.7) {
+						$metVal = 10.0;
+					}
+					else if ($speed >= 6.7 && $speed < 7) {
+						$metVal = 11.0;
+					}
+					else if ($speed >= 7 && $speed < 7.5) {
+						$metVal = 11.5;
+					}
+					else if ($speed >= 7.5 && $speed < 8) {
+						$metVal = 12.5;
+					}
+					else if ($speed >= 8 && $speed < 8.6) {
+						$metVal = 13.5;
+					}
+					else if ($speed >= 8.6 && $speed < 9) {
+						$metVal = 14.0;
+					}
+					else if ($speed >= 9 && $speed < 10) {
+						$metVal = 15.0;
+					}
+					else if ($speed >= 10 && $speed < 11) {
+						$metVal = 16.0;
+					}
+					else if ($speed >= 11 && $speed < 12) {
+						$metVal = 18.0;
+					}
+					else if ($speed >= 12 && $speed < 13) {
+						$metVal = 19.0;
+					}
+					else if ($speed >= 13 && $speed < 14) {
+						$metVal = 19.8;
+					}
+					else if ($speed >= 14) {
+						$metVal = 23.0;
+					}
+					else{
+						
+					}
 
 					$actHours = $actDuration / 60;
 					$burnedCal = round($metVal * $_SESSION["weight"] * $actHours, 2);
@@ -1641,37 +1641,42 @@ class main extends CI_Controller {
 		$servings["frappe"] = 0;
 		$servings["instantcoffee"] = 0;
 		//var_dump($resultCoffee);
-		foreach ($resultCoffee as $valueCoffee) {
-			if ($valueCoffee["caffeine_type"] == 'espresso') {
-				$servings["espresso"] = $servings["espresso"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'cappuccino') {
-				$servings["cappuccino"] = $servings["cappuccino"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'americano') {
-				$servings["americano"] = $servings["americano"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'cafelatte') {
-				$servings["cafelatte"] = $servings["cafelatte"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'mocha') {
-				$servings["mocha"] = $servings["mocha"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'caramel') {
-				$servings["caramel"] = $servings["caramel"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'frappe') {
-				$servings["frappe"] = $servings["frappe"] + $valueCoffee["servings"];
-			}
-			else if ($valueCoffee["caffeine_type"] == 'instantcoffee') {
-				$servings["instantcoffee"] = $servings["instantcoffee"] + $valueCoffee["servings"];
-			}
-			else{
+		if (is_array($resultCoffee) == true) {
+			foreach ($resultCoffee as $valueCoffee) {
+				if ($valueCoffee["caffeine_type"] == 'espresso') {
+					$servings["espresso"] = $servings["espresso"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'cappuccino') {
+					$servings["cappuccino"] = $servings["cappuccino"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'americano') {
+					$servings["americano"] = $servings["americano"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'cafelatte') {
+					$servings["cafelatte"] = $servings["cafelatte"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'mocha') {
+					$servings["mocha"] = $servings["mocha"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'caramel') {
+					$servings["caramel"] = $servings["caramel"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'frappe') {
+					$servings["frappe"] = $servings["frappe"] + $valueCoffee["servings"];
+				}
+				else if ($valueCoffee["caffeine_type"] == 'instantcoffee') {
+					$servings["instantcoffee"] = $servings["instantcoffee"] + $valueCoffee["servings"];
+				}
+				else{
 
+				}
 			}
+			echo json_encode($servings);
+		}else{
+			echo json_encode($servings);
 		}
 
-		echo json_encode($servings);
+		
 		
 	}
 
@@ -1716,6 +1721,7 @@ class main extends CI_Controller {
 		$activityCat["walk"] = 0;
 		$activityCat["excercise"] = 0;
 		//var_dump($resultCoffee);
+
 		foreach ($resultActivity as $valueActivity) {
 			if ($valueActivity["activity_name"] == 'cycling') {
 				$activityCat["cycling"] = $activityCat["cycling"] + 1;
