@@ -261,7 +261,7 @@ $(document).ready(function(){
 					console.log("Submitted");
 					$('#errorHeight').text("");
 					$('#errorWeight').text("");
-					//window.location = "http://localhost/health/main/profile";
+					window.location = "http://localhost/health/main/profile";
 				}
 			},
 			error: function(data){
