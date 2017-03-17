@@ -453,7 +453,7 @@ class main extends CI_Controller {
 		if (is_array($resultAct) == true) {
 			if (is_array($resultWaterAPI) == true) {
 				
-				//if there is an activity and there is no existing water data 
+				//if there is an activity and there is there is an existing water data 
 				$sum2=0;
 				//parse the data activites for today and sum the total.
 				foreach ($resultAct as $i) {
@@ -473,7 +473,7 @@ class main extends CI_Controller {
 
 				}
 				
-				$totalValue = ($newDuration/30) * (12*0.0295735);
+				$totalValue = (($newDuration/30) * 12) * 0.0295735;
 				$totalLitersAdded = round($totalValue * $oztoLiters, 2);
 
 				$amountWater = $resultWaterAPI["water_amount"] + $totalLitersAdded;
@@ -504,8 +504,8 @@ class main extends CI_Controller {
 				$time_min = $sum2;
 
 				//get total total needed water with parameters of weight and activites round it to two.
-				$amountWater = $_SESSION["weight"] * 0.5;
-				$totalValue = $amountWater  + (($time_min/30) * (12*0.0295735));
+				$amountWater = ($_SESSION["weight"]*2.20) * 0.5;
+				$totalValue = $amountWater  + ((($time_min/30) * 12)*0.0295735);
 				$totalLiters = round($totalValue * $oztoLiters, 2);
 
 				$params = array(
