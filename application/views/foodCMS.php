@@ -7,11 +7,11 @@
 
 		<title>Food Add</title>
 
-		<link rel="shortcut icon" href="../application/views/img/favicon.ico">
+		<link rel="shortcut icon" href="<?php echo base_url('assets/css/favicon.ico');?>">
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/favicon.ico');?>"/>
         <!-- Custom style -->
-        <link rel="stylesheet" href="../application/views/css/foodAdd.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/foodAdd.css');?>">
 
 	</head>
 
@@ -57,16 +57,11 @@
                 <div class="col-md-6 border">
                     <div id="output"></div>
                 </div>
-               
             </div>
-
-
         </div>
 
-		
-
-		<script src="../application/views/js/jquery.min.js"></script>
-		<script src="../application/views/js/foodAdd.js"></script>
+		<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+		<script src="<?php echo base_url('assets/js/foodAdd.js');?>"></script>
 
 	</body>
 </html>

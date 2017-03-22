@@ -10,13 +10,13 @@
         <title>Health Count | Coffee</title>
 
 
-        <link rel="shortcut icon" href="../application/views/img/favicon.ico">
+        <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico');?>">
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="../application/views/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>"/>
         <!-- Custom style -->
-        <link rel="stylesheet" href="../application/views/css/coffee-menu.css">
-        <link rel="stylesheet" href="../application/views/css/coffee.css">
-        <link rel="stylesheet" href="../application/views/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/coffee-menu.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/coffee.css');?>">
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css');?>">
         
     </head>
 
@@ -25,17 +25,17 @@
     <!-- Menu -->
         <nav class="menu" id="theMenu">
             <div class="menu-wrap">
-                <h1 class="logo"><a href="/health/main/">Health Count</a></h1>
+                <h1 class="logo"><a href="<?php echo base_url();?>main/">Health Count</a></h1>
                 <!-- <i class="icon-remove menu-close"></i> -->
-                <a href="/health/main/food" class="smoothScroll">Food</a>
-                <a href="/health/main/water" class="smoothScroll">Water</a>
-                <a href="/health/main/coffee" class="smoothScroll">Coffee</a>
-                <a href="/health/main/activity" class="smoothScroll">Activities</a>
-                <a href="/health/main/sleep" class="smoothScroll">Sleep</a>
-                <a href="/health/main/meditation" class="smoothScroll">Meditation</a>
-                <a href="/health/main/about" class="smoothScroll">About-Us</a>
-                <a href="/health/main/profile" class="smoothScroll">Profile</a>
-                <a href="/health/main/logout" class="logout">Log Out</a>
+                <a href="<?php echo base_url();?>main/food" class="smoothScroll">Food</a>
+                <a href="<?php echo base_url();?>main/water" class="smoothScroll">Water</a>
+                <a href="<?php echo base_url();?>main/coffee" class="smoothScroll">Coffee</a>
+                <a href="<?php echo base_url();?>main/activity" class="smoothScroll">Activities</a>
+                <a href="<?php echo base_url();?>main/sleep" class="smoothScroll">Sleep</a>
+                <a href="<?php echo base_url();?>main/meditation" class="smoothScroll">Meditation</a>
+                <a href="<?php echo base_url();?>main/about" class="smoothScroll">About-Us</a>
+                <a href="<?php echo base_url();?>main/profile" class="smoothScroll">Profile</a>
+                <a href="<?php echo base_url();?>main/logout" class="logout">Log Out</a>
             </div>
             
             <!-- Menu button -->
@@ -107,7 +107,7 @@
                             <h2 class="fs-title">Number of Cups</h2>
                             
                             <div>
-                                <img class="cup" src="../application/views/img/americano.png">
+                                <img class="cup" src="<?php echo base_url('assets/img/americano.png');?>">
                             </div>
 
                             <div class="center">
@@ -131,7 +131,7 @@
                         </fieldset>
                         <fieldset class="result">
                             <div class="col-md-6">
-                                <img class="cup" src="../application/views/img/mocha.png">
+                                <img class="cup" src="<?php echo base_url('assets/img/mocha.png');?>">
                             </div>
                             <div class="col-md-6">
                                 <h2 class="fs-title">Results</h2>
@@ -148,13 +148,13 @@
             <!-- End of Registration -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src='../application/views/js/jquery.min.js'></script>
-    <script src='../application/views/js/jquery.easing.1.3.min.js'></script>
-    <script src="../application/views/js/bootstrap.min.js"></script>
-    <script src="../application/views/js/main.js"></script>
-    <script src="../application/views/js/registration.js"></script>
-    <script src="../application/views/js/water.js"></script>
-    <script src="../application/views/js/coffee-api.js"></script>
+    <script src='<?php echo base_url('assets/js/jquery.min.js');?>'></script>
+    <script src='<?php echo base_url('assets/js/jquery.easing.1.3.min.js');?>'></script>
+    <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/main.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/registration.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/water.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/coffee-api.js');?>"></script>
 
     </body>
 </html>
