@@ -18,7 +18,7 @@ Homepage - Login and Registration
 ![Coffee](https://user-images.githubusercontent.com/25134135/28240522-ede6ef88-69b5-11e7-9b42-326669b0f23e.png)
 ![Coffee2](https://user-images.githubusercontent.com/25134135/28240511-e45a28cc-69b5-11e7-98ce-f593c955dc7f.png)
 ![Water](https://user-images.githubusercontent.com/25134135/28240523-edebcc6a-69b5-11e7-8598-04696bf03937.png)
-![Water2(https://user-images.githubusercontent.com/25134135/28240513-e47a5e9e-69b5-11e7-923b-86fe2b49bf14.png)
+![Water2](https://user-images.githubusercontent.com/25134135/28240513-e47a5e9e-69b5-11e7-923b-86fe2b49bf14.png)
 ![Activity](https://user-images.githubusercontent.com/25134135/28240512-e468235a-69b5-11e7-88ff-e5c4a069f543.png)
 ![Acitity2](https://user-images.githubusercontent.com/25134135/28240510-e450c4e4-69b5-11e7-9296-80945aea6557.png)
 ![Activity3](https://user-images.githubusercontent.com/25134135/28240590-639752e4-69b7-11e7-945a-ea3463d5af8f.png)
@@ -28,7 +28,12 @@ Homepage - Login and Registration
 
 ***
 Bunquin, Ryan Gabriel S. – Back-end developer
+
 Porras, Ivy Marie G. – Front-end developer
+
 Malto, Allison Dwight R. – Back-end developer assistant and QA
+
 Lapitan, Rose Suzette M. – Documentation
+
 Palambiano, Niña Geralyn R. – Documentation
+
